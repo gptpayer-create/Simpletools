@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Block crawlers from non-content paths
+Disallow: /404.html
+Disallow: /admin.html
+
+# Crawl delay for polite bots
+Crawl-delay: 1
+
+# Common bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://gptpayer.online/sitemap.xml
