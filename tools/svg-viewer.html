@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en"><head><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><link rel="shortcut icon" href="/favicon.svg" /><link rel="dns-prefetch" href="//fonts.googleapis.com" /><link rel="dns-prefetch" href="//fonts.gstatic.com" /><link rel="dns-prefetch" href="//www.googletagmanager.com" /><link rel="dns-prefetch" href="//pagead2.googlesyndication.com" /><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta name="theme-color" content="#d4470a" /><title>SVG Viewer – Free Online Tool | GPTPayer.online</title><meta name="description" content="View, edit, inspect, and export SVG files online. Edit SVG source code, zoom/pan, export as PNG or JPG. No upload needed."/><meta name="keywords" content="svg viewer, svg, viewer, gptpayer, svg viewer free, svg viewer online" /><link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#f0ede8;--surface:#fff;--ink:#1a1714;--muted:#6b6560;--accent:#d4470a;--accent2:#f0a500;--border:#d9d4cd;--radius:16px;--shadow:0 4px 32px rgba(0,0,0,.08)}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6}nav{background:var(--ink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;gap:16px}.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-decoration:none;letter-spacing:-.5px}.logo span{color:var(--accent2)}nav ul{list-style:none;display:flex;gap:24px}nav ul a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s}nav ul a:hover{color:#fff}.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px}.hero{text-align:center;padding:72px 24px 48px;max-width:720px;margin:0 auto}.badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:20px}h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px}h1 em{color:var(--accent);font-style:normal}.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto}.tool-wrap{max-width:1100px;margin:0 auto;padding:0 20px 80px}.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.drop-zone{border:2.5px dashed var(--border);border-radius:12px;margin:28px;padding:56px 24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}.drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent);background:#fff7f4}.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}.drop-icon{font-size:3rem;margin-bottom:12px;display:block}.drop-zone h2{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:8px}.drop-zone p{color:var(--muted);font-size:.9rem}.or-divider{margin:16px 0;color:var(--muted);font-size:.9rem;position:relative;text-align:center}.or-divider::before,.or-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}.or-divider::before{left:0}.or-divider::after{right:0}.paste-area{margin:0 28px 28px;border:1.5px solid var(--border);border-radius:12px;overflow:hidden}.paste-area-header{background:var(--bg);padding:10px 14px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.paste-btn{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer}.paste-btn:hover{background:#b33d07}textarea.svg-code{width:100%;height:120px;border:none;padding:14px;font-family:monospace;font-size:.78rem;resize:vertical;background:#fff;color:var(--ink);outline:none;display:block}#workspace{display:none}.toolbar{background:var(--bg);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.tb-group{display:flex;gap:6px;align-items:center}.tb-sep{width:1px;height:28px;background:var(--border);flex-shrink:0}.tb-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--ink);white-space:nowrap}.tb-btn:hover{border-color:var(--accent);color:var(--accent)}.tb-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}.tb-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.tb-btn.primary:hover{background:#b33d07}.tb-label{font-size:.78rem;font-weight:600;color:var(--muted)}.zoom-display{font-family:monospace;font-size:.85rem;font-weight:700;color:var(--ink);min-width:50px;text-align:center}.bg-options{display:flex;gap:4px}.bg-opt{width:24px;height:24px;border-radius:5px;border:2px solid transparent;cursor:pointer;transition:all .15s}.bg-opt:hover,.bg-opt.active{border-color:var(--accent);transform:scale(1.15)}.main-layout{display:grid;grid-template-columns:1fr 340px;min-height:480px}@media(max-width:800px){.main-layout{grid-template-columns:1fr}}.viewer-panel{position:relative;overflow:hidden;border-right:1px solid var(--border)}#viewerInner{position:absolute;inset:0;overflow:hidden;cursor:grab}#viewerInner.grabbing{cursor:grabbing}#svgWrap{position:absolute;transform-origin:top left;transition:transform .05s}#svgWrap svg{display:block;max-width:none !important}.bg-white{background:#fff}.bg-transparent{background:repeating-conic-gradient(#e0dbd4 0% 25%,transparent 0% 50%) 0 0/16px 16px}.bg-dark{background:#1a1714}.bg-grey{background:#f0ede8}.right-panel{display:flex;flex-direction:column}.panel-tabs{display:flex;border-bottom:1px solid var(--border)}.panel-tab{flex:1;padding:12px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;text-align:center;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none}.panel-tab.active{color:var(--accent);border-bottom-color:var(--accent)}.panel-content{flex:1;overflow:auto}.info-section{padding:16px}.info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}.info-row:last-child{border-bottom:none}.info-key{color:var(--muted);font-weight:500}.info-val{font-family:monospace;font-weight:600;font-size:.82rem;color:var(--ink);text-align:right;word-break:break-all;max-width:160px}.elements-list{padding:12px 16px;font-size:.82rem}.el-row{padding:5px 8px;border-radius:6px;cursor:pointer;transition:background .15s;display:flex;justify-content:space-between;font-family:monospace}.el-row:hover{background:var(--bg)}.el-tag{color:#0369a1}.el-count{color:var(--muted);font-size:.75rem}.editor-wrap{padding:0}#codeEditor{width:100%;min-height:320px;border:none;padding:14px;font-family:monospace;font-size:.75rem;resize:vertical;background:#1a1714;color:#f0ede8;outline:none;tab-size:2;line-height:1.5;display:block}.editor-actions{padding:10px 14px;background:var(--bg);border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap}.btn-apply-code{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;padding:8px 18px;border:none;border-radius:8px;cursor:pointer}.btn-apply-code:hover{background:#b33d07}.btn-format{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:8px 14px;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer}.btn-format:hover{border-color:var(--accent)}.btn-copy-code{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer}.btn-copy-code:hover{background:#333}.btn-copy-code.copied{background:#16a34a}.export-section{padding:16px}.export-section h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:12px}.ctrl-group{margin-bottom:14px}.ctrl-group label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:6px}.ctrl-group input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:.9rem;background:var(--bg);color:var(--ink);outline:none;transition:border-color .2s}.ctrl-group input:focus{border-color:var(--accent)}.ctrl-group select{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:.9rem;background:var(--bg);color:var(--ink);outline:none}.export-btns{display:flex;flex-direction:column;gap:8px}.btn-export{width:100%;padding:11px;border:none;border-radius:9px;font-family:'Sora',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;transition:background .2s}.btn-export-svg{background:var(--accent);color:#fff}.btn-export-svg:hover{background:#b33d07}.btn-export-png{background:var(--ink);color:#fff}.btn-export-png:hover{background:#333}.btn-export-jpg{background:#0369a1;color:#fff}.btn-export-jpg:hover{background:#0284c7}.btn-new{width:100%;background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:9px;padding:10px;font-family:'DM Sans',sans-serif;font-size:.875rem;cursor:pointer;margin-top:4px}.btn-new:hover{border-color:var(--ink);color:var(--ink)}.features{background:var(--ink);padding:64px 24px;text-align:center}.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px}.features>p{color:rgba(255,255,255,.55);margin-bottom:48px}.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto}.feature-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px 20px;text-align:left}.feature-icon{font-size:2rem;margin-bottom:14px;display:block}.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px}.feature-card p{color:rgba(255,255,255,.5);font-size:.875rem;line-height:1.5}footer{background:var(--ink);color:rgba(255,255,255,.6);padding:40px 24px}.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:rgba(255,255,255,.85);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;z-index:9999;font-size:.875rem}.cookie-banner p{margin:0;flex:1}.cookie-banner a{color:var(--accent2);text-decoration:underline}.cookie-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer}.cookie-btn-decline{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 18px;font-size:.875rem;cursor:pointer}@media(max-width:600px){nav{padding:0 16px}.nav-toggle{display:block}nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,.1);z-index:99}nav ul.open{display:flex}}.lang-select-wrap{position:relative;display:flex;align-items:center;margin-left:auto;}.lang-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:#fff;border-radius:7px;padding:5px 12px;cursor:pointer;font-size:0.8rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background 0.2s;}.lang-btn:hover{background:rgba(255,255,255,0.22);}.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1714;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.55);max-height:320px;overflow-y:auto;scrollbar-width:thin;}.lang-select-wrap.open .lang-dropdown{display:block;}.lang-option{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:0.82rem;color:rgba(255,255,255,0.75);transition:background 0.15s;user-select:none;}.lang-option:hover{background:rgba(255,255,255,0.1);color:#fff;}.lang-option.active-lang{background:#d4470a;color:#fff;}.goog-te-banner-frame,.goog-te-balloon-frame{display:none!important;}body{top:0!important;position:static!important;}iframe.skiptranslate{display:none!important;}.skiptranslate>*{display:none!important;}@media(max-width:640px){.lang-btn .lang-name{display:none;}.lang-dropdown{min-width:160px;}}
+/* === Footer CSS === */
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.footer-brand .logo{font-size:1.1rem;display:block;margin-bottom:10px;}
+.footer-brand p{font-size:0.83rem;line-height:1.6;max-width:300px;}
+.footer-col-title{font-family:'Sora',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:14px;}
+.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.82rem;margin-bottom:8px;transition:color 0.2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-copy{font-size:0.78rem;}
+.footer-top{grid-template-columns:1fr;gap:28px;}
+.footer-bottom{flex-direction:column;text-align:center;}
+.footer-popular{padding:28px 32px 0;max-width:1200px;margin:0 auto;}
+.footer-popular-title{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;margin-bottom:12px;}
+.footer-popular-links{display:flex;flex-wrap:wrap;gap:10px 18px;margin-bottom:24px;}
+.footer-popular-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-popular-links a:hover{color:#fff;}
+.footer-social{display:flex;justify-content:center;align-items:center;gap:12px;padding:20px 0 8px;}
+@media (max-width:768px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+@media (max-width:480px){.footer-popular{padding:28px 32px 0;max-width:1200px;margin:0 auto;}}
+/* === End Footer CSS === */
+ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0 !important;overflow:hidden !important;}.adsbygoogle-wrapper:empty{display:none !important;}</style><link rel="canonical" href="https://gptpayer.online/tools/svg-viewer.html" /><meta property="og:title" content="SVG Viewer | GPTPayer.online" /><meta property="og:description" content="View, edit, inspect, and export SVG files online. Edit SVG source code, zoom/pan, export as PNG or JPG. No upload needed." /><meta property="og:type" content="website" /><meta property="og:url" content="https://gptpayer.online/tools/svg-viewer.html" /><meta property="og:image" content="https://gptpayer.online/og-images/og-default.png" /><meta name="twitter:image" content="https://gptpayer.online/og-images/og-default.png" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="SVG Viewer | GPTPayer.online" /><meta name="twitter:description" content="View, edit, inspect, and export SVG files online. Edit SVG source code, zoom/pan, export as PNG or JPG. No upload needed." /><script async src="https://www.googletagmanager.com/gtag/js?id=G-VERDFQS25D"></script><script>window.dataLayer=window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VERDFQS25D');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4584285687998770" crossorigin="anonymous"></script><script type="application/ld+json"> { "@context": "https://schema.org", "@type": "WebApplication", "name": "SVG Viewer", "url": "https://gptpayer.online/svg-viewer.html", "description": "View, edit, inspect, and export SVG files online. Edit SVG source code, zoom/pan, export as PNG or JPG. No upload needed.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@type": "Organization", "name": "GPTPayer.online", "url": "https://gptpayer.online" } } </script><link rel="stylesheet" href="/shared.css"><script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script></head><body><script>function toggleFaq(el) { el.parentElement.classList.toggle('open'); } function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none'}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookieBanner').style.display='none'}
+document.addEventListener('DOMContentLoaded',function(){if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookieBanner');if(b)b.style.display='none'}})</script><nav><a class="logo" href="/">GPT<span>Payer</span></a><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button><div class="lang-select-wrap" id="langWrap" translate="no"><button class="lang-btn" id="langBtn" onclick="document.getElementById('langWrap').classList.toggle('open')">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button><div class="lang-dropdown" id="langDropdown"></div></div><ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></nav><div class="hero"><div class="badge">100% Free · No Signup · Browser-based</div><h1>Online <em>SVG Viewer</em>,<br>Editor & Exporter</h1><p>View, pan, zoom, inspect, and live-edit SVG files in your browser. Export to PNG, JPG, or clean SVG — no server upload needed.</p></div><div style="max-width:900px;margin:0 auto;padding:16px 20px 0;text-align:center;"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4584285687998770"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><div class="tool-wrap"><div class="card"><div id="uploadArea"><div class="drop-zone" id="dropZone"><input type="file" id="fileInput" accept=".svg,image/svg+xml"/><span class="drop-icon">🎨</span><h2>Drop your SVG file here</h2><p>Or paste SVG code below — supports inline SVG, data URIs, and .svg files</p></div><div class="or-divider">or paste SVG code</div><div class="paste-area"><div class="paste-area-header"> SVG Source Code <button class="paste-btn" onclick="loadFromPaste()">Render SVG →</button></div><textarea class="svg-code" id="pasteInput" placeholder="<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot;>&#10; <circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;#d4470a&quot;/>&#10;</svg>"></textarea></div></div><div id="workspace"><div class="toolbar"><div class="tb-group"><span class="tb-label">Zoom:</span><button class="tb-btn" onclick="zoomBy(0.25)">＋</button><span class="zoom-display" id="zoomDisplay">100%</span><button class="tb-btn" onclick="zoomBy(-0.25)">－</button><button class="tb-btn" onclick="resetView()">Fit</button></div><div class="tb-sep"></div><div class="tb-group"><span class="tb-label">BG:</span><div class="bg-options"><div class="bg-opt active" id="bgW" style="background:#fff;border-color:#d9d4cd" title="White" onclick="setBg('white')"></div><div class="bg-opt" id="bgT" style="background:repeating-conic-gradient(#ccc 0% 25%,#fff 0% 50%) 0 0/8px 8px" title="Transparent" onclick="setBg('transparent')"></div><div class="bg-opt" id="bgD" style="background:#1a1714" title="Dark" onclick="setBg('dark')"></div><div class="bg-opt" id="bgG" style="background:#f0ede8;border:2px solid #d9d4cd" title="Grey" onclick="setBg('grey')"></div></div></div><div class="tb-sep"></div><div class="tb-group"><button class="tb-btn primary" onclick="exportAs('png')">⬇ PNG</button><button class="tb-btn primary" onclick="exportAs('jpg')">⬇ JPG</button><button class="tb-btn primary" onclick="exportSvg()">⬇ SVG</button><button class="tb-btn" onclick="resetTool()">✕ New</button></div></div><div class="main-layout"><div class="viewer-panel" id="viewerPanel"><div id="viewerInner" class="bg-white"><div id="svgWrap"></div></div></div><div class="right-panel"><div class="panel-tabs"><button class="panel-tab active" id="tabInfo" onclick="switchTab('info')">📊 Info</button><button class="panel-tab" id="tabEditor" onclick="switchTab('editor')">✏️ Edit</button><button class="panel-tab" id="tabExport" onclick="switchTab('export')">⬇ Export</button></div><div class="panel-content" id="paneInfo"><div class="info-section"><div id="infoRows"></div></div><div style="padding:0 16px 8px;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Element Summary</div><div class="elements-list" id="elementsList"></div></div><div class="panel-content" id="paneEditor" style="display:none"><div class="editor-wrap"><textarea id="codeEditor" spellcheck="false"></textarea></div><div class="editor-actions"><button class="btn-apply-code" onclick="applyCode()">▶ Apply</button><button class="btn-format" onclick="formatCode()">{ } Format</button><button class="btn-copy-code" id="btnCopyCode" onclick="copyCode()">📋 Copy</button></div></div><div class="panel-content" id="paneExport" style="display:none"><div class="export-section"><h3>Export Settings</h3><div class="ctrl-group"><label>Scale Factor</label><input type="number" id="exportScale" value="2" min="0.5" max="10" step="0.5"/></div><div class="ctrl-group"><label>JPG Background Color</label><input type="color" id="jpgBg" value="#ffffff" style="height:36px;cursor:pointer"/></div><div class="ctrl-group"><label>Output Filename</label><input type="text" id="exportName" value="image"/></div><div class="export-btns"><button class="btn-export btn-export-svg" onclick="exportSvg()">⬇ Download SVG</button><button class="btn-export btn-export-png" onclick="exportAs('png')">⬇ Download PNG (transparent)</button><button class="btn-export btn-export-jpg" onclick="exportAs('jpg')">⬇ Download JPG</button></div><button class="btn-new" onclick="resetTool()">✕ Load New SVG</button></div></div></div></div></div></div></div><section class="features"><h2>Full-Featured SVG Viewer & Editor</h2><p>Everything you need to work with SVG files in the browser</p><div class="features-grid"><div class="feature-card"><span class="feature-icon">🔍</span><h3>Pan & Zoom</h3><p>Drag to pan, scroll to zoom, or use toolbar buttons. Fit-to-view snaps the SVG perfectly to the viewport.</p></div><div class="feature-card"><span class="feature-icon">✏️</span><h3>Live Code Editor</h3><p>Edit the SVG source directly with syntax-highlighted dark editor and see changes applied instantly.</p></div><div class="feature-card"><span class="feature-icon">📊</span><h3>SVG Inspector</h3><p>See viewBox, dimensions, element count by tag type, and file size — all parsed instantly.</p></div><div class="feature-card"><span class="feature-icon">📤</span><h3>Multi-Format Export</h3><p>Export as clean SVG, transparent PNG, or JPG at any scale factor up to 10×.</p></div></div></section><div class="faq-section"><div class="faq-inner"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is this tool free?</div><div class="faq-a">Yes, 100% free. No signup, no limits.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my SVG uploaded to a server?</div><div class="faq-a">No. SVGs are rendered in your browser — your file never leaves your device.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I edit the SVG code here?</div><div class="faq-a">Some viewers allow basic code editing. For full SVG editing, use tools like Inkscape or Figma.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What SVG features are supported?</div><div class="faq-a">Standard SVG 1.1 and SVG 2.0 elements including paths, shapes, text, gradients, filters, and animations.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I export SVG to PNG?</div><div class="faq-a">Yes. Export at any resolution — useful for generating raster previews from scalable SVG files.</div></div></div></div><div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div><script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script><div class="extra-content"><h2>Svg Viewer &#8212; Complete Guide</h2><p>This free online svg viewer tool is designed to work entirely in your browser &#8212; no uploads, no waiting, no software installation needed. It&#39;s fast, private, and completely free to use without any account or subscription.</p><div class="tips-grid"><div class="tip-card"><h4>💡 SVG is scalable</h4><p>SVG images scale perfectly to any size without any quality loss, unlike PNG or JPG.</p></div><div class="tip-card"><h4>💡 Check viewBox</h4><p>If your SVG looks clipped or wrong, check the viewBox attribute — it defines the visible area.</p></div><div class="tip-card"><h4>💡 Optimize before use</h4><p>Use SVGO to optimize SVG files before embedding — removing metadata can reduce file size by 50-80%.</p></div><div class="tip-card"><h4>💡 SVG in CSS</h4><p>Use SVG as CSS background-image or inline in HTML for icons that respond to CSS variables like currentColor.</p></div></div><p>An SVG viewer is essential for web developers, designers, and developers working with scalable graphics, icon systems, and vector illustrations.</p></div><div style="max-width:420px;margin:32px auto 32px;padding:0 20px;"><div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a></div></div><div style="max-width:900px;margin:0 auto;padding:32px 20px 16px;text-align:center;"><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4584285687998770"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><div class="related-tools-section"><h3 class="related-title">🔧 Related Tools</h3><div class="related-tools-grid"><a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a><a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a><a href="/tools/background-remover.html" class="related-tool-link">Background Remover</a><a href="/tools/word-counter.html" class="related-tool-link">Word Counter</a></div></div><div class="share-section"><p class="share-label">📤 Share this tool</p><div class="share-btns"><button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button><button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button><button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button></div></div><script>function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+
+function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
+function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}</script><footer><div class="footer-popular"><div class="footer-popular-title">🔥 Popular Tools</div><div class="footer-popular-links"><a href="/tools/jpg-to-pdf.html">JPG to PDF</a><a href="/tools/compress-pdf.html">Compress PDF</a><a href="/tools/merge-pdf.html">Merge PDF</a><a href="/tools/background-remover.html">Background Remover</a><a href="/tools/pdf-to-word.html">PDF to Word</a><a href="/tools/image-compressor.html">Image Compressor</a><a href="/tools/word-to-pdf.html">Word to PDF</a><a href="/tools/split-pdf.html">Split PDF</a><a href="/tools/ocr-image-to-text.html">OCR / Image to Text</a><a href="/tools/resize-image.html">Resize Image</a><a href="/tools/pdf-to-jpg.html">PDF to JPG</a><a href="/tools/unlock-pdf-only.html">Unlock PDF</a></div></div><div class="footer-social"><a href="https://x.com/GptPayer1234" target="_blank" rel="noopener" class="social-icon-link" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h7.01l4.26 5.632 4.724-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/simplepdf_official?igsh=MWpkZGxzaHkxZ2oyZw==" target="_blank" rel="noopener" class="social-icon-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a href="https://www.linkedin.com/in/simple-pdf-979a17405?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div><div class="footer-bottom"><span class="footer-copy">© 2026 GPTPayer.online · 132+ Free Online Tools · All rights reserved</span></div></footer><div class="cookie-banner" id="cookieBanner"><p>🍪 We use cookies for analytics. <a href="/privacy-policy.html">Privacy Policy</a>.</p><div style="display:flex;gap:8px"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div></div><script>let svgCode='', zoomLevel=1, panX=0, panY=0;
+let isPanning=false, startX=0, startY=0, startPanX=0, startPanY=0;
+let currentBg='white'; const dropZone=document.getElementById('dropZone');
+const fileInput=document.getElementById('fileInput');
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over')});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop',e=>{ e.preventDefault();dropZone.classList.remove('drag-over'); const f=e.dataTransfer.files[0]; if(f)loadFile(f); else{const txt=e.dataTransfer.getData('text');if(txt)renderSvg(txt)}
+});
+fileInput.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[0])}); function loadFile(file){ const reader=new FileReader(); reader.onload=e=>renderSvg(e.target.result); reader.readAsText(file);
+} function loadFromPaste(){ const v=document.getElementById('pasteInput').value.trim(); if(!v){alert('Please paste SVG code first.');return} let code=v; if(v.startsWith('data:image/svg')){code=decodeURIComponent(v.split(',')[1]||'');} renderSvg(code);
+} function renderSvg(code){ svgCode=code.trim(); 
+} 
+const viewer=document.getElementById('viewerInner');
+viewer.addEventListener('wheel',e=>{e.preventDefault();zoomBy(e.deltaY<0?0.15:-0.15)},{passive:false});
+viewer.addEventListener('mousedown',e=>{if(e.button!==0)return;isPanning=true;startX=e.clientX;startY=e.clientY;startPanX=panX;startPanY=panY;viewer.classList.add('grabbing')});
+window.addEventListener('mousemove',e=>{if(!isPanning)return;panX=startPanX+(e.clientX-startX);panY=startPanY+(e.clientY-startY);applyTransform()});
+window.addEventListener('mouseup',()=>{isPanning=false;viewer.classList.remove('grabbing')});
+viewer.addEventListener('touchstart',e=>{if(e.touches.length===1){isPanning=true;startX=e.touches[0].clientX;startY=e.touches[0].clientY;startPanX=panX;startPanY=panY}},{passive:true});
+viewer.addEventListener('touchmove',e=>{if(!isPanning||e.touches.length!==1)return;panX=startPanX+(e.touches[0].clientX-startX);panY=startPanY+(e.touches[0].clientY-startY);applyTransform()},{passive:true});
+viewer.addEventListener('touchend',()=>{isPanning=false}); function applyTransform(){ document.getElementById('svgWrap').style.transform=`translate(${panX}px,${panY}px) scale(${zoomLevel})`; document.getElementById('zoomDisplay').textContent=Math.round(zoomLevel*100)+'%';
+} function zoomBy(delta){ zoomLevel=Math.max(0.1,Math.min(20,zoomLevel+delta)); applyTransform();
+} function resetView(){ const panel=document.getElementById('viewerPanel'); const wrap=document.getElementById('svgWrap'); const svgEl=wrap.querySelector('svg'); if(!svgEl)return; const pw=panel.clientWidth||600, ph=panel.clientHeight||480; const vb=svgEl.viewBox.baseVal; const sw=vb&&vb.width>0?vb.width:(+svgEl.getAttribute('width')||pw); const sh=vb&&vb.height>0?vb.height:(+svgEl.getAttribute('height')||ph); zoomLevel=Math.min((pw-40)/sw,(ph-40)/sh); panX=(pw-sw*zoomLevel)/2; panY=(ph-sh*zoomLevel)/2; applyTransform();
+} function setBg(bg){ currentBg=bg; const vi=document.getElementById('viewerInner'); vi.className=''; vi.classList.add('bg-'+bg); ['bgW','bgT','bgD','bgG'].forEach(id=>document.getElementById(id).classList.remove('active')); const map={white:'bgW',transparent:'bgT',dark:'bgD',grey:'bgG'}; document.getElementById(map[bg]).classList.add('active');
+} 
+function buildInfo(){ const svgEl=document.getElementById('svgWrap').querySelector('svg'); if(!svgEl)return; const vb=svgEl.getAttribute('viewBox')||'—'; const w=svgEl.getAttribute('width')||'auto'; const h=svgEl.getAttribute('height')||'auto'; const vbParsed=svgEl.viewBox.baseVal; const vw=vbParsed&&vbParsed.width>0?vbParsed.width:w; const vh=vbParsed&&vbParsed.height>0?vbParsed.height:h; const elCount=svgEl.querySelectorAll('*').length; const sizeKb=(new Blob([svgCode]).size/1024).toFixed(1); const rows=[ ['viewBox',vb],['Width',w],['Height',h], ['Intrinsic Size',`${vw} × ${vh}`], ['Total Elements',elCount], ['File Size',sizeKb+' KB'], ['Has defs',svgEl.querySelector('defs')?'✓ Yes':'✗ No'], ['Has <use>',svgEl.querySelector('use')?'✓ Yes':'✗ No'], ]; document.getElementById('infoRows').innerHTML=rows.map(([k,v])=>`<div class="info-row"><span class="info-key">${k}</span><span class="info-val">${v}</span></div>`).join(''); 
+} 
+function applyCode(){ const code=document.getElementById('codeEditor').value.trim(); renderSvg(code); switchTab('info');
+} function formatCode(){ let code=document.getElementById('codeEditor').value; try{ const parser=new DOMParser(); const doc=parser.parseFromString(code,'image/svg+xml'); const err=doc.querySelector('parsererror'); if(err){alert('SVG parse error: '+err.textContent.slice(0,120));return} const s=new XMLSerializer().serializeToString(doc.documentElement); 
+} function copyCode(){ navigator.clipboard.writeText(document.getElementById('codeEditor').value).then(()=>{ const btn=document.getElementById('btnCopyCode');btn.textContent='✓ Copied!';btn.classList.add('copied'); setTimeout(()=>{btn.textContent='📋 Copy';btn.classList.remove('copied')},1500); });
+} 
+function exportSvg(){ const name=document.getElementById('exportName').value||'image'; const blob=new Blob([svgCode],{type:'image/svg+xml'}); const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name+'.svg';a.click();URL.revokeObjectURL(a.href);
+} function exportAs(fmt){ const scale=+document.getElementById('exportScale').value||2; const name=document.getElementById('exportName').value||'image'; const svgEl=document.getElementById('svgWrap').querySelector('svg'); if(!svgEl)return; const vb=svgEl.viewBox.baseVal; const sw=vb&&vb.width>0?vb.width:(+svgEl.getAttribute('width')||500); const sh=vb&&vb.height>0?vb.height:(+svgEl.getAttribute('height')||500); const W=Math.round(sw*scale), H=Math.round(sh*scale); const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H; const ctx=canvas.getContext('2d'); if(fmt==='jpg'){ctx.fillStyle=document.getElementById('jpgBg').value;ctx.fillRect(0,0,W,H)} const svgBlob=new Blob([svgCode],{type:'image/svg+xml;charset=utf-8'}); const url=URL.createObjectURL(svgBlob); const img=new Image(); img.onload=()=>{ ctx.drawImage(img,0,0,W,H);URL.revokeObjectURL(url); canvas.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name+'.'+fmt;a.click();URL.revokeObjectURL(a.href)},fmt==='jpg'?'image/jpeg':'image/png',0.95); }; img.onerror=()=>{URL.revokeObjectURL(url);alert('Could not render SVG for export. Some SVGs with external resources may not export correctly.')}; img.src=url;
+} 
+function switchTab(tab){ ['info','editor','export'].forEach(t=>{ document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tab); document.getElementById('pane'+t.charAt(0).toUpperCase()+t.slice(1)).style.display=t===tab?'block':'none'; });
+} function resetTool(){ svgCode='';document.getElementById('svgWrap').innerHTML='';document.getElementById('uploadArea').style.display='block';document.getElementById('workspace').style.display='none';fileInput.value='';document.getElementById('pasteInput').value='';
+} document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open')); 
+function setViewerHeight(){const panel=document.getElementById('viewerPanel');if(panel)panel.style.minHeight=Math.max(360,window.innerHeight-200)+'px'}
+setViewerHeight();window.addEventListener('resize',setViewerHeight);</script><script>document.getElementById('navToggle').addEventListener('click', function() { document.getElementById('navLinks').classList.toggle('open'); });</script>
+
+<div id="google_translate_element" style="display:none;visibility:hidden;position:absolute;left:-9999px;"></div>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',
+    autoDisplay:false,
+    multilanguagePage:false
+  },'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+(function(){
+  var LANGS=[
+    {c:'en',  n:'English',     f:'🇺🇸'},
+    {c:'es',  n:'Español',     f:'🇪🇸'},
+    {c:'fr',  n:'Français',    f:'🇫🇷'},
+    {c:'de',  n:'Deutsch',     f:'🇩🇪'},
+    {c:'pt',  n:'Português',   f:'🇧🇷'},
+    {c:'ru',  n:'Русский',     f:'🇷🇺'},
+    {c:'ja',  n:'日本語',       f:'🇯🇵'},
+    {c:'ko',  n:'한국어',       f:'🇰🇷'},
+    {c:'zh-CN',n:'中文(简体)',  f:'🇨🇳'},
+    {c:'ar',  n:'العربية',     f:'🇸🇦'},
+    {c:'hi',  n:'हिन्दी',      f:'🇮🇳'},
+    {c:'it',  n:'Italiano',    f:'🇮🇹'},
+    {c:'nl',  n:'Nederlands',  f:'🇳🇱'},
+    {c:'tr',  n:'Türkçe',      f:'🇹🇷'},
+    {c:'pl',  n:'Polski',      f:'🇵🇱'},
+    {c:'vi',  n:'Tiếng Việt',  f:'🇻🇳'},
+    {c:'th',  n:'ภาษาไทย',     f:'🇹🇭'},
+    {c:'id',  n:'Indonesia',   f:'🇮🇩'},
+    {c:'ms',  n:'Melayu',      f:'🇲🇾'},
+    {c:'sv',  n:'Svenska',     f:'🇸🇪'}
+  ];
+
+  var LS = 'gptpayer_lang';
+
+  /* ── Read saved language ───────────────────────── */
+  function getCur(){
+    try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; }
+  }
+
+  /* ── Apply translation via Google Translate combo ─ */
+  function applyLang(code, attempts){
+    attempts = attempts||0;
+    if(attempts > 60) return;                       // give up after ~6 s
+
+    var combo = document.querySelector('.goog-te-combo');
+    if(!combo){
+      setTimeout(function(){ applyLang(code, attempts+1); }, 100);
+      return;
+    }
+
+    if(code === 'en'){
+      /* Restore original language */
+      var restore = document.querySelector('.goog-te-banner-frame');
+      combo.value = '';
+      fireChange(combo);
+      /* Also try the restore button inside the banner iframe */
+      try{
+        var ifrm = document.querySelector('.goog-te-banner-frame');
+        if(ifrm){
+          var btn = ifrm.contentDocument.querySelector('.goog-te-button button');
+          if(btn) btn.click();
+        }
+      }catch(e){}
+    } else {
+      combo.value = code;
+      fireChange(combo);
+    }
+  }
+
+  function fireChange(el){
+    var ev;
+    try{ ev = new Event('change',{bubbles:true}); }
+    catch(e){ ev = document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
+    el.dispatchEvent(ev);
+  }
+
+  /* ── Set cookie (backup for next page load) ────── */
+  function setCookie(code){
+    var domains = [location.hostname, '.'+location.hostname];
+    var expires = 'expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
+    var clearExp = 'expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
+
+    domains.forEach(function(d){
+      document.cookie='googtrans=;'+clearExp+'domain='+d;
+    });
+    document.cookie='googtrans=;'+clearExp;
+
+    if(code !== 'en'){
+      var val = '/en/'+code;
+      domains.forEach(function(d){
+        document.cookie='googtrans='+val+';'+expires+'domain='+d;
+      });
+      document.cookie='googtrans='+val+';'+expires;
+    }
+  }
+
+  /* ── User picks a language ─────────────────────── */
+  function setLang(code){
+    try{ localStorage.setItem(LS, code); }catch(e){}
+    setCookie(code);
+    /* Close dropdown */
+    var w = document.getElementById('langWrap');
+    if(w) w.classList.remove('open');
+    /* Update button label immediately */
+    updateLabel(code);
+    /* Translate */
+    applyLang(code);
+  }
+
+  /* ── Update nav button label ───────────────────── */
+  function updateLabel(code){
+    var lbl = document.getElementById('langLabel');
+    if(!lbl) return;
+    var found = LANGS.filter(function(l){ return l.c===code; })[0];
+    lbl.textContent = found ? (code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : 'EN';
+  }
+
+  /* ── Build dropdown ────────────────────────────── */
+  var cur = getCur();
+  var dd  = document.getElementById('langDropdown');
+  if(dd){
+    LANGS.forEach(function(l){
+      var el = document.createElement('div');
+      el.className = 'lang-option' + (l.c===cur ? ' active-lang' : '');
+      el.innerHTML = '<span style="font-size:1.1rem">'+l.f+'</span><span>'+l.n+'</span>';
+      el.onclick = function(){ setLang(l.c); };
+      dd.appendChild(el);
+    });
+  }
+
+  /* ── Set initial label ─────────────────────────── */
+  updateLabel(cur);
+
+  /* ── Auto-apply saved language on load ─────────── */
+  if(cur !== 'en'){
+    /* Wait for DOM + Google Translate widget */
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', function(){ applyLang(cur); });
+    } else {
+      applyLang(cur);
+    }
+  }
+
+  /* ── Close dropdown on outside click ──────────── */
+  document.addEventListener('click', function(e){
+    var w = document.getElementById('langWrap');
+    if(w && !w.contains(e.target)) w.classList.remove('open');
+  });
+
+})();
+</script>
+
+<script>
+(function(){
+  setTimeout(function(){
+    document.querySelectorAll('ins.adsbygoogle').forEach(function(ins){
+      var h = parseInt(ins.style.height) || 0;
+      var status = ins.getAttribute('data-ad-status');
+      if(!status || h === 0){
+        // Ad didn't load - collapse wrapper
+        var parent = ins.parentElement;
+        if(parent && parent !== document.body){
+          parent.style.cssText += ';height:0;overflow:hidden;padding:0;margin:0;';
+        }
+        ins.style.cssText += ';height:0;overflow:hidden;display:none;';
+      }
+    });
+  }, 2500);
+})();
+</script>
+</body></html>
