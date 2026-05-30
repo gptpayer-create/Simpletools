@@ -73,6 +73,14 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 }
 
 /* Dark mode toggle button */
+
+/* Nav center - dark mode toggle */
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
 .dm-toggle {
   background: none;
   border: 1.5px solid rgba(255,255,255,0.25);
@@ -92,66 +100,19 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 .dm-toggle:hover { border-color: #f0a500; color: #f0a500; background: rgba(240,165,0,0.1); }
 
 /* Language pill - BOTTOM LEFT FLOATING */
-.lang-fab {
-  position: fixed;
-  bottom: 72px;
-  left: 16px;
-  z-index: 9000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.lang-fab-btn {
-  background: #1a1714;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  border-radius: 100px;
-  padding: 8px 14px;
-  font-size: 0.78rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-.lang-fab-btn:hover { background: #d4470a; border-color: #d4470a; }
-.lang-fab-dropdown {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
-  background: #1a1714;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 6px;
-  min-width: 180px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-  max-height: 280px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.lang-fab.open .lang-fab-dropdown { display: block; }
-.lang-fab-option {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.75);
-  transition: background 0.15s;
-  user-select: none;
-}
-.lang-fab-option:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.lang-fab-option.active-lang { background: #d4470a; color: #fff; }
-[data-theme="dark"] .lang-fab-btn { background: #222; border-color: rgba(255,255,255,0.2); }
 </style>
-</head><body><div class="cookie-banner" id="cookieBanner"><p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p><div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div></div><nav><a class="logo" href="/">GPT<span>Payer</span></a><button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button><ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></nav><div class="hero"><div class="badge">Geolocation · ISP · ASN · Free</div><h1><em>IP Address</em><br>Lookup & Geolocation</h1><p>Instantly look up any IP address. See country, city, ISP, ASN, timezone, and exact coordinates with a live map.</p></div><div class="tool-wrap"><div class="card"><div class="my-ip-banner"><div><div class="my-ip-label">Your IP Address</div><div class="my-ip-addr" id="myIpAddr">Detecting…</div><div class="my-ip-loc" id="myIpLoc">—</div></div><button class="btn-lookup-mine" onclick="lookupMyIP()">Look Up My IP →</button></div><div class="tab-bar"><button class="tab-btn active" onclick="switchTab('single', this)">🔍 Single IP</button><button class="tab-btn" onclick="switchTab('bulk', this)">📋 Bulk Lookup</button></div><div id="tab-single"><div class="search-bar"><div class="ip-input-wrap"><input type="text" id="ipInput" placeholder="Enter IP address (e.g. 8.8.8.8 or 2001:4860:4860::8888)" onkeydown="if(event.key==='Enter')lookupIP()" /></div><button class="btn-check" id="checkBtn" onclick="lookupIP()">Look Up IP →</button></div><div class="loading-state" id="loadingState"><div class="spinner"></div><p>Fetching IP geolocation data…</p></div><div class="error-state" id="errorState"><div style="font-size:3rem;margin-bottom:12px;">🌐</div><h3 style="font-family:'Sora',sans-serif;font-weight:700;margin-bottom:8px;">IP Not Found</h3><p id="errorMsg" style="color:var(--muted);font-size:0.9rem;">Please enter a valid IPv4 or IPv6 address.</p></div><div class="results-wrap" id="resultsWrap"><div class="panel-left"><div class="ip-header"><span class="ip-flag" id="resFlag">🌐</span><div class="ip-type" id="resType">IPv4</div><div class="ip-big" id="resIP">—</div></div><div class="info-list"><div class="info-row"><span class="info-icon">🗺️</span><div class="info-content"><div class="info-label">Country</div><div class="info-value" id="resCountry">—</div></div></div><div class="info-row"><span class="info-icon">🏙️</span><div class="info-content"><div class="info-label">City / Region</div><div class="info-value" id="resCity">—</div></div></div><div class="info-row"><span class="info-icon">📮</span><div class="info-content"><div class="info-label">Postal Code</div><div class="info-value" id="resPostal">—</div></div></div><div class="info-row"><span class="info-icon">🕐</span><div class="info-content"><div class="info-label">Timezone</div><div class="info-value" id="resTz">—</div></div></div><div class="info-row"><span class="info-icon">🌐</span><div class="info-content"><div class="info-label">ISP / Organization</div><div class="info-value" id="resISP">—</div></div></div><div class="info-row"><span class="info-icon">🔢</span><div class="info-content"><div class="info-label">ASN</div><div class="info-value" id="resASN">—</div></div></div><div class="info-row"><span class="info-icon">📡</span><div class="info-content"><div class="info-label">Connection Type</div><div class="info-value" id="resConn">—</div></div></div><div class="info-row"><span class="info-icon">🏢</span><div class="info-content"><div class="info-label">Currency</div><div class="info-value" id="resCurrency">—</div></div></div></div></div><div class="panel-right"><div class="map-area" id="mapArea"><div class="map-placeholder"><span class="map-icon">📍</span><p>Map will appear here</p></div></div><div class="coords-bar"><div class="coords-label">Coordinates</div><div class="coords-val" id="resCoords">—</div></div><div class="network-panel"><div class="net-row"><span class="net-key">Hostname</span><span class="net-val" id="resHostname">—</span></div><div class="net-row"><span class="net-key">Country Code</span><span class="net-val" id="resCC">—</span></div><div class="net-row"><span class="net-key">Calling Code</span><span class="net-val" id="resCall">—</span></div><div class="net-row"><span class="net-key">Continent</span><span class="net-val" id="resCont">—</span></div><div class="net-row" style="margin-top:8px;"><a id="mapsLink" href="#" target="_blank" style="font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:var(--accent);text-decoration:none;">📍 Open in Google Maps →</a></div></div></div></div></div><div id="tab-bulk" style="display:none;"><div class="bulk-section"><div style="font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Enter IP Addresses (one per line, max 10)</div><textarea id="bulkIPs" placeholder="8.8.8.8&#10;1.1.1.1&#10;208.67.222.222"></textarea><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;"><button class="btn-check" onclick="checkBulkIPs()">Look Up All →</button><button style="background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.875rem;border:1.5px solid var(--border);border-radius:10px;padding:12px 20px;cursor:pointer;" onclick="exportCSV()">⬇ Export CSV</button></div><div id="bulkLoadingIP" style="display:none;text-align:center;padding:24px;color:var(--muted);"><div class="spinner" style="margin:0 auto 12px;"></div>Looking up IPs…</div><div id="bulkIPResults" style="margin-top:20px;"></div></div></div></div></div><div class="features"><h2>Complete IP Intelligence</h2><p>Everything about any IP address, in seconds</p><div class="features-grid"><div class="feature-card"><span class="feature-icon">📍</span><h3>Precise Geolocation</h3><p>City-level accuracy with country, region, city, and postal code data.</p></div><div class="feature-card"><span class="feature-icon">🌐</span><h3>ISP & ASN Data</h3><p>Identify the Internet Service Provider, ASN number, and organization behind any IP.</p></div><div class="feature-card"><span class="feature-icon">🗺️</span><h3>Interactive Map</h3><p>See the approximate location on an interactive OpenStreetMap with Google Maps link.</p></div><div class="feature-card"><span class="feature-icon">📋</span><h3>Bulk IP Lookup</h3><p>Look up up to 10 IP addresses at once and export results to CSV.</p></div><div class="feature-card"><span class="feature-icon">🔍</span><h3>IPv4 & IPv6</h3><p>Full support for both IPv4 and IPv6 addresses including geolocation data.</p></div><div class="feature-card"><span class="feature-icon">⚡</span><h3>Auto-Detect</h3><p>Automatically detects and displays your current public IP address on page load.</p></div></div></div><div class="how-it-works"><div class="section-label">How It Works</div><h2>IP Lookup in 3 Simple Steps</h2><div class="steps"><div class="step"><div class="step-num">1</div><h3>Enter IP</h3><p>Type any IPv4 or IPv6 address, or click "Look Up My IP" to check your own.</p></div><div class="step"><div class="step-num">2</div><h3>API Query</h3><p>We query the ipapi.co geolocation database for comprehensive IP data.</p></div><div class="step"><div class="step-num">3</div><h3>View Results</h3><p>See location, ISP, ASN, timezone, and coordinates on an interactive map.</p></div></div></div><div class="faq-section"><div class="faq-inner"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How accurate is IP geolocation?</div><div class="faq-a">IP geolocation is generally accurate to the country level (99%+) and city level (60-80%). However, it's not precise enough to pinpoint an exact street address — the location shown is typically the city or region where the ISP's network equipment is located, not the user's physical address.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I look up private IP addresses?</div><div class="faq-a">Private IP addresses (like 192.168.x.x, 10.x.x.x, or 172.16-31.x.x) are used within local networks and are not publicly routable. They won't return geolocation data since they're not assigned to any geographic location. Only public IP addresses can be geolocated.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is an ASN?</div><div class="faq-a">ASN stands for Autonomous System Number. It's a unique identifier assigned to a collection of IP networks that are managed by a single organization (like an ISP, university, or corporation). BGP (Border Gateway Protocol) uses ASNs to route internet traffic between different networks.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will VPN or proxy affect the results?</div><div class="faq-a">Yes. If you're using a VPN or proxy, the IP lookup will show the location of the VPN server, not your actual location. This is intentional — your VPN replaces your real IP with the VPN server's IP from the perspective of all external services.</div></div></div></div><div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div><script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script><div style="max-width:420px;margin:32px auto 32px;padding:0 20px;"><div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a></div></div><div class="related-tools-section"><h3 class="related-title">🔧 Related Tools</h3><div class="related-tools-grid"><a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a><a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a><a href="/tools/background-remover.html" class="related-tool-link">Background Remover</a><a href="/tools/word-counter.html" class="related-tool-link">Word Counter</a></div></div><div <div class="extra-content"><h2>IP Address Lookup — Complete Guide</h2><p>An IP address lookup reveals the geographic location, ISP (Internet Service Provider), organization, and network information associated with any IP address. It's used for network troubleshooting, fraud prevention, and cybersecurity research.</p><div class="tips-grid"><div class="tip-card"><h4>🌍 Geolocation</h4><p>Find the approximate country, city, and region associated with an IP address — useful for understanding where your website visitors are coming from.</p></div><div class="tip-card"><h4>🔒 Fraud detection</h4><p>E-commerce businesses use IP lookup to flag suspicious orders from high-risk regions or IP addresses associated with known fraud activity.</p></div><div class="tip-card"><h4>🛡️ Security analysis</h4><p>Identify the source of suspicious login attempts, spam emails, or cyberattacks by looking up the originating IP address details and ISP.</p></div><div class="tip-card"><h4>🖧 Network diagnostics</h4><p>Verify that your server's public IP is correctly registered, and check the ISP and routing information for network configuration diagnostics.</p></div></div><p>Every device on the internet has an IP address — either IPv4 (e.g., 192.168.1.1) or the newer IPv6 format. IP geolocation databases map these addresses to physical locations, ISPs, and organizations using data from regional internet registries and routing tables. Note that IP geolocation gives approximate results and cannot determine exact street addresses.</p></div>class="share-section"><p class="share-label">📤 Share this tool</p><div class="share-btns"><button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button><button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button><button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button></div></div><script>function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+</head><body><div class="cookie-banner" id="cookieBanner"><p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p><div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div></div><nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn" onclick="document.getElementById('langWrap').classList.toggle('open')">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav><div class="hero"><div class="badge">Geolocation · ISP · ASN · Free</div><h1><em>IP Address</em><br>Lookup & Geolocation</h1><p>Instantly look up any IP address. See country, city, ISP, ASN, timezone, and exact coordinates with a live map.</p></div><div class="tool-wrap"><div class="card"><div class="my-ip-banner"><div><div class="my-ip-label">Your IP Address</div><div class="my-ip-addr" id="myIpAddr">Detecting…</div><div class="my-ip-loc" id="myIpLoc">—</div></div><button class="btn-lookup-mine" onclick="lookupMyIP()">Look Up My IP →</button></div><div class="tab-bar"><button class="tab-btn active" onclick="switchTab('single', this)">🔍 Single IP</button><button class="tab-btn" onclick="switchTab('bulk', this)">📋 Bulk Lookup</button></div><div id="tab-single"><div class="search-bar"><div class="ip-input-wrap"><input type="text" id="ipInput" placeholder="Enter IP address (e.g. 8.8.8.8 or 2001:4860:4860::8888)" onkeydown="if(event.key==='Enter')lookupIP()" /></div><button class="btn-check" id="checkBtn" onclick="lookupIP()">Look Up IP →</button></div><div class="loading-state" id="loadingState"><div class="spinner"></div><p>Fetching IP geolocation data…</p></div><div class="error-state" id="errorState"><div style="font-size:3rem;margin-bottom:12px;">🌐</div><h3 style="font-family:'Sora',sans-serif;font-weight:700;margin-bottom:8px;">IP Not Found</h3><p id="errorMsg" style="color:var(--muted);font-size:0.9rem;">Please enter a valid IPv4 or IPv6 address.</p></div><div class="results-wrap" id="resultsWrap"><div class="panel-left"><div class="ip-header"><span class="ip-flag" id="resFlag">🌐</span><div class="ip-type" id="resType">IPv4</div><div class="ip-big" id="resIP">—</div></div><div class="info-list"><div class="info-row"><span class="info-icon">🗺️</span><div class="info-content"><div class="info-label">Country</div><div class="info-value" id="resCountry">—</div></div></div><div class="info-row"><span class="info-icon">🏙️</span><div class="info-content"><div class="info-label">City / Region</div><div class="info-value" id="resCity">—</div></div></div><div class="info-row"><span class="info-icon">📮</span><div class="info-content"><div class="info-label">Postal Code</div><div class="info-value" id="resPostal">—</div></div></div><div class="info-row"><span class="info-icon">🕐</span><div class="info-content"><div class="info-label">Timezone</div><div class="info-value" id="resTz">—</div></div></div><div class="info-row"><span class="info-icon">🌐</span><div class="info-content"><div class="info-label">ISP / Organization</div><div class="info-value" id="resISP">—</div></div></div><div class="info-row"><span class="info-icon">🔢</span><div class="info-content"><div class="info-label">ASN</div><div class="info-value" id="resASN">—</div></div></div><div class="info-row"><span class="info-icon">📡</span><div class="info-content"><div class="info-label">Connection Type</div><div class="info-value" id="resConn">—</div></div></div><div class="info-row"><span class="info-icon">🏢</span><div class="info-content"><div class="info-label">Currency</div><div class="info-value" id="resCurrency">—</div></div></div></div></div><div class="panel-right"><div class="map-area" id="mapArea"><div class="map-placeholder"><span class="map-icon">📍</span><p>Map will appear here</p></div></div><div class="coords-bar"><div class="coords-label">Coordinates</div><div class="coords-val" id="resCoords">—</div></div><div class="network-panel"><div class="net-row"><span class="net-key">Hostname</span><span class="net-val" id="resHostname">—</span></div><div class="net-row"><span class="net-key">Country Code</span><span class="net-val" id="resCC">—</span></div><div class="net-row"><span class="net-key">Calling Code</span><span class="net-val" id="resCall">—</span></div><div class="net-row"><span class="net-key">Continent</span><span class="net-val" id="resCont">—</span></div><div class="net-row" style="margin-top:8px;"><a id="mapsLink" href="#" target="_blank" style="font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:var(--accent);text-decoration:none;">📍 Open in Google Maps →</a></div></div></div></div></div><div id="tab-bulk" style="display:none;"><div class="bulk-section"><div style="font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Enter IP Addresses (one per line, max 10)</div><textarea id="bulkIPs" placeholder="8.8.8.8&#10;1.1.1.1&#10;208.67.222.222"></textarea><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;"><button class="btn-check" onclick="checkBulkIPs()">Look Up All →</button><button style="background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.875rem;border:1.5px solid var(--border);border-radius:10px;padding:12px 20px;cursor:pointer;" onclick="exportCSV()">⬇ Export CSV</button></div><div id="bulkLoadingIP" style="display:none;text-align:center;padding:24px;color:var(--muted);"><div class="spinner" style="margin:0 auto 12px;"></div>Looking up IPs…</div><div id="bulkIPResults" style="margin-top:20px;"></div></div></div></div></div><div class="features"><h2>Complete IP Intelligence</h2><p>Everything about any IP address, in seconds</p><div class="features-grid"><div class="feature-card"><span class="feature-icon">📍</span><h3>Precise Geolocation</h3><p>City-level accuracy with country, region, city, and postal code data.</p></div><div class="feature-card"><span class="feature-icon">🌐</span><h3>ISP & ASN Data</h3><p>Identify the Internet Service Provider, ASN number, and organization behind any IP.</p></div><div class="feature-card"><span class="feature-icon">🗺️</span><h3>Interactive Map</h3><p>See the approximate location on an interactive OpenStreetMap with Google Maps link.</p></div><div class="feature-card"><span class="feature-icon">📋</span><h3>Bulk IP Lookup</h3><p>Look up up to 10 IP addresses at once and export results to CSV.</p></div><div class="feature-card"><span class="feature-icon">🔍</span><h3>IPv4 & IPv6</h3><p>Full support for both IPv4 and IPv6 addresses including geolocation data.</p></div><div class="feature-card"><span class="feature-icon">⚡</span><h3>Auto-Detect</h3><p>Automatically detects and displays your current public IP address on page load.</p></div></div></div><div class="how-it-works"><div class="section-label">How It Works</div><h2>IP Lookup in 3 Simple Steps</h2><div class="steps"><div class="step"><div class="step-num">1</div><h3>Enter IP</h3><p>Type any IPv4 or IPv6 address, or click "Look Up My IP" to check your own.</p></div><div class="step"><div class="step-num">2</div><h3>API Query</h3><p>We query the ipapi.co geolocation database for comprehensive IP data.</p></div><div class="step"><div class="step-num">3</div><h3>View Results</h3><p>See location, ISP, ASN, timezone, and coordinates on an interactive map.</p></div></div></div><div class="faq-section"><div class="faq-inner"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How accurate is IP geolocation?</div><div class="faq-a">IP geolocation is generally accurate to the country level (99%+) and city level (60-80%). However, it's not precise enough to pinpoint an exact street address — the location shown is typically the city or region where the ISP's network equipment is located, not the user's physical address.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I look up private IP addresses?</div><div class="faq-a">Private IP addresses (like 192.168.x.x, 10.x.x.x, or 172.16-31.x.x) are used within local networks and are not publicly routable. They won't return geolocation data since they're not assigned to any geographic location. Only public IP addresses can be geolocated.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is an ASN?</div><div class="faq-a">ASN stands for Autonomous System Number. It's a unique identifier assigned to a collection of IP networks that are managed by a single organization (like an ISP, university, or corporation). BGP (Border Gateway Protocol) uses ASNs to route internet traffic between different networks.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Will VPN or proxy affect the results?</div><div class="faq-a">Yes. If you're using a VPN or proxy, the IP lookup will show the location of the VPN server, not your actual location. This is intentional — your VPN replaces your real IP with the VPN server's IP from the perspective of all external services.</div></div></div></div><div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div><script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script><div style="max-width:420px;margin:32px auto 32px;padding:0 20px;"><div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a></div></div><div class="related-tools-section"><h3 class="related-title">🔧 Related Tools</h3><div class="related-tools-grid"><a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a><a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a><a href="/tools/background-remover.html" class="related-tool-link">Background Remover</a><a href="/tools/word-counter.html" class="related-tool-link">Word Counter</a></div></div><div <div class="extra-content"><h2>IP Address Lookup — Complete Guide</h2><p>An IP address lookup reveals the geographic location, ISP (Internet Service Provider), organization, and network information associated with any IP address. It's used for network troubleshooting, fraud prevention, and cybersecurity research.</p><div class="tips-grid"><div class="tip-card"><h4>🌍 Geolocation</h4><p>Find the approximate country, city, and region associated with an IP address — useful for understanding where your website visitors are coming from.</p></div><div class="tip-card"><h4>🔒 Fraud detection</h4><p>E-commerce businesses use IP lookup to flag suspicious orders from high-risk regions or IP addresses associated with known fraud activity.</p></div><div class="tip-card"><h4>🛡️ Security analysis</h4><p>Identify the source of suspicious login attempts, spam emails, or cyberattacks by looking up the originating IP address details and ISP.</p></div><div class="tip-card"><h4>🖧 Network diagnostics</h4><p>Verify that your server's public IP is correctly registered, and check the ISP and routing information for network configuration diagnostics.</p></div></div><p>Every device on the internet has an IP address — either IPv4 (e.g., 192.168.1.1) or the newer IPv6 format. IP geolocation databases map these addresses to physical locations, ISPs, and organizations using data from regional internet registries and routing tables. Note that IP geolocation gives approximate results and cannot determine exact street addresses.</p></div>class="share-section"><p class="share-label">📤 Share this tool</p><div class="share-btns"><button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button><button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button><button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button></div></div><script>function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
 
 function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
 function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}</script><div style="max-width:860px;margin:0 auto;padding:24px 20px;text-align:center;">
@@ -185,56 +146,56 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
 })();
 </script>
 
-<!-- Language FAB - Bottom Left -->
-<div class="lang-fab" id="langFab" translate="no">
-  <div class="lang-fab-dropdown" id="langFabDropdown"></div>
-  <button class="lang-fab-btn" id="langFabBtn" aria-label="Select language">
-    <span id="langFabLabel">🌐 EN</span> ▾
-  </button>
 </div>
 
-<!-- Dark Mode + Language FAB Script -->
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',
+    autoDisplay:false
+  },'google_translate_element');
+}
+</script>
 <script>
 (function(){
-  // ── Dark Mode ──────────────────────────────
+  /* ── DARK MODE ─────────────────────────── */
   var DM_KEY = 'gptpayer_theme';
   function applyTheme(t){
     document.documentElement.setAttribute('data-theme', t);
     var btn = document.getElementById('dmToggle');
-    if(btn) btn.textContent = t==='dark' ? '☀️' : '🌙';
+    if(btn) btn.textContent = (t==='dark') ? '☀️' : '🌙';
   }
-  // Detect saved preference OR system preference
   var savedTheme = null;
-  try { savedTheme = localStorage.getItem(DM_KEY); } catch(e){}
-  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  try{ savedTheme = localStorage.getItem(DM_KEY); }catch(e){}
+  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches;
   var initTheme = savedTheme || (sysDark ? 'dark' : 'light');
-  if(initTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  if(initTheme==='dark') document.documentElement.setAttribute('data-theme','dark');
 
   document.addEventListener('DOMContentLoaded', function(){
     applyTheme(initTheme);
-    var btn = document.getElementById('dmToggle');
-    if(btn) btn.addEventListener('click', function(){
-      var cur = document.documentElement.getAttribute('data-theme') || 'light';
-      var next = cur === 'dark' ? 'light' : 'dark';
-      // When user manually toggles, save their preference
-      try { localStorage.setItem(DM_KEY, next); } catch(e){}
-      applyTheme(next);
-    });
+    var dmBtn = document.getElementById('dmToggle');
+    if(dmBtn){
+      dmBtn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = cur==='dark' ? 'light' : 'dark';
+        try{ localStorage.setItem(DM_KEY, next); }catch(e){}
+        applyTheme(next);
+      });
+    }
   });
-
-  // Listen for system theme changes (only if user hasn't manually set a preference)
-  if(window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
-      var manualPref = null;
-      try { manualPref = localStorage.getItem(DM_KEY); } catch(er){}
-      if(!manualPref) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
+  if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){
+      var manual=null; try{ manual=localStorage.getItem(DM_KEY); }catch(er){}
+      if(!manual) applyTheme(e.matches?'dark':'light');
     });
   }
 
-  // ── Language FAB ───────────────────────────
-  var LANGS = [
+  /* ── LANGUAGE SELECTOR ─────────────────── */
+  var LANGS=[
     {c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},
     {c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},
     {c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},
@@ -243,77 +204,105 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     {c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},
     {c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}
   ];
-  var LS = 'gptpayer_lang';
-  function getCur(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
-  function applyLang(code, attempts){
-    attempts = attempts||0;
-    if(attempts > 60) return;
-    var combo = document.querySelector('.goog-te-combo');
-    if(!combo){ setTimeout(function(){ applyLang(code, attempts+1); }, 100); return; }
-    if(code === 'en'){
-      combo.value = ''; fireChange(combo);
-    } else { combo.value = code; fireChange(combo); }
+  var LS='gptpayer_lang';
+  function getCurLang(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
+  function applyLang(code, n){
+    n=n||0; if(n>80) return;
+    var combo=document.querySelector('.goog-te-combo');
+    if(!combo){ setTimeout(function(){ applyLang(code,n+1); },150); return; }
+    if(code==='en'){
+      // Restore original English — click Google's "Show original" button if available
+      var restore = document.querySelector('.goog-te-banner-frame');
+      if(restore){
+        try{
+          var innerDoc = restore.contentDocument || restore.contentWindow.document;
+          var showOrig = innerDoc.querySelector('.goog-te-button button');
+          if(showOrig){ showOrig.click(); return; }
+        }catch(e){}
+      }
+      // Fallback: clear cookie and reload
+      combo.value='';
+      var ev2; try{ ev2=new Event('change',{bubbles:true}); }
+      catch(e){ ev2=document.createEvent('HTMLEvents'); ev2.initEvent('change',true,true); }
+      combo.dispatchEvent(ev2);
+      // Force page reload to original language
+      setTimeout(function(){
+        var url = window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');
+        window.location.href = url;
+      }, 100);
+      return;
+    }
+    combo.value=code;
+    var ev; try{ ev=new Event('change',{bubbles:true}); }
+    catch(e){ ev=document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
+    combo.dispatchEvent(ev);
   }
-  function fireChange(el){
-    var ev; try{ ev = new Event('change',{bubbles:true}); }
-    catch(e){ ev = document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
-    el.dispatchEvent(ev);
-  }
-  function setCookie(code){
-    var domains = [location.hostname, '.'+location.hostname];
-    var expires = 'expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
-    var clearExp = 'expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
-    domains.forEach(function(d){ document.cookie='googtrans=;'+clearExp+'domain='+d; });
-    document.cookie='googtrans=;'+clearExp;
-    if(code !== 'en'){
-      var val='/en/'+code;
-      domains.forEach(function(d){ document.cookie='googtrans='+val+';'+expires+'domain='+d; });
-      document.cookie='googtrans='+val+';'+expires;
+  function setCookieLang(code){
+    var d=[location.hostname,'.'+location.hostname];
+    var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
+    var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
+    d.forEach(function(x){ document.cookie='googtrans=;'+clr+'domain='+x; });
+    document.cookie='googtrans=;'+clr;
+    if(code!=='en'){
+      var v='/en/'+code;
+      d.forEach(function(x){ document.cookie='googtrans='+v+';'+exp+'domain='+x; });
+      document.cookie='googtrans='+v+';'+exp;
     }
   }
+  function updateLabel(code){
+    var lbl=document.getElementById('langLabel');
+    if(!lbl) return;
+    var found=LANGS.filter(function(l){ return l.c===code; })[0];
+    lbl.textContent=found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
+  }
   function setLang(code){
-    try{ localStorage.setItem(LS, code); }catch(e){}
-    setCookie(code);
-    var fab = document.getElementById('langFab');
-    if(fab) fab.classList.remove('open');
-    updateFabLabel(code);
+    if(code==='en'){
+      // Clear saved language so page reloads to original
+      try{ localStorage.removeItem(LS); }catch(e){}
+    } else {
+      try{ localStorage.setItem(LS,code); }catch(e){}
+    }
+    setCookieLang(code);
+    updateLabel(code);
+    var wrap=document.getElementById('langWrap');
+    if(wrap) wrap.classList.remove('open');
+    document.querySelectorAll('.lang-option').forEach(function(el){
+      el.classList.toggle('active-lang', el.getAttribute('data-lang')===code);
+    });
     applyLang(code);
   }
-  function updateFabLabel(code){
-    var lbl = document.getElementById('langFabLabel');
-    if(!lbl) return;
-    var found = LANGS.filter(function(l){ return l.c===code; })[0];
-    lbl.textContent = found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
-  }
   document.addEventListener('DOMContentLoaded', function(){
-    var cur = getCur();
-    // Build FAB dropdown
-    var dd = document.getElementById('langFabDropdown');
-    if(dd){
+    var cur=getCurLang();
+    /* Build dropdown */
+    var dd=document.getElementById('langDropdown');
+    if(dd && dd.children.length===0){
       LANGS.forEach(function(l){
-        var el = document.createElement('div');
-        el.className = 'lang-fab-option' + (l.c===cur?' active-lang':'');
-        el.innerHTML = l.f+' '+l.n;
-        el.onclick = function(){ setLang(l.c); };
+        var el=document.createElement('div');
+        el.className='lang-option'+(l.c===cur?' active-lang':'');
+        el.setAttribute('data-lang',l.c);
+        el.innerHTML=l.f+' '+l.n;
+        el.onclick=function(){ setLang(l.c); };
         dd.appendChild(el);
       });
     }
-    updateFabLabel(cur);
-    // Toggle FAB open/close
-    var fabBtn = document.getElementById('langFabBtn');
-    if(fabBtn) fabBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var fab = document.getElementById('langFab');
-      if(fab) fab.classList.toggle('open');
+    updateLabel(cur);
+    /* Toggle dropdown — remove inline onclick, use addEventListener only */
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){
+      langBtn.removeAttribute('onclick');
+      langBtn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var wrap=document.getElementById('langWrap');
+        if(wrap) wrap.classList.toggle('open');
+      });
+    }
+    /* Close on outside click */
+    document.addEventListener('click',function(e){
+      var wrap=document.getElementById('langWrap');
+      if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
     });
-    // Close on outside click
-    document.addEventListener('click', function(e){
-      var fab = document.getElementById('langFab');
-      if(fab && !fab.contains(e.target)) fab.classList.remove('open');
-    });
-    if(cur !== 'en') applyLang(cur);
+    if(cur!=='en') applyLang(cur);
   });
 })();
 </script>
-
 </body></html>

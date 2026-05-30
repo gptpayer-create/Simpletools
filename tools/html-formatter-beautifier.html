@@ -73,6 +73,14 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 }
 
 /* Dark mode toggle button */
+
+/* Nav center - dark mode toggle */
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
 .dm-toggle {
   background: none;
   border: 1.5px solid rgba(255,255,255,0.25);
@@ -92,66 +100,19 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 .dm-toggle:hover { border-color: #f0a500; color: #f0a500; background: rgba(240,165,0,0.1); }
 
 /* Language pill - BOTTOM LEFT FLOATING */
-.lang-fab {
-  position: fixed;
-  bottom: 72px;
-  left: 16px;
-  z-index: 9000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.lang-fab-btn {
-  background: #1a1714;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  border-radius: 100px;
-  padding: 8px 14px;
-  font-size: 0.78rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-.lang-fab-btn:hover { background: #d4470a; border-color: #d4470a; }
-.lang-fab-dropdown {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
-  background: #1a1714;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 6px;
-  min-width: 180px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-  max-height: 280px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.lang-fab.open .lang-fab-dropdown { display: block; }
-.lang-fab-option {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.75);
-  transition: background 0.15s;
-  user-select: none;
-}
-.lang-fab-option:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.lang-fab-option.active-lang { background: #d4470a; color: #fff; }
-[data-theme="dark"] .lang-fab-btn { background: #222; border-color: rgba(255,255,255,0.2); }
 </style>
-</head><body><nav><a class="logo" href="/">GPT<span>Payer</span></a><button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button><button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button><ul id="navLinks"><li><a href="/tools/html-formatter-beautifier.html">HTML</a></li><li><a href="/tools/css-minifier-beautifier.html">CSS</a></li><li><a href="/tools/javascript-minifier-beautifier.html">JS</a></li><li><a href="/tools/sql-formatter.html">SQL</a></li><li><a href="/tools/regex-tester.html">Regex</a></li><li><a href="/tools/dns-lookup-tool.html">DNS</a></li></ul></nav><section class="hero"><span class="badge">Developer Tool</span><h1>HTML <em>Formatter</em> &amp; Beautifier</h1><p>Instantly beautify or minify HTML code. Adjustable indentation, preserve attributes, real-time stats — all in your browser.</p></section><div style="max-width:900px;margin:0 auto;padding:16px 20px 0;text-align:center;"><ins class="adsbygoogle"
+</head><body><nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn" onclick="document.getElementById('langWrap').classList.toggle('open')">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/tools/html-formatter-beautifier.html">HTML</a></li><li><a href="/tools/css-minifier-beautifier.html">CSS</a></li><li><a href="/tools/javascript-minifier-beautifier.html">JS</a></li><li><a href="/tools/sql-formatter.html">SQL</a></li><li><a href="/tools/regex-tester.html">Regex</a></li><li><a href="/tools/dns-lookup-tool.html">DNS</a></li></ul>
+</nav><section class="hero"><span class="badge">Developer Tool</span><h1>HTML <em>Formatter</em> &amp; Beautifier</h1><p>Instantly beautify or minify HTML code. Adjustable indentation, preserve attributes, real-time stats — all in your browser.</p></section><div style="max-width:900px;margin:0 auto;padding:16px 20px 0;text-align:center;"><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4584285687998770"
      data-ad-slot="1234567890"

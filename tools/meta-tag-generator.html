@@ -73,6 +73,14 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 }
 
 /* Dark mode toggle button */
+
+/* Nav center - dark mode toggle */
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
 .dm-toggle {
   background: none;
   border: 1.5px solid rgba(255,255,255,0.25);
@@ -92,66 +100,19 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 .dm-toggle:hover { border-color: #f0a500; color: #f0a500; background: rgba(240,165,0,0.1); }
 
 /* Language pill - BOTTOM LEFT FLOATING */
-.lang-fab {
-  position: fixed;
-  bottom: 72px;
-  left: 16px;
-  z-index: 9000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.lang-fab-btn {
-  background: #1a1714;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  border-radius: 100px;
-  padding: 8px 14px;
-  font-size: 0.78rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-.lang-fab-btn:hover { background: #d4470a; border-color: #d4470a; }
-.lang-fab-dropdown {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
-  background: #1a1714;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 6px;
-  min-width: 180px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-  max-height: 280px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.lang-fab.open .lang-fab-dropdown { display: block; }
-.lang-fab-option {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.75);
-  transition: background 0.15s;
-  user-select: none;
-}
-.lang-fab-option:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.lang-fab-option.active-lang { background: #d4470a; color: #fff; }
-[data-theme="dark"] .lang-fab-btn { background: #222; border-color: rgba(255,255,255,0.2); }
 </style>
-</head><body><script>function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none'} function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookieBanner').style.display='none'} function toggleFaq(el){el.parentElement.classList.toggle('open')} document.addEventListener('DOMContentLoaded',function(){if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookieBanner');if(b)b.style.display='none'}})</script><nav><a class="logo" href="/">GPT<span>Payer</span></a><button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button><button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button><ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></nav><div class="hero"><div class="badge">100% Free · No Signup · Instant Output</div><h1>Generate <em>Meta Tags</em><br>for Any Website</h1><p>Create perfectly formatted HTML meta tags — Basic SEO, Open Graph, Twitter Card, and technical tags — in one click.</p></div><div style="max-width:900px;margin:0 auto;padding:16px 20px 0;text-align:center;"><ins class="adsbygoogle"
+</head><body><script>function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookieBanner').style.display='none'} function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookieBanner').style.display='none'} function toggleFaq(el){el.parentElement.classList.toggle('open')} document.addEventListener('DOMContentLoaded',function(){if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookieBanner');if(b)b.style.display='none'}})</script><nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn" onclick="document.getElementById('langWrap').classList.toggle('open')">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav><div class="hero"><div class="badge">100% Free · No Signup · Instant Output</div><h1>Generate <em>Meta Tags</em><br>for Any Website</h1><p>Create perfectly formatted HTML meta tags — Basic SEO, Open Graph, Twitter Card, and technical tags — in one click.</p></div><div style="max-width:900px;margin:0 auto;padding:16px 20px 0;text-align:center;"><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4584285687998770"
      data-ad-slot="1234567890"
@@ -189,56 +150,56 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
 })();
 </script>
 
-<!-- Language FAB - Bottom Left -->
-<div class="lang-fab" id="langFab" translate="no">
-  <div class="lang-fab-dropdown" id="langFabDropdown"></div>
-  <button class="lang-fab-btn" id="langFabBtn" aria-label="Select language">
-    <span id="langFabLabel">🌐 EN</span> ▾
-  </button>
 </div>
 
-<!-- Dark Mode + Language FAB Script -->
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',
+    autoDisplay:false
+  },'google_translate_element');
+}
+</script>
 <script>
 (function(){
-  // ── Dark Mode ──────────────────────────────
+  /* ── DARK MODE ─────────────────────────── */
   var DM_KEY = 'gptpayer_theme';
   function applyTheme(t){
     document.documentElement.setAttribute('data-theme', t);
     var btn = document.getElementById('dmToggle');
-    if(btn) btn.textContent = t==='dark' ? '☀️' : '🌙';
+    if(btn) btn.textContent = (t==='dark') ? '☀️' : '🌙';
   }
-  // Detect saved preference OR system preference
   var savedTheme = null;
-  try { savedTheme = localStorage.getItem(DM_KEY); } catch(e){}
-  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  try{ savedTheme = localStorage.getItem(DM_KEY); }catch(e){}
+  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches;
   var initTheme = savedTheme || (sysDark ? 'dark' : 'light');
-  if(initTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  if(initTheme==='dark') document.documentElement.setAttribute('data-theme','dark');
 
   document.addEventListener('DOMContentLoaded', function(){
     applyTheme(initTheme);
-    var btn = document.getElementById('dmToggle');
-    if(btn) btn.addEventListener('click', function(){
-      var cur = document.documentElement.getAttribute('data-theme') || 'light';
-      var next = cur === 'dark' ? 'light' : 'dark';
-      // When user manually toggles, save their preference
-      try { localStorage.setItem(DM_KEY, next); } catch(e){}
-      applyTheme(next);
-    });
+    var dmBtn = document.getElementById('dmToggle');
+    if(dmBtn){
+      dmBtn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = cur==='dark' ? 'light' : 'dark';
+        try{ localStorage.setItem(DM_KEY, next); }catch(e){}
+        applyTheme(next);
+      });
+    }
   });
-
-  // Listen for system theme changes (only if user hasn't manually set a preference)
-  if(window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
-      var manualPref = null;
-      try { manualPref = localStorage.getItem(DM_KEY); } catch(er){}
-      if(!manualPref) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
+  if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){
+      var manual=null; try{ manual=localStorage.getItem(DM_KEY); }catch(er){}
+      if(!manual) applyTheme(e.matches?'dark':'light');
     });
   }
 
-  // ── Language FAB ───────────────────────────
-  var LANGS = [
+  /* ── LANGUAGE SELECTOR ─────────────────── */
+  var LANGS=[
     {c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},
     {c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},
     {c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},
@@ -247,77 +208,105 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     {c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},
     {c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}
   ];
-  var LS = 'gptpayer_lang';
-  function getCur(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
-  function applyLang(code, attempts){
-    attempts = attempts||0;
-    if(attempts > 60) return;
-    var combo = document.querySelector('.goog-te-combo');
-    if(!combo){ setTimeout(function(){ applyLang(code, attempts+1); }, 100); return; }
-    if(code === 'en'){
-      combo.value = ''; fireChange(combo);
-    } else { combo.value = code; fireChange(combo); }
+  var LS='gptpayer_lang';
+  function getCurLang(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
+  function applyLang(code, n){
+    n=n||0; if(n>80) return;
+    var combo=document.querySelector('.goog-te-combo');
+    if(!combo){ setTimeout(function(){ applyLang(code,n+1); },150); return; }
+    if(code==='en'){
+      // Restore original English — click Google's "Show original" button if available
+      var restore = document.querySelector('.goog-te-banner-frame');
+      if(restore){
+        try{
+          var innerDoc = restore.contentDocument || restore.contentWindow.document;
+          var showOrig = innerDoc.querySelector('.goog-te-button button');
+          if(showOrig){ showOrig.click(); return; }
+        }catch(e){}
+      }
+      // Fallback: clear cookie and reload
+      combo.value='';
+      var ev2; try{ ev2=new Event('change',{bubbles:true}); }
+      catch(e){ ev2=document.createEvent('HTMLEvents'); ev2.initEvent('change',true,true); }
+      combo.dispatchEvent(ev2);
+      // Force page reload to original language
+      setTimeout(function(){
+        var url = window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');
+        window.location.href = url;
+      }, 100);
+      return;
+    }
+    combo.value=code;
+    var ev; try{ ev=new Event('change',{bubbles:true}); }
+    catch(e){ ev=document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
+    combo.dispatchEvent(ev);
   }
-  function fireChange(el){
-    var ev; try{ ev = new Event('change',{bubbles:true}); }
-    catch(e){ ev = document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
-    el.dispatchEvent(ev);
-  }
-  function setCookie(code){
-    var domains = [location.hostname, '.'+location.hostname];
-    var expires = 'expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
-    var clearExp = 'expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
-    domains.forEach(function(d){ document.cookie='googtrans=;'+clearExp+'domain='+d; });
-    document.cookie='googtrans=;'+clearExp;
-    if(code !== 'en'){
-      var val='/en/'+code;
-      domains.forEach(function(d){ document.cookie='googtrans='+val+';'+expires+'domain='+d; });
-      document.cookie='googtrans='+val+';'+expires;
+  function setCookieLang(code){
+    var d=[location.hostname,'.'+location.hostname];
+    var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
+    var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
+    d.forEach(function(x){ document.cookie='googtrans=;'+clr+'domain='+x; });
+    document.cookie='googtrans=;'+clr;
+    if(code!=='en'){
+      var v='/en/'+code;
+      d.forEach(function(x){ document.cookie='googtrans='+v+';'+exp+'domain='+x; });
+      document.cookie='googtrans='+v+';'+exp;
     }
   }
+  function updateLabel(code){
+    var lbl=document.getElementById('langLabel');
+    if(!lbl) return;
+    var found=LANGS.filter(function(l){ return l.c===code; })[0];
+    lbl.textContent=found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
+  }
   function setLang(code){
-    try{ localStorage.setItem(LS, code); }catch(e){}
-    setCookie(code);
-    var fab = document.getElementById('langFab');
-    if(fab) fab.classList.remove('open');
-    updateFabLabel(code);
+    if(code==='en'){
+      // Clear saved language so page reloads to original
+      try{ localStorage.removeItem(LS); }catch(e){}
+    } else {
+      try{ localStorage.setItem(LS,code); }catch(e){}
+    }
+    setCookieLang(code);
+    updateLabel(code);
+    var wrap=document.getElementById('langWrap');
+    if(wrap) wrap.classList.remove('open');
+    document.querySelectorAll('.lang-option').forEach(function(el){
+      el.classList.toggle('active-lang', el.getAttribute('data-lang')===code);
+    });
     applyLang(code);
   }
-  function updateFabLabel(code){
-    var lbl = document.getElementById('langFabLabel');
-    if(!lbl) return;
-    var found = LANGS.filter(function(l){ return l.c===code; })[0];
-    lbl.textContent = found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
-  }
   document.addEventListener('DOMContentLoaded', function(){
-    var cur = getCur();
-    // Build FAB dropdown
-    var dd = document.getElementById('langFabDropdown');
-    if(dd){
+    var cur=getCurLang();
+    /* Build dropdown */
+    var dd=document.getElementById('langDropdown');
+    if(dd && dd.children.length===0){
       LANGS.forEach(function(l){
-        var el = document.createElement('div');
-        el.className = 'lang-fab-option' + (l.c===cur?' active-lang':'');
-        el.innerHTML = l.f+' '+l.n;
-        el.onclick = function(){ setLang(l.c); };
+        var el=document.createElement('div');
+        el.className='lang-option'+(l.c===cur?' active-lang':'');
+        el.setAttribute('data-lang',l.c);
+        el.innerHTML=l.f+' '+l.n;
+        el.onclick=function(){ setLang(l.c); };
         dd.appendChild(el);
       });
     }
-    updateFabLabel(cur);
-    // Toggle FAB open/close
-    var fabBtn = document.getElementById('langFabBtn');
-    if(fabBtn) fabBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var fab = document.getElementById('langFab');
-      if(fab) fab.classList.toggle('open');
+    updateLabel(cur);
+    /* Toggle dropdown — remove inline onclick, use addEventListener only */
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){
+      langBtn.removeAttribute('onclick');
+      langBtn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var wrap=document.getElementById('langWrap');
+        if(wrap) wrap.classList.toggle('open');
+      });
+    }
+    /* Close on outside click */
+    document.addEventListener('click',function(e){
+      var wrap=document.getElementById('langWrap');
+      if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
     });
-    // Close on outside click
-    document.addEventListener('click', function(e){
-      var fab = document.getElementById('langFab');
-      if(fab && !fab.contains(e.target)) fab.classList.remove('open');
-    });
-    if(cur !== 'en') applyLang(cur);
+    if(cur!=='en') applyLang(cur);
   });
 })();
 </script>
-
 </body></html>
