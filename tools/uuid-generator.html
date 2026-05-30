@@ -73,6 +73,14 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 }
 
 /* Dark mode toggle button */
+
+/* Nav center - dark mode toggle */
+.nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
 .dm-toggle {
   background: none;
   border: 1.5px solid rgba(255,255,255,0.25);
@@ -92,66 +100,19 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
 .dm-toggle:hover { border-color: #f0a500; color: #f0a500; background: rgba(240,165,0,0.1); }
 
 /* Language pill - BOTTOM LEFT FLOATING */
-.lang-fab {
-  position: fixed;
-  bottom: 72px;
-  left: 16px;
-  z-index: 9000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.lang-fab-btn {
-  background: #1a1714;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  border-radius: 100px;
-  padding: 8px 14px;
-  font-size: 0.78rem;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-.lang-fab-btn:hover { background: #d4470a; border-color: #d4470a; }
-.lang-fab-dropdown {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
-  background: #1a1714;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 6px;
-  min-width: 180px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-  max-height: 280px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.lang-fab.open .lang-fab-dropdown { display: block; }
-.lang-fab-option {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.75);
-  transition: background 0.15s;
-  user-select: none;
-}
-.lang-fab-option:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.lang-fab-option.active-lang { background: #d4470a; color: #fff; }
-[data-theme="dark"] .lang-fab-btn { background: #222; border-color: rgba(255,255,255,0.2); }
 </style>
-</head><body><div class="cookie-banner" id="cookieBanner"><p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p><div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div></div><div class="toast" id="toast">Copied!</div><nav><a class="logo" href="/">GPT<span>Payer</span></a><button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button><button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button><ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/">Tools</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></nav><div class="hero"><div class="badge">Free · No Signup · Browser-based</div><h1>UUID <em>Bulk</em><br>Generator</h1><p>Generate thousands of unique UUIDs (v1, v4, v5). Copy all, download as TXT or CSV, search and filter.</p></div><div class="tool-wrap"><div class="card"><div class="ctrl-panel"><div class="ctrl-grid"><div class="fg"><label>Version</label><select id="uuidVersion" onchange="onVersionChange()"><option value="v4" selected>v4 — Random (recommended)</option><option value="v1">v1 — Timestamp-based</option><option value="v5">v5 — Namespace + Name</option></select></div><div class="fg"><label>Count</label><input type="number" id="uuidCount" value="10" min="1" max="10000"/></div><div class="fg"><label>Separator</label><select id="separator"><option value="\n">New Line</option><option value=",">Comma</option><option value=";">Semicolon</option><option value="\t">Tab</option></select></div></div><div class="v5-row" id="v5Row"><div class="fg" style="flex:1;min-width:180px"><label>Namespace (UUID or DNS/URL/OID/X500)</label><input type="text" id="v5Namespace" placeholder="6ba7b810-9dad-11d1-80b4-00c04fd430c8" value="6ba7b810-9dad-11d1-80b4-00c04fd430c8"/></div><div class="fg" style="flex:1;min-width:180px"><label>Name</label><input type="text" id="v5Name" placeholder="example.com"/></div></div><div class="toggles-row"><div class="toggle-chip" id="upperToggle" onclick="toggleChip('upperToggle','uppercase')"><div class="toggle-dot"></div>Uppercase </div><div class="toggle-chip" id="bracesToggle" onclick="toggleChip('bracesToggle','braces')"><div class="toggle-dot"></div>Curly Braces { } </div><div class="toggle-chip" id="hyphenToggle" onclick="toggleChip('hyphenToggle','hyphens')" class="toggle-chip on"><div class="toggle-dot"></div>With Hyphens </div><div class="toggle-chip" id="dedupToggle" onclick="toggleChip('dedupToggle','dedup')"><div class="toggle-dot"></div>Deduplicate </div></div><div class="btn-row"><button class="btn btn-primary" onclick="generateUUIDs()">⚡ Generate</button><button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button><button class="btn btn-secondary" onclick="downloadTxt()">⬇ Download TXT</button><button class="btn btn-green" onclick="downloadCsv()">⬇ Download CSV</button><button class="btn btn-secondary" onclick="clearAll()">🗑 Clear</button></div></div><div class="stats-bar" id="statsBar"><div class="stat">Generated: <strong id="statCount">0</strong></div><div class="stat">Version: <strong id="statVersion">—</strong></div><div class="stat">Search hits: <strong id="statSearch">—</strong></div></div><div class="output-wrap"><div class="search-bar"><input type="text" id="searchInput" placeholder="🔍 Search UUIDs…" oninput="filterUUIDs()"/><span class="search-count" id="searchCount"></span></div><div id="uuidOutput"></div></div></div></div><section class="features"><h2>Built for Developers</h2><p>Fast, flexible UUID generation for any workflow.</p><div class="features-grid"><div class="feature-card"><span class="feature-icon">⚡</span><h3>Up to 10,000 UUIDs</h3><p>Generate up to 10,000 unique UUIDs at once. All generated instantly in your browser — no server needed.</p></div><div class="feature-card"><span class="feature-icon">📦</span><h3>v1, v4, v5 Support</h3><p>Random (v4), time-based (v1), and namespace/name-based (v5) UUIDs with SHA-1 hashing.</p></div><div class="feature-card"><span class="feature-icon">🔧</span><h3>Flexible Formatting</h3><p>Uppercase, lowercase, with/without hyphens, curly braces. Comma, newline, or tab separation.</p></div><div class="feature-card"><span class="feature-icon">📥</span><h3>TXT & CSV Export</h3><p>Download your UUIDs as plain text or CSV with index numbers for easy import into databases.</p></div></div></section><section class="faq-section"><div class="faq-inner"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is a UUID?</div><div class="faq-a">A UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify objects in computer systems. They are commonly used as database primary keys, session IDs, and API tokens. The standard format is 8-4-4-4-12 hexadecimal characters separated by hyphens.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the difference between v1, v4, and v5?</div><div class="faq-a">v4 UUIDs are purely random — best for most use cases. v1 UUIDs encode the current timestamp and MAC address. v5 UUIDs are deterministic: given the same namespace and name, they always produce the same UUID using SHA-1 hashing.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are these UUIDs truly unique?</div><div class="faq-a">v4 UUIDs use cryptographically secure random numbers (crypto.randomUUID where available, otherwise Math.random). The probability of a collision is astronomically small — approximately 1 in 5.3 × 10³⁶.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use these in production?</div><div class="faq-a">Yes. The v4 generator uses the browser's crypto API for strong randomness. v5 uses a deterministic SHA-1 implementation. Both produce standard RFC 4122 compliant UUIDs.</div></div></div></section><div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div><script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script><div style="max-width:420px;margin:32px auto 32px;padding:0 20px;"><div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a></div></div><div class="related-tools-section"><h3 class="related-title">🔧 Related Tools</h3><div class="related-tools-grid"><a href="/tools/word-counter.html" class="related-tool-link">Word Counter</a><a href="/tools/character-counter.html" class="related-tool-link">Character Counter</a><a href="/tools/case-converter.html" class="related-tool-link">Case Converter</a><a href="/tools/lorem-ipsum-generator.html" class="related-tool-link">Lorem Ipsum</a></div></div><div <div class="extra-content"><h2>UUID Generator — Complete Guide</h2><p>A UUID (Universally Unique Identifier) generator creates random, globally unique 128-bit identifiers used in software development for database keys, session tokens, API identifiers, and distributed system components that need unique IDs.</p><div class="tips-grid"><div class="tip-card"><h4>🗄️ Database primary keys</h4><p>Use UUIDs as primary keys in databases instead of sequential IDs — preventing ID enumeration attacks and enabling safe data merging from multiple sources.</p></div><div class="tip-card"><h4>🔑 Session tokens</h4><p>Generate unique session identifiers for user authentication systems — the probability of collision is astronomically low, making UUIDs ideal for security tokens.</p></div><div class="tip-card"><h4>🔄 Distributed systems</h4><p>In microservices and distributed databases, UUIDs allow independent nodes to create unique IDs without coordination — eliminating bottlenecks in high-scale systems.</p></div><div class="tip-card"><h4>📦 Asset tracking</h4><p>Assign UUIDs to files, uploads, products, and digital assets for reliable tracking and retrieval in content management and e-commerce systems.</p></div></div><p>UUID v4 (the most common type) uses 122 random bits to generate an identifier like 550e8400-e29b-41d4-a716-446655440000. With 2^122 possible values, the probability of generating a duplicate is so low it's considered practically impossible — making UUIDs the gold standard for unique identifier generation in software systems.</p></div>class="share-section"><p class="share-label">📤 Share this tool</p><div class="share-btns"><button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button><button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button><button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button></div></div><script>function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+</head><body><div class="cookie-banner" id="cookieBanner"><p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p><div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div></div><div class="toast" id="toast">Copied!</div><nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn" onclick="document.getElementById('langWrap').classList.toggle('open')">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/">Tools</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav><div class="hero"><div class="badge">Free · No Signup · Browser-based</div><h1>UUID <em>Bulk</em><br>Generator</h1><p>Generate thousands of unique UUIDs (v1, v4, v5). Copy all, download as TXT or CSV, search and filter.</p></div><div class="tool-wrap"><div class="card"><div class="ctrl-panel"><div class="ctrl-grid"><div class="fg"><label>Version</label><select id="uuidVersion" onchange="onVersionChange()"><option value="v4" selected>v4 — Random (recommended)</option><option value="v1">v1 — Timestamp-based</option><option value="v5">v5 — Namespace + Name</option></select></div><div class="fg"><label>Count</label><input type="number" id="uuidCount" value="10" min="1" max="10000"/></div><div class="fg"><label>Separator</label><select id="separator"><option value="\n">New Line</option><option value=",">Comma</option><option value=";">Semicolon</option><option value="\t">Tab</option></select></div></div><div class="v5-row" id="v5Row"><div class="fg" style="flex:1;min-width:180px"><label>Namespace (UUID or DNS/URL/OID/X500)</label><input type="text" id="v5Namespace" placeholder="6ba7b810-9dad-11d1-80b4-00c04fd430c8" value="6ba7b810-9dad-11d1-80b4-00c04fd430c8"/></div><div class="fg" style="flex:1;min-width:180px"><label>Name</label><input type="text" id="v5Name" placeholder="example.com"/></div></div><div class="toggles-row"><div class="toggle-chip" id="upperToggle" onclick="toggleChip('upperToggle','uppercase')"><div class="toggle-dot"></div>Uppercase </div><div class="toggle-chip" id="bracesToggle" onclick="toggleChip('bracesToggle','braces')"><div class="toggle-dot"></div>Curly Braces { } </div><div class="toggle-chip" id="hyphenToggle" onclick="toggleChip('hyphenToggle','hyphens')" class="toggle-chip on"><div class="toggle-dot"></div>With Hyphens </div><div class="toggle-chip" id="dedupToggle" onclick="toggleChip('dedupToggle','dedup')"><div class="toggle-dot"></div>Deduplicate </div></div><div class="btn-row"><button class="btn btn-primary" onclick="generateUUIDs()">⚡ Generate</button><button class="btn btn-secondary" onclick="copyAll()">📋 Copy All</button><button class="btn btn-secondary" onclick="downloadTxt()">⬇ Download TXT</button><button class="btn btn-green" onclick="downloadCsv()">⬇ Download CSV</button><button class="btn btn-secondary" onclick="clearAll()">🗑 Clear</button></div></div><div class="stats-bar" id="statsBar"><div class="stat">Generated: <strong id="statCount">0</strong></div><div class="stat">Version: <strong id="statVersion">—</strong></div><div class="stat">Search hits: <strong id="statSearch">—</strong></div></div><div class="output-wrap"><div class="search-bar"><input type="text" id="searchInput" placeholder="🔍 Search UUIDs…" oninput="filterUUIDs()"/><span class="search-count" id="searchCount"></span></div><div id="uuidOutput"></div></div></div></div><section class="features"><h2>Built for Developers</h2><p>Fast, flexible UUID generation for any workflow.</p><div class="features-grid"><div class="feature-card"><span class="feature-icon">⚡</span><h3>Up to 10,000 UUIDs</h3><p>Generate up to 10,000 unique UUIDs at once. All generated instantly in your browser — no server needed.</p></div><div class="feature-card"><span class="feature-icon">📦</span><h3>v1, v4, v5 Support</h3><p>Random (v4), time-based (v1), and namespace/name-based (v5) UUIDs with SHA-1 hashing.</p></div><div class="feature-card"><span class="feature-icon">🔧</span><h3>Flexible Formatting</h3><p>Uppercase, lowercase, with/without hyphens, curly braces. Comma, newline, or tab separation.</p></div><div class="feature-card"><span class="feature-icon">📥</span><h3>TXT & CSV Export</h3><p>Download your UUIDs as plain text or CSV with index numbers for easy import into databases.</p></div></div></section><section class="faq-section"><div class="faq-inner"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is a UUID?</div><div class="faq-a">A UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify objects in computer systems. They are commonly used as database primary keys, session IDs, and API tokens. The standard format is 8-4-4-4-12 hexadecimal characters separated by hyphens.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the difference between v1, v4, and v5?</div><div class="faq-a">v4 UUIDs are purely random — best for most use cases. v1 UUIDs encode the current timestamp and MAC address. v5 UUIDs are deterministic: given the same namespace and name, they always produce the same UUID using SHA-1 hashing.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are these UUIDs truly unique?</div><div class="faq-a">v4 UUIDs use cryptographically secure random numbers (crypto.randomUUID where available, otherwise Math.random). The probability of a collision is astronomically small — approximately 1 in 5.3 × 10³⁶.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use these in production?</div><div class="faq-a">Yes. The v4 generator uses the browser's crypto API for strong randomness. v5 uses a deterministic SHA-1 implementation. Both produce standard RFC 4122 compliant UUIDs.</div></div></div></section><div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div><script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script><div style="max-width:420px;margin:32px auto 32px;padding:0 20px;"><div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a></div></div><div class="related-tools-section"><h3 class="related-title">🔧 Related Tools</h3><div class="related-tools-grid"><a href="/tools/word-counter.html" class="related-tool-link">Word Counter</a><a href="/tools/character-counter.html" class="related-tool-link">Character Counter</a><a href="/tools/case-converter.html" class="related-tool-link">Case Converter</a><a href="/tools/lorem-ipsum-generator.html" class="related-tool-link">Lorem Ipsum</a></div></div><div <div class="extra-content"><h2>UUID Generator — Complete Guide</h2><p>A UUID (Universally Unique Identifier) generator creates random, globally unique 128-bit identifiers used in software development for database keys, session tokens, API identifiers, and distributed system components that need unique IDs.</p><div class="tips-grid"><div class="tip-card"><h4>🗄️ Database primary keys</h4><p>Use UUIDs as primary keys in databases instead of sequential IDs — preventing ID enumeration attacks and enabling safe data merging from multiple sources.</p></div><div class="tip-card"><h4>🔑 Session tokens</h4><p>Generate unique session identifiers for user authentication systems — the probability of collision is astronomically low, making UUIDs ideal for security tokens.</p></div><div class="tip-card"><h4>🔄 Distributed systems</h4><p>In microservices and distributed databases, UUIDs allow independent nodes to create unique IDs without coordination — eliminating bottlenecks in high-scale systems.</p></div><div class="tip-card"><h4>📦 Asset tracking</h4><p>Assign UUIDs to files, uploads, products, and digital assets for reliable tracking and retrieval in content management and e-commerce systems.</p></div></div><p>UUID v4 (the most common type) uses 122 random bits to generate an identifier like 550e8400-e29b-41d4-a716-446655440000. With 2^122 possible values, the probability of generating a duplicate is so low it's considered practically impossible — making UUIDs the gold standard for unique identifier generation in software systems.</p></div>class="share-section"><p class="share-label">📤 Share this tool</p><div class="share-btns"><button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button><button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button><button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button></div></div><script>function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
 
 function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
 function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}</script><div style="max-width:860px;margin:0 auto;padding:24px 20px;text-align:center;">
@@ -185,56 +146,56 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
 })();
 </script>
 
-<!-- Language FAB - Bottom Left -->
-<div class="lang-fab" id="langFab" translate="no">
-  <div class="lang-fab-dropdown" id="langFabDropdown"></div>
-  <button class="lang-fab-btn" id="langFabBtn" aria-label="Select language">
-    <span id="langFabLabel">🌐 EN</span> ▾
-  </button>
 </div>
 
-<!-- Dark Mode + Language FAB Script -->
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',
+    autoDisplay:false
+  },'google_translate_element');
+}
+</script>
 <script>
 (function(){
-  // ── Dark Mode ──────────────────────────────
+  /* ── DARK MODE ─────────────────────────── */
   var DM_KEY = 'gptpayer_theme';
   function applyTheme(t){
     document.documentElement.setAttribute('data-theme', t);
     var btn = document.getElementById('dmToggle');
-    if(btn) btn.textContent = t==='dark' ? '☀️' : '🌙';
+    if(btn) btn.textContent = (t==='dark') ? '☀️' : '🌙';
   }
-  // Detect saved preference OR system preference
   var savedTheme = null;
-  try { savedTheme = localStorage.getItem(DM_KEY); } catch(e){}
-  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  try{ savedTheme = localStorage.getItem(DM_KEY); }catch(e){}
+  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches;
   var initTheme = savedTheme || (sysDark ? 'dark' : 'light');
-  if(initTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  if(initTheme==='dark') document.documentElement.setAttribute('data-theme','dark');
 
   document.addEventListener('DOMContentLoaded', function(){
     applyTheme(initTheme);
-    var btn = document.getElementById('dmToggle');
-    if(btn) btn.addEventListener('click', function(){
-      var cur = document.documentElement.getAttribute('data-theme') || 'light';
-      var next = cur === 'dark' ? 'light' : 'dark';
-      // When user manually toggles, save their preference
-      try { localStorage.setItem(DM_KEY, next); } catch(e){}
-      applyTheme(next);
-    });
+    var dmBtn = document.getElementById('dmToggle');
+    if(dmBtn){
+      dmBtn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = cur==='dark' ? 'light' : 'dark';
+        try{ localStorage.setItem(DM_KEY, next); }catch(e){}
+        applyTheme(next);
+      });
+    }
   });
-
-  // Listen for system theme changes (only if user hasn't manually set a preference)
-  if(window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
-      var manualPref = null;
-      try { manualPref = localStorage.getItem(DM_KEY); } catch(er){}
-      if(!manualPref) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
+  if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){
+      var manual=null; try{ manual=localStorage.getItem(DM_KEY); }catch(er){}
+      if(!manual) applyTheme(e.matches?'dark':'light');
     });
   }
 
-  // ── Language FAB ───────────────────────────
-  var LANGS = [
+  /* ── LANGUAGE SELECTOR ─────────────────── */
+  var LANGS=[
     {c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},
     {c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},
     {c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},
@@ -243,77 +204,105 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     {c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},
     {c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}
   ];
-  var LS = 'gptpayer_lang';
-  function getCur(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
-  function applyLang(code, attempts){
-    attempts = attempts||0;
-    if(attempts > 60) return;
-    var combo = document.querySelector('.goog-te-combo');
-    if(!combo){ setTimeout(function(){ applyLang(code, attempts+1); }, 100); return; }
-    if(code === 'en'){
-      combo.value = ''; fireChange(combo);
-    } else { combo.value = code; fireChange(combo); }
+  var LS='gptpayer_lang';
+  function getCurLang(){ try{ return localStorage.getItem(LS)||'en'; }catch(e){ return 'en'; } }
+  function applyLang(code, n){
+    n=n||0; if(n>80) return;
+    var combo=document.querySelector('.goog-te-combo');
+    if(!combo){ setTimeout(function(){ applyLang(code,n+1); },150); return; }
+    if(code==='en'){
+      // Restore original English — click Google's "Show original" button if available
+      var restore = document.querySelector('.goog-te-banner-frame');
+      if(restore){
+        try{
+          var innerDoc = restore.contentDocument || restore.contentWindow.document;
+          var showOrig = innerDoc.querySelector('.goog-te-button button');
+          if(showOrig){ showOrig.click(); return; }
+        }catch(e){}
+      }
+      // Fallback: clear cookie and reload
+      combo.value='';
+      var ev2; try{ ev2=new Event('change',{bubbles:true}); }
+      catch(e){ ev2=document.createEvent('HTMLEvents'); ev2.initEvent('change',true,true); }
+      combo.dispatchEvent(ev2);
+      // Force page reload to original language
+      setTimeout(function(){
+        var url = window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');
+        window.location.href = url;
+      }, 100);
+      return;
+    }
+    combo.value=code;
+    var ev; try{ ev=new Event('change',{bubbles:true}); }
+    catch(e){ ev=document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
+    combo.dispatchEvent(ev);
   }
-  function fireChange(el){
-    var ev; try{ ev = new Event('change',{bubbles:true}); }
-    catch(e){ ev = document.createEvent('HTMLEvents'); ev.initEvent('change',true,true); }
-    el.dispatchEvent(ev);
-  }
-  function setCookie(code){
-    var domains = [location.hostname, '.'+location.hostname];
-    var expires = 'expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
-    var clearExp = 'expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
-    domains.forEach(function(d){ document.cookie='googtrans=;'+clearExp+'domain='+d; });
-    document.cookie='googtrans=;'+clearExp;
-    if(code !== 'en'){
-      var val='/en/'+code;
-      domains.forEach(function(d){ document.cookie='googtrans='+val+';'+expires+'domain='+d; });
-      document.cookie='googtrans='+val+';'+expires;
+  function setCookieLang(code){
+    var d=[location.hostname,'.'+location.hostname];
+    var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';
+    var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';
+    d.forEach(function(x){ document.cookie='googtrans=;'+clr+'domain='+x; });
+    document.cookie='googtrans=;'+clr;
+    if(code!=='en'){
+      var v='/en/'+code;
+      d.forEach(function(x){ document.cookie='googtrans='+v+';'+exp+'domain='+x; });
+      document.cookie='googtrans='+v+';'+exp;
     }
   }
+  function updateLabel(code){
+    var lbl=document.getElementById('langLabel');
+    if(!lbl) return;
+    var found=LANGS.filter(function(l){ return l.c===code; })[0];
+    lbl.textContent=found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
+  }
   function setLang(code){
-    try{ localStorage.setItem(LS, code); }catch(e){}
-    setCookie(code);
-    var fab = document.getElementById('langFab');
-    if(fab) fab.classList.remove('open');
-    updateFabLabel(code);
+    if(code==='en'){
+      // Clear saved language so page reloads to original
+      try{ localStorage.removeItem(LS); }catch(e){}
+    } else {
+      try{ localStorage.setItem(LS,code); }catch(e){}
+    }
+    setCookieLang(code);
+    updateLabel(code);
+    var wrap=document.getElementById('langWrap');
+    if(wrap) wrap.classList.remove('open');
+    document.querySelectorAll('.lang-option').forEach(function(el){
+      el.classList.toggle('active-lang', el.getAttribute('data-lang')===code);
+    });
     applyLang(code);
   }
-  function updateFabLabel(code){
-    var lbl = document.getElementById('langFabLabel');
-    if(!lbl) return;
-    var found = LANGS.filter(function(l){ return l.c===code; })[0];
-    lbl.textContent = found ? found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)) : '🌐 EN';
-  }
   document.addEventListener('DOMContentLoaded', function(){
-    var cur = getCur();
-    // Build FAB dropdown
-    var dd = document.getElementById('langFabDropdown');
-    if(dd){
+    var cur=getCurLang();
+    /* Build dropdown */
+    var dd=document.getElementById('langDropdown');
+    if(dd && dd.children.length===0){
       LANGS.forEach(function(l){
-        var el = document.createElement('div');
-        el.className = 'lang-fab-option' + (l.c===cur?' active-lang':'');
-        el.innerHTML = l.f+' '+l.n;
-        el.onclick = function(){ setLang(l.c); };
+        var el=document.createElement('div');
+        el.className='lang-option'+(l.c===cur?' active-lang':'');
+        el.setAttribute('data-lang',l.c);
+        el.innerHTML=l.f+' '+l.n;
+        el.onclick=function(){ setLang(l.c); };
         dd.appendChild(el);
       });
     }
-    updateFabLabel(cur);
-    // Toggle FAB open/close
-    var fabBtn = document.getElementById('langFabBtn');
-    if(fabBtn) fabBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var fab = document.getElementById('langFab');
-      if(fab) fab.classList.toggle('open');
+    updateLabel(cur);
+    /* Toggle dropdown — remove inline onclick, use addEventListener only */
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){
+      langBtn.removeAttribute('onclick');
+      langBtn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var wrap=document.getElementById('langWrap');
+        if(wrap) wrap.classList.toggle('open');
+      });
+    }
+    /* Close on outside click */
+    document.addEventListener('click',function(e){
+      var wrap=document.getElementById('langWrap');
+      if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
     });
-    // Close on outside click
-    document.addEventListener('click', function(e){
-      var fab = document.getElementById('langFab');
-      if(fab && !fab.contains(e.target)) fab.classList.remove('open');
-    });
-    if(cur !== 'en') applyLang(cur);
+    if(cur!=='en') applyLang(cur);
   });
 })();
 </script>
-
 </body></html>
