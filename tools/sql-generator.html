@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="dns-prefetch" href="//fonts.googleapis.com" /><link rel="dns-prefetch" href="//fonts.gstatic.com" /><link rel="dns-prefetch" href="//www.googletagmanager.com" /><link rel="dns-prefetch" href="//pagead2.googlesyndication.com" /><meta charset="UTF-8"/>
+<link rel="canonical" href="https://gptpayer.online/tools/sql-generator.html" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><meta name="theme-color" content="#d4470a" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SQL Generator – Free Online Tool | GPTPayer.online</title>
+<meta name="description" content="Generate SQL queries visually. Build SELECT, INSERT, UPDATE, DELETE statements with a no-code query builder. Free, instant, browser-based."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f0ede8;--surface:#fff;--ink:#1a1714;--muted:#6b6560;--accent:#d4470a;--accent2:#f0a500;--border:#d9d4cd;--radius:16px;--shadow:0 4px 32px rgba(0,0,0,0.08)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6}
+nav{background:var(--ink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;gap:16px}
+.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-decoration:none;letter-spacing:-0.5px}
+.logo span{color:var(--accent2)}
+nav ul{list-style:none;display:flex;gap:24px}
+nav ul a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s}
+nav ul a:hover{color:#fff}
+.hero{text-align:center;padding:72px 24px 48px;max-width:720px;margin:0 auto}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:20px}
+h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.1;color:var(--ink);letter-spacing:-1.5px;margin-bottom:16px}
+h1 em{color:var(--accent);font-style:normal}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto}
+.tool-wrap{max-width:1100px;margin:0 auto;padding:0 20px 80px}
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+
+/* Type tabs */
+.query-tabs{display:flex;border-bottom:2px solid var(--border);background:#fafaf9}
+.qtab{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;padding:14px 24px;border:none;background:none;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s;letter-spacing:0.3px}
+.qtab.active{color:var(--accent);border-bottom-color:var(--accent);background:#fff}
+
+.builder-body{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:520px}
+@media(max-width:900px){.builder-body{grid-template-columns:1fr}}
+.builder-left{padding:24px;border-right:1px solid var(--border);overflow-y:auto}
+.builder-right{background:#1a1714;display:flex;flex-direction:column}
+.builder-right-header{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center}
+.builder-right-header span{font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5)}
+.sql-preview{flex:1;padding:20px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.8;color:#f8f4ef;overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+
+.kw{color:#f0a500;font-weight:600}
+.str{color:#4ade80}
+.num{color:#f87171}
+.tbl{color:#38bdf8;font-weight:600}
+.col{color:#c084fc}
+.cmt{color:#6b7280;font-style:italic}
+
+/* Form controls */
+.form-section{margin-bottom:20px}
+.form-section-title{font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.form-row{display:flex;gap:10px;margin-bottom:10px;align-items:center;flex-wrap:wrap}
+.form-input{flex:1;min-width:100px;border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:0.875rem;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.2s}
+.form-input:focus{border-color:var(--accent)}
+.form-select{border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:0.875rem;background:var(--bg);color:var(--ink);outline:none;cursor:pointer;transition:border-color 0.2s}
+.form-select:focus{border-color:var(--accent)}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--border);border-radius:6px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink)}
+.tag-remove{cursor:pointer;color:var(--muted);font-size:0.9rem;line-height:1;border:none;background:none;padding:0}
+.tag-remove:hover{color:var(--accent)}
+
+.condition-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.condition-row .form-input{flex:2}
+.condition-row .form-select{flex:1.5}
+.condition-row .form-input.val{flex:2}
+.btn-icon{width:32px;height:32px;border:1.5px solid var(--border);border-radius:7px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);transition:all 0.2s;flex-shrink:0}
+.btn-icon:hover{border-color:var(--accent);color:var(--accent)}
+.btn-icon.danger:hover{border-color:#dc2626;color:#dc2626}
+
+.add-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--accent);background:none;border:1.5px dashed var(--accent);border-radius:7px;padding:6px 14px;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.add-btn:hover{background:#fff7f4}
+
+.action-bar{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;background:#fafaf9}
+.btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.875rem;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#b33d07}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-green{background:#16a34a;color:#fff}
+.btn-green:hover{background:#15803d}
+
+.check-label{display:flex;align-items:center;gap:8px;font-size:0.875rem;cursor:pointer;user-select:none}
+.check-label input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+
+/* features / footer shared */
+.features{background:var(--ink);padding:64px 24px;text-align:center}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;letter-spacing:-0.5px}
+.features>p{color:rgba(255,255,255,0.55);margin-bottom:48px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto}
+.feature-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 20px;text-align:left}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px}
+.feature-card p{color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.5}
+footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:40px 24px;text-align:center}
+footer p{font-size:0.8rem}
+@media(max-width:600px){nav{padding:0 16px}.logo{font-size:1rem}.hero{padding:48px 20px 32px}.builder-left{padding:16px}}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f !important;
+  --surface: #1a1a1a !important;
+  --ink: #f0ede8 !important;
+  --muted: #a09890 !important;
+  --border: #2e2e2e !important;
+  filter: none;
+}
+[data-theme="dark"] body { background: #0f0f0f !important; color: #f0ede8 !important; }
+[data-theme="dark"] nav { background: #111 !important; border-bottom: 1px solid #222; }
+[data-theme="dark"] .tool-card,[data-theme="dark"] .post-card,[data-theme="dark"] .card,
+[data-theme="dark"] .faq-item,[data-theme="dark"] .contact-card,[data-theme="dark"] .form-card,
+[data-theme="dark"] .tip-box,[data-theme="dark"] .faq-section,[data-theme="dark"] .rec-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] .tool-card:hover { background: #222 !important; }
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select { background: #222 !important; color: #f0ede8 !important; border-color: #3e3e3e !important; }
+[data-theme="dark"] .drop-zone { border-color: #3e3e3e !important; background: #1a1a1a !important; }
+[data-theme="dark"] .drop-zone:hover { background: #2a1a0e !important; border-color: #d4470a !important; }
+[data-theme="dark"] .related-tools-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] footer { background: #080808 !important; }
+[data-theme="dark"] .cookie-banner { background: #111 !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0f0f0f; --surface: #1a1a1a; --ink: #f0ede8; --muted: #a09890; --border: #2e2e2e; }
+}
+.nav-center { display:flex; align-items:center; justify-content:center; flex:1; }
+.dm-toggle { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; transition:border-color 0.2s,color 0.2s,background 0.2s; flex-shrink:0; margin-left:4px; }
+.dm-toggle:hover { border-color:#f0a500; color:#f0a500; background:rgba(240,165,0,0.1); }
+.lang-select-wrap { position:relative; flex-shrink:0; }
+.lang-btn { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); padding:5px 10px; cursor:pointer; font-size:0.8rem; font-family:'DM Sans',sans-serif; display:flex; align-items:center; gap:4px; transition:border-color 0.2s,color 0.2s; white-space:nowrap; }
+.lang-btn:hover { border-color:#f0a500; color:#f0a500; }
+.lang-dropdown { position:absolute; right:0; top:calc(100% + 6px); background:#1e1e1e; border:1px solid #333; border-radius:10px; min-width:160px; max-height:300px; overflow-y:auto; z-index:1000; display:none; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+.lang-select-wrap.open .lang-dropdown { display:block; }
+.lang-option { padding:8px 14px; color:#ccc; font-size:0.82rem; cursor:pointer; transition:background 0.15s; }
+.lang-option:hover { background:#2a2a2a; color:#fff; }
+.lang-option.active-lang { color:#f0a500; font-weight:600; }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:4px; }
+.nav-toggle span { display:block; width:22px; height:2px; background:#fff; margin:5px 0; border-radius:2px; }
+@media(max-width:768px){ .nav-toggle{display:block;} nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;gap:0;padding:12px 0;} nav ul.open{display:flex;} nav ul a{padding:10px 24px;} }
+ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0 !important;overflow:hidden !important;}.adsbygoogle-wrapper:empty{display:none !important;}
+
+/* ===== COMMON GPTPayer CSS ===== */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+.nav-center{display:flex;align-items:center;justify-content:center;flex:1;}
+.dm-toggle{background:none;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;color:rgba(255,255,255,0.75);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:border-color 0.2s,color 0.2s,background 0.2s;flex-shrink:0;margin-left:4px;}
+.dm-toggle:hover{border-color:#f0a500;color:#f0a500;background:rgba(240,165,0,0.1);}
+.lang-select-wrap{position:relative;display:flex;align-items:center;margin-left:4px;}
+.lang-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:#fff;border-radius:7px;padding:5px 12px;cursor:pointer;font-size:0.8rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background 0.2s;}
+.lang-btn:hover{background:rgba(255,255,255,0.22);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1714;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.55);max-height:320px;overflow-y:auto;scrollbar-width:thin;}
+.lang-select-wrap.open .lang-dropdown{display:block;}
+.lang-option{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:0.82rem;color:rgba(255,255,255,0.75);transition:background 0.15s;user-select:none;}
+.lang-option:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.lang-option.active-lang{background:#d4470a;color:#fff;}
+.goog-te-banner-frame,.goog-te-balloon-frame{display:none!important;}
+body{top:0!important;position:static!important;}
+iframe.skiptranslate{display:none!important;}
+.skiptranslate>*{display:none!important;}
+@media(max-width:640px){.lang-btn .lang-name{display:none;}.lang-dropdown{min-width:160px;}}
+
+/* Features Section */
+.features{background:var(--ink);padding:64px 24px;text-align:center;}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;}
+.features>p{color:rgba(255,255,255,0.55);margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto;}
+.feature-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 20px;text-align:left;}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block;}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px;}
+.feature-card p{color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.5;}
+
+/* How It Works */
+.how-it-works{padding:64px 24px;max-width:860px;margin:0 auto;}
+.section-label{font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.how-it-works h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;}
+.step{display:flex;flex-direction:column;gap:10px;}
+.step-num{width:40px;height:40px;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:800;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;}
+.step p{font-size:0.875rem;color:var(--muted);}
+
+/* FAQ Section */
+.faq-section{background:var(--surface);padding:64px 24px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:36px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-q{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);}
+.faq-item.open .faq-q::after{content:'×';}
+.faq-a{font-size:0.9rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.2s;}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px;}
+
+/* Extra Content / Tips */
+.extra-content{max-width:860px;margin:0 auto;padding:40px 24px;}
+.extra-content h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--ink);}
+.extra-content p{color:var(--muted);line-height:1.75;margin-bottom:20px;font-size:0.95rem;}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0;}
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.tip-card h4{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.tip-card p{font-size:0.83rem;color:var(--muted);line-height:1.55;margin:0;}
+@media(max-width:600px){.tips-grid{grid-template-columns:1fr;}}
+
+/* Share Section */
+.share-section{text-align:center;padding:24px 20px 8px;margin-top:8px;}
+.share-label{font-size:0.9rem;color:var(--muted);margin-bottom:12px;}
+.share-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
+.share-btn{padding:8px 18px;border:none;border-radius:999px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;}
+.share-tw{background:#000;color:#fff;}
+.share-wa{background:#25d366;color:#fff;}
+.share-cp{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.share-btn:hover{opacity:0.85;}
+
+/* Related Tools */
+.related-tools-section{padding:24px 20px;margin-top:8px;}
+.related-title{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--ink);font-family:'Sora',sans-serif;}
+.related-tools-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.related-tool-link{padding:8px 16px;background:var(--bg);border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);font-size:0.85rem;font-weight:500;transition:background 0.2s,color 0.2s;}
+.related-tool-link:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* Footer */
+footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:32px 24px 24px;text-align:center;}
+.footer-popular{padding:0 0 8px;}
+.footer-popular-title{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;margin-bottom:12px;}
+.footer-popular-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin-bottom:20px;}
+.footer-popular-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-popular-links a:hover{color:#fff;}
+.footer-social{display:flex;justify-content:center;align-items:center;gap:12px;padding:16px 0 8px;}
+.social-icon-link{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;color:rgba(255,255,255,0.75);text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.social-icon-link:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;margin-top:8px;}
+.footer-copy{font-size:0.78rem;}
+
+/* Cookie Banner */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:rgba(255,255,255,0.85);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;z-index:9999;font-size:0.875rem;box-shadow:0 -4px 24px rgba(0,0,0,0.2);}
+.cookie-banner p{margin:0;flex:1;min-width:200px;}
+.cookie-banner a{color:var(--accent2);text-decoration:underline;}
+.cookie-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.875rem;cursor:pointer;}
+.cookie-btn-decline{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:10px 18px;font-size:0.875rem;cursor:pointer;}
+
+/* Dark Mode */
+[data-theme="dark"]{--bg:#0f0f0f!important;--surface:#1a1a1a!important;--ink:#f0ede8!important;--muted:#a09890!important;--border:#2e2e2e!important;}
+[data-theme="dark"] body{background:#0f0f0f!important;color:#f0ede8!important;}
+[data-theme="dark"] nav{background:#111!important;border-bottom:1px solid #222;}
+[data-theme="dark"] .card,[data-theme="dark"] .faq-item,[data-theme="dark"] .faq-section,[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select{background:#222!important;color:#f0ede8!important;border-color:#3e3e3e!important;}
+[data-theme="dark"] .drop-zone{border-color:#3e3e3e!important;background:#1a1a1a!important;}
+[data-theme="dark"] .drop-zone:hover{background:#2a1a0e!important;border-color:#d4470a!important;}
+[data-theme="dark"] .related-tools-section{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] footer{background:#080808!important;}
+[data-theme="dark"] .cookie-banner{background:#111!important;}
+[data-theme="dark"] .related-tool-link{background:#222!important;border-color:#3e3e3e!important;color:#f0ede8!important;}
+[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f0f;--surface:#1a1a1a;--ink:#f0ede8;--muted:#a09890;--border:#2e2e2e;}}
+
+/* Responsive Nav */
+@media(max-width:600px){
+  nav{padding:0 16px;}
+  .nav-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,0.1);z-index:99;}
+  nav ul.open{display:flex;}
+  .hero{padding:48px 20px 32px;}
+}
+
+/* AdSense collapse */
+ins.adsbygoogle{min-height:0!important;}
+ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0!important;overflow:hidden!important;}
+
+.btn-convert{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;padding:12px 36px;border:none;border-radius:10px;cursor:pointer;transition:background 0.2s,transform 0.1s;}.btn-convert:hover{background:#b33d07;}.btn-convert:active{transform:scale(0.98);}.btn-convert:disabled{background:#c2b8b0;cursor:not-allowed;}
+.footer-legal-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:12px;}
+.footer-legal-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-legal-links a:hover{color:#fff;}
+</style>
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav>
+
+<div class="hero">
+  <div class="badge">SELECT · INSERT · UPDATE · DELETE · CREATE</div>
+  <h1>Visual <em>SQL Generator</em><br>No Code Required</h1>
+  <p>Build complex SQL queries visually. Add tables, columns, conditions, joins, and ordering with a point-and-click interface.</p>
+</div>
+
+<div class="tool-wrap">
+<div class="card">
+  <!-- Query type tabs -->
+  <div class="query-tabs">
+    <button class="qtab active" onclick="switchType('select',this)">SELECT</button>
+    <button class="qtab" onclick="switchType('insert',this)">INSERT</button>
+    <button class="qtab" onclick="switchType('update',this)">UPDATE</button>
+    <button class="qtab" onclick="switchType('delete',this)">DELETE</button>
+    <button class="qtab" onclick="switchType('create',this)">CREATE TABLE</button>
+  </div>
+
+  <div class="builder-body">
+    <!-- Left panel: builder -->
+    <div class="builder-left" id="builderLeft">
+      <!-- SELECT builder -->
+      <div id="builder-select">
+        <div class="form-section">
+          <div class="form-section-title">🗄️ Table</div>
+          <div class="form-row">
+            <input class="form-input" id="sel-table" placeholder="table_name" oninput="generate()" />
+            <input class="form-input" id="sel-alias" placeholder="alias (optional)" oninput="generate()" style="max-width:160px"/>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">📋 Columns <span style="font-weight:400;font-size:0.7rem;margin-left:4px">('*' for all)</span></div>
+          <div class="form-row">
+            <input class="form-input" id="col-input" placeholder="column_name" onkeydown="if(event.key==='Enter'||event.key===',')addCol(event)"/>
+            <input class="form-input" id="col-alias" placeholder="alias" style="max-width:120px" onkeydown="if(event.key==='Enter')addCol(event)"/>
+            <button class="add-btn" onclick="addCol()">+ Add</button>
+          </div>
+          <div class="tag-row" id="col-tags"></div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">🔗 JOINs</div>
+          <div id="joins-list"></div>
+          <button class="add-btn" onclick="addJoin()">+ Add JOIN</button>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">🔍 WHERE Conditions</div>
+          <div id="where-list"></div>
+          <button class="add-btn" onclick="addWhere()">+ Add Condition</button>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">📊 GROUP BY</div>
+          <div class="form-row">
+            <input class="form-input" id="sel-groupby" placeholder="column1, column2" oninput="generate()"/>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">🔎 HAVING</div>
+          <input class="form-input" id="sel-having" placeholder="COUNT(*) > 1" oninput="generate()" style="width:100%"/>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">↕️ ORDER BY</div>
+          <div class="form-row">
+            <input class="form-input" id="sel-orderby" placeholder="column_name" oninput="generate()"/>
+            <select class="form-select" id="sel-dir" onchange="generate()">
+              <option value="ASC">ASC</option>
+              <option value="DESC">DESC</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">📏 LIMIT / OFFSET</div>
+          <div class="form-row">
+            <input class="form-input" id="sel-limit" placeholder="LIMIT" type="number" oninput="generate()" style="max-width:110px"/>
+            <input class="form-input" id="sel-offset" placeholder="OFFSET" type="number" oninput="generate()" style="max-width:110px"/>
+            <label class="check-label"><input type="checkbox" id="sel-distinct" onchange="generate()"/> DISTINCT</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSERT builder -->
+      <div id="builder-insert" style="display:none">
+        <div class="form-section">
+          <div class="form-section-title">🗄️ Table</div>
+          <input class="form-input" id="ins-table" placeholder="table_name" oninput="generate()" style="width:100%"/>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">📋 Columns &amp; Values</div>
+          <div id="ins-rows"></div>
+          <button class="add-btn" onclick="addInsertRow()">+ Add Column</button>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">⚙️ Options</div>
+          <label class="check-label"><input type="checkbox" id="ins-ignore" onchange="generate()"/> INSERT IGNORE</label>
+        </div>
+      </div>
+
+      <!-- UPDATE builder -->
+      <div id="builder-update" style="display:none">
+        <div class="form-section">
+          <div class="form-section-title">🗄️ Table</div>
+          <input class="form-input" id="upd-table" placeholder="table_name" oninput="generate()" style="width:100%"/>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">✏️ SET Columns</div>
+          <div id="upd-sets"></div>
+          <button class="add-btn" onclick="addUpdateSet()">+ Add Column</button>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">🔍 WHERE</div>
+          <div id="upd-where-list"></div>
+          <button class="add-btn" onclick="addUpdWhere()">+ Add Condition</button>
+        </div>
+      </div>
+
+      <!-- DELETE builder -->
+      <div id="builder-delete" style="display:none">
+        <div class="form-section">
+          <div class="form-section-title">🗄️ Table</div>
+          <input class="form-input" id="del-table" placeholder="table_name" oninput="generate()" style="width:100%"/>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">🔍 WHERE Conditions</div>
+          <div id="del-where-list"></div>
+          <button class="add-btn" onclick="addDelWhere()">+ Add Condition</button>
+        </div>
+        <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:12px 16px;font-size:0.83rem;color:#c2410c;margin-top:8px">
+          ⚠️ Without a WHERE clause, all rows will be deleted!
+        </div>
+      </div>
+
+      <!-- CREATE TABLE builder -->
+      <div id="builder-create" style="display:none">
+        <div class="form-section">
+          <div class="form-section-title">🗄️ Table Name</div>
+          <input class="form-input" id="crt-table" placeholder="table_name" oninput="generate()" style="width:100%"/>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">📋 Columns</div>
+          <div id="crt-cols"></div>
+          <button class="add-btn" onclick="addCreateCol()">+ Add Column</button>
+        </div>
+        <div class="form-section">
+          <div class="form-section-title">⚙️ Options</div>
+          <div class="form-row">
+            <label class="check-label"><input type="checkbox" id="crt-ifnot" checked onchange="generate()"/> IF NOT EXISTS</label>
+            <select class="form-select" id="crt-engine" onchange="generate()">
+              <option value="">No ENGINE</option>
+              <option value="InnoDB" selected>InnoDB</option>
+              <option value="MyISAM">MyISAM</option>
+            </select>
+            <select class="form-select" id="crt-charset" onchange="generate()">
+              <option value="">No CHARSET</option>
+              <option value="utf8mb4" selected>utf8mb4</option>
+              <option value="utf8">utf8</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: SQL preview -->
+    <div class="builder-right">
+      <div class="builder-right-header">
+        <span>⚡ Live SQL Preview</span>
+        <button onclick="copySQL(this)" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:6px;padding:5px 14px;cursor:pointer;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;transition:all 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Copy SQL</button>
+      </div>
+      <div class="sql-preview" id="sqlPreview">-- Start building your query on the left...</div>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn btn-accent" onclick="generate()">🔄 Regenerate</button>
+    <button class="btn btn-outline" onclick="resetBuilder()">✕ Reset</button>
+    <button class="btn btn-green" onclick="copySQL(this)">📋 Copy SQL</button>
+    <button class="btn btn-outline" onclick="loadExample()">📖 Load Example</button>
+  </div>
+</div>
+</div>
+
+<div class="features">
+  <h2>Visual SQL — No Code Required</h2>
+  <p>Build production-ready queries without memorizing syntax.</p>
+  <div class="features-grid">
+    <div class="feature-card"><span class="feature-icon">🖱️</span><h3>Point &amp; Click</h3><p>Add tables, columns, joins, and filters visually. The SQL is generated instantly as you build.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔗</span><h3>JOIN Builder</h3><p>Create INNER, LEFT, RIGHT, FULL joins with table and column pickers — no syntax errors.</p></div>
+    <div class="feature-card"><span class="feature-icon">🏗️</span><h3>CREATE TABLE</h3><p>Design database schemas with columns, data types, primary keys, and NULL constraints.</p></div>
+    <div class="feature-card"><span class="feature-icon">⚡</span><h3>Live Preview</h3><p>See your formatted SQL update in real time on the right panel as you configure each option.</p></div>
+  </div>
+</div>
+
+
+
+<script>
+let currentType = 'select';
+let columns = [];
+let joins = [];
+let wheres = [];
+let updWheres = [];
+let delWheres = [];
+let insRows = [];
+let updSets = [];
+let crtCols = [];
+
+function switchType(type, btn) {
+  currentType = type;
+  document.querySelectorAll('.qtab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['select','insert','update','delete','create'].forEach(t => {
+    document.getElementById('builder-' + t).style.display = t === type ? 'block' : 'none';
+  });
+  generate();
+}
+
+/* ── Columns ── */
+function addCol(e) {
+  if (e) e.preventDefault();
+  const col = document.getElementById('col-input').value.trim();
+  const alias = document.getElementById('col-alias').value.trim();
+  if (!col) return;
+  columns.push({col, alias});
+  document.getElementById('col-input').value = '';
+  document.getElementById('col-alias').value = '';
+  renderColTags();
+  generate();
+}
+function removeCol(i) { columns.splice(i, 1); renderColTags(); generate(); }
+function renderColTags() {
+  document.getElementById('col-tags').innerHTML = columns.map((c,i) =>
+    `<span class="tag">${c.col}${c.alias ? ' AS '+c.alias : ''}<button class="tag-remove" onclick="removeCol(${i})">×</button></span>`).join('');
+}
+
+/* ── JOINs ── */
+let joinCount = 0;
+function addJoin() {
+  const id = ++joinCount;
+  const div = document.createElement('div');
+  div.className = 'condition-row';
+  div.id = 'join-' + id;
+  div.innerHTML = `
+    <select class="form-select" id="jt-${id}" onchange="generate()" style="flex:1.2">
+      <option>INNER JOIN</option><option>LEFT JOIN</option><option>RIGHT JOIN</option><option>FULL JOIN</option>
+    </select>
+    <input class="form-input" id="jtbl-${id}" placeholder="table" oninput="generate()" style="flex:1.5"/>
+    <input class="form-input" id="jcond-${id}" placeholder="ON t1.id = t2.fk" oninput="generate()" style="flex:3"/>
+    <button class="btn-icon danger" onclick="document.getElementById('join-${id}').remove();generate()">×</button>`;
+  document.getElementById('joins-list').appendChild(div);
+}
+
+/* ── WHERE rows (generic) ── */
+function makeWhereRow(listId, genFn) {
+  const id = Date.now();
+  const div = document.createElement('div');
+  div.className = 'condition-row';
+  div.id = 'w-' + id;
+  div.innerHTML = `
+    <select class="form-select" id="wlog-${id}" onchange="${genFn}()" style="min-width:60px;max-width:65px">
+      <option>AND</option><option>OR</option>
+    </select>
+    <input class="form-input" id="wcol-${id}" placeholder="column" oninput="${genFn}()" style="flex:1.5"/>
+    <select class="form-select" id="wop-${id}" onchange="${genFn}()" style="min-width:80px">
+      <option>=</option><option>!=</option><option>&lt;</option><option>&gt;</option><option>&lt;=</option><option>&gt;=</option><option>LIKE</option><option>NOT LIKE</option><option>IN</option><option>NOT IN</option><option>IS NULL</option><option>IS NOT NULL</option><option>BETWEEN</option>
+    </select>
+    <input class="form-input val" id="wval-${id}" placeholder="value" oninput="${genFn}()"/>
+    <button class="btn-icon danger" onclick="document.getElementById('w-${id}').remove();${genFn}()">×</button>`;
+  document.getElementById(listId).appendChild(div);
+}
+function addWhere() { makeWhereRow('where-list', 'generate'); generate(); }
+function addUpdWhere() { makeWhereRow('upd-where-list', 'generate'); generate(); }
+function addDelWhere() { makeWhereRow('del-where-list', 'generate'); generate(); }
+
+function collectWhere(listId) {
+  const rows = [];
+  document.getElementById(listId).querySelectorAll('.condition-row').forEach((row, idx) => {
+    const id = row.id.replace('w-','');
+    const log = document.getElementById('wlog-'+id)?.value || 'AND';
+    const col = document.getElementById('wcol-'+id)?.value.trim() || '';
+    const op = document.getElementById('wop-'+id)?.value || '=';
+    const val = document.getElementById('wval-'+id)?.value.trim() || '';
+    if (col) rows.push({log, col, op, val, idx});
+  });
+  return rows;
+}
+
+/* ── INSERT rows ── */
+function addInsertRow() {
+  const id = Date.now();
+  const div = document.createElement('div');
+  div.className = 'condition-row';
+  div.id = 'ir-' + id;
+  div.innerHTML = `
+    <input class="form-input" id="icol-${id}" placeholder="column_name" oninput="generate()" style="flex:1.5"/>
+    <select class="form-select" id="ityp-${id}" onchange="generate()" style="min-width:100px">
+      <option value="str">String</option><option value="num">Number</option><option value="bool">Boolean</option><option value="null">NULL</option><option value="raw">Expression</option>
+    </select>
+    <input class="form-input" id="ival-${id}" placeholder="value" oninput="generate()" style="flex:1.5"/>
+    <button class="btn-icon danger" onclick="document.getElementById('ir-${id}').remove();generate()">×</button>`;
+  document.getElementById('ins-rows').appendChild(div);
+}
+
+/* ── UPDATE sets ── */
+function addUpdateSet() {
+  const id = Date.now();
+  const div = document.createElement('div');
+  div.className = 'condition-row';
+  div.id = 'us-' + id;
+  div.innerHTML = `
+    <input class="form-input" id="ucol-${id}" placeholder="column_name" oninput="generate()" style="flex:1.5"/>
+    <select class="form-select" id="utyp-${id}" onchange="generate()" style="min-width:100px">
+      <option value="str">String</option><option value="num">Number</option><option value="bool">Boolean</option><option value="null">NULL</option><option value="raw">Expression</option>
+    </select>
+    <input class="form-input" id="uval-${id}" placeholder="value" oninput="generate()" style="flex:1.5"/>
+    <button class="btn-icon danger" onclick="document.getElementById('us-${id}').remove();generate()">×</button>`;
+  document.getElementById('upd-sets').appendChild(div);
+}
+
+/* ── CREATE TABLE columns ── */
+function addCreateCol() {
+  const id = Date.now();
+  const div = document.createElement('div');
+  div.className = 'condition-row';
+  div.id = 'cc-' + id;
+  div.style.flexWrap = 'wrap';
+  div.innerHTML = `
+    <input class="form-input" id="cname-${id}" placeholder="column_name" oninput="generate()" style="flex:1.5;min-width:110px"/>
+    <select class="form-select" id="ctype-${id}" onchange="generate()" style="min-width:110px">
+      <option>INT</option><option>BIGINT</option><option>VARCHAR(255)</option><option>TEXT</option><option>BOOLEAN</option><option>DATE</option><option>DATETIME</option><option>TIMESTAMP</option><option>DECIMAL(10,2)</option><option>FLOAT</option><option>JSON</option><option>UUID</option>
+    </select>
+    <select class="form-select" id="cnull-${id}" onchange="generate()" style="min-width:90px">
+      <option value="NOT NULL">NOT NULL</option><option value="NULL">NULL</option>
+    </select>
+    <input class="form-input" id="cdef-${id}" placeholder="DEFAULT" oninput="generate()" style="max-width:110px"/>
+    <label class="check-label" style="white-space:nowrap"><input type="checkbox" id="cpk-${id}" onchange="generate()"/> PK</label>
+    <label class="check-label" style="white-space:nowrap"><input type="checkbox" id="cai-${id}" onchange="generate()"/> AI</label>
+    <label class="check-label" style="white-space:nowrap"><input type="checkbox" id="cuq-${id}" onchange="generate()"/> UQ</label>
+    <button class="btn-icon danger" onclick="document.getElementById('cc-${id}').remove();generate()">×</button>`;
+  document.getElementById('crt-cols').appendChild(div);
+}
+
+/* ── Value formatting ── */
+function fmtVal(val, type) {
+  if (type === 'null') return 'NULL';
+  if (type === 'num') return val || '0';
+  if (type === 'bool') return val === 'true' || val === '1' ? 'TRUE' : 'FALSE';
+  if (type === 'raw') return val || 'NOW()';
+  return `'${(val||'').replace(/'/g,"''")}'`;
+}
+
+/* ── Main generator ── */
+function generate() {
+  let sql = '';
+  if (currentType === 'select') sql = genSelect();
+  else if (currentType === 'insert') sql = genInsert();
+  else if (currentType === 'update') sql = genUpdate();
+  else if (currentType === 'delete') sql = genDelete();
+  else if (currentType === 'create') sql = genCreate();
+  document.getElementById('sqlPreview').innerHTML = highlightSQL(sql);
+  document.getElementById('sqlPreview')._raw = sql;
+}
+
+function genSelect() {
+  const table = document.getElementById('sel-table').value.trim() || 'your_table';
+  const alias = document.getElementById('sel-alias').value.trim();
+  const distinct = document.getElementById('sel-distinct').checked;
+  const cols = columns.length ? columns.map(c => c.col + (c.alias ? ' AS ' + c.alias : '')).join(',\n    ') : '*';
+  const groupby = document.getElementById('sel-groupby').value.trim();
+  const having = document.getElementById('sel-having').value.trim();
+  const orderby = document.getElementById('sel-orderby').value.trim();
+  const dir = document.getElementById('sel-dir').value;
+  const limit = document.getElementById('sel-limit').value.trim();
+  const offset = document.getElementById('sel-offset').value.trim();
+
+  let sql = `SELECT${distinct ? ' DISTINCT' : ''}\n    ${cols}\nFROM ${table}${alias ? ' AS ' + alias : ''}`;
+
+  // Joins
+  document.getElementById('joins-list').querySelectorAll('.condition-row').forEach(row => {
+    const id = row.id.replace('join-','');
+    const jt = document.getElementById('jt-'+id)?.value || '';
+    const tbl = document.getElementById('jtbl-'+id)?.value.trim() || '';
+    const cond = document.getElementById('jcond-'+id)?.value.trim() || '';
+    if (tbl) sql += `\n${jt} ${tbl}${cond ? ' ON ' + cond : ''}`;
+  });
+
+  const wrows = collectWhere('where-list');
+  if (wrows.length) {
+    sql += '\nWHERE\n    ' + wrows.map((w,i) => {
+      const val = (w.op === 'IS NULL' || w.op === 'IS NOT NULL') ? '' : ` '${w.val}'`;
+      return (i > 0 ? w.log + ' ' : '') + `${w.col} ${w.op}${val}`;
+    }).join('\n    ');
+  }
+  if (groupby) sql += `\nGROUP BY ${groupby}`;
+  if (having) sql += `\nHAVING ${having}`;
+  if (orderby) sql += `\nORDER BY ${orderby} ${dir}`;
+  if (limit) sql += `\nLIMIT ${limit}`;
+  if (offset) sql += `\nOFFSET ${offset}`;
+  return sql + ';';
+}
+
+function genInsert() {
+  const table = document.getElementById('ins-table').value.trim() || 'your_table';
+  const ignore = document.getElementById('ins-ignore').checked;
+  const rows = [];
+  document.getElementById('ins-rows').querySelectorAll('.condition-row').forEach(row => {
+    const id = row.id.replace('ir-','');
+    const col = document.getElementById('icol-'+id)?.value.trim();
+    const typ = document.getElementById('ityp-'+id)?.value;
+    const val = document.getElementById('ival-'+id)?.value.trim();
+    if (col) rows.push({col, typ, val});
+  });
+  if (!rows.length) return `INSERT${ignore?' IGNORE':''} INTO ${table} (column1, column2)\nVALUES ('value1', 'value2');`;
+  const cols = rows.map(r => r.col).join(', ');
+  const vals = rows.map(r => fmtVal(r.val, r.typ)).join(', ');
+  return `INSERT${ignore?' IGNORE':''} INTO ${table}\n    (${cols})\nVALUES\n    (${vals});`;
+}
+
+function genUpdate() {
+  const table = document.getElementById('upd-table').value.trim() || 'your_table';
+  const sets = [];
+  document.getElementById('upd-sets').querySelectorAll('.condition-row').forEach(row => {
+    const id = row.id.replace('us-','');
+    const col = document.getElementById('ucol-'+id)?.value.trim();
+    const typ = document.getElementById('utyp-'+id)?.value;
+    const val = document.getElementById('uval-'+id)?.value.trim();
+    if (col) sets.push(`${col} = ${fmtVal(val, typ)}`);
+  });
+  let sql = `UPDATE ${table}\nSET\n    ${sets.length ? sets.join(',\n    ') : 'column = value'}`;
+  const wrows = collectWhere('upd-where-list');
+  if (wrows.length) {
+    sql += '\nWHERE\n    ' + wrows.map((w,i) => {
+      const val = (w.op === 'IS NULL' || w.op === 'IS NOT NULL') ? '' : ` '${w.val}'`;
+      return (i > 0 ? w.log + ' ' : '') + `${w.col} ${w.op}${val}`;
+    }).join('\n    ');
+  }
+  return sql + ';';
+}
+
+function genDelete() {
+  const table = document.getElementById('del-table').value.trim() || 'your_table';
+  let sql = `DELETE FROM ${table}`;
+  const wrows = collectWhere('del-where-list');
+  if (wrows.length) {
+    sql += '\nWHERE\n    ' + wrows.map((w,i) => {
+      const val = (w.op === 'IS NULL' || w.op === 'IS NOT NULL') ? '' : ` '${w.val}'`;
+      return (i > 0 ? w.log + ' ' : '') + `${w.col} ${w.op}${val}`;
+    }).join('\n    ');
+  }
+  return sql + ';';
+}
+
+function genCreate() {
+  const table = document.getElementById('crt-table').value.trim() || 'your_table';
+  const ifnot = document.getElementById('crt-ifnot').checked;
+  const engine = document.getElementById('crt-engine').value;
+  const charset = document.getElementById('crt-charset').value;
+  const colDefs = [];
+  const extras = [];
+  document.getElementById('crt-cols').querySelectorAll('.condition-row').forEach(row => {
+    const id = row.id.replace('cc-','');
+    const name = document.getElementById('cname-'+id)?.value.trim();
+    const type = document.getElementById('ctype-'+id)?.value;
+    const nullc = document.getElementById('cnull-'+id)?.value;
+    const def = document.getElementById('cdef-'+id)?.value.trim();
+    const pk = document.getElementById('cpk-'+id)?.checked;
+    const ai = document.getElementById('cai-'+id)?.checked;
+    const uq = document.getElementById('cuq-'+id)?.checked;
+    if (!name) return;
+    let def_str = `    ${name} ${type} ${nullc}`;
+    if (ai) def_str += ' AUTO_INCREMENT';
+    if (def) def_str += ` DEFAULT ${def}`;
+    colDefs.push(def_str);
+    if (pk) extras.push(`    PRIMARY KEY (${name})`);
+    if (uq) extras.push(`    UNIQUE KEY uq_${name} (${name})`);
+  });
+  if (!colDefs.length) {
+    colDefs.push('    id INT NOT NULL AUTO_INCREMENT', '    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP');
+    extras.push('    PRIMARY KEY (id)');
+  }
+  const allDefs = [...colDefs, ...extras].join(',\n');
+  let sql = `CREATE TABLE${ifnot ? ' IF NOT EXISTS' : ''} ${table} (\n${allDefs}\n)`;
+  if (engine) sql += `\nENGINE=${engine}`;
+  if (charset) sql += ` DEFAULT CHARSET=${charset}`;
+  return sql + ';';
+}
+
+function highlightSQL(sql) {
+  const KW = ['SELECT','FROM','WHERE','INSERT','INTO','VALUES','UPDATE','SET','DELETE','CREATE','TABLE','JOIN','LEFT','RIGHT','INNER','OUTER','FULL','CROSS','ON','AS','AND','OR','NOT','IN','BETWEEN','LIKE','IS','NULL','ORDER','BY','GROUP','HAVING','LIMIT','OFFSET','UNION','DISTINCT','TOP','CASE','WHEN','THEN','ELSE','END','WITH','PRIMARY','KEY','FOREIGN','UNIQUE','DEFAULT','CHECK','IF','AUTO_INCREMENT','ENGINE','CHARSET','IGNORE','TRUE','FALSE'];
+  let s = sql.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s = s.replace(/('[^']*')/g,'<span class="str">$1</span>');
+  s = s.replace(/\b(\d+\.?\d*)\b/g,'<span class="num">$1</span>');
+  KW.forEach(k => { s = s.replace(new RegExp('\\b('+k+')\\b','g'),'<span class="kw">$1</span>'); });
+  return s;
+}
+
+function copySQL(btn) {
+  const raw = document.getElementById('sqlPreview')._raw || document.getElementById('sqlPreview').textContent;
+  navigator.clipboard.writeText(raw).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+function resetBuilder() {
+  columns = []; joins = []; wheres = []; updWheres = []; delWheres = []; insRows = []; updSets = []; crtCols = [];
+  ['where-list','joins-list','ins-rows','upd-sets','upd-where-list','del-where-list','crt-cols'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '';
+  });
+  ['sel-table','sel-alias','col-input','col-alias','sel-groupby','sel-having','sel-orderby','sel-limit','sel-offset','ins-table','upd-table','del-table','crt-table'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  renderColTags();
+  document.getElementById('sqlPreview').innerHTML = '-- Start building your query on the left...';
+}
+
+function loadExample() {
+  resetBuilder();
+  document.getElementById('sel-table').value = 'orders';
+  document.getElementById('sel-alias').value = 'o';
+  columns = [{col:'o.id',alias:''},{col:'u.name',alias:'customer'},{col:'SUM(o.amount)',alias:'total'}];
+  renderColTags();
+  addJoin();
+  const jid = document.querySelector('#joins-list .condition-row')?.id.replace('join-','');
+  if (jid) {
+    document.getElementById('jt-'+jid).value = 'LEFT JOIN';
+    document.getElementById('jtbl-'+jid).value = 'users u';
+    document.getElementById('jcond-'+jid).value = 'o.user_id = u.id';
+  }
+  addWhere();
+  const wid = document.querySelector('#where-list .condition-row')?.id.replace('w-','');
+  if (wid) {
+    document.getElementById('wcol-'+wid).value = 'o.status';
+    document.getElementById('wval-'+wid).value = 'completed';
+  }
+  document.getElementById('sel-groupby').value = 'o.id, u.name';
+  document.getElementById('sel-orderby').value = 'total';
+  document.getElementById('sel-dir').value = 'DESC';
+  document.getElementById('sel-limit').value = '10';
+  generate();
+}
+
+// Init
+generate();
+</script>
+
+<section class="how-it-works">
+  <div class="section-label">How It Works</div>
+  <h2>Generate SQL in 3 Steps</h2>
+  <div class="steps"><div class="step"><div class="step-num">1</div><h3>Describe Your Table</h3><p>Enter your table name and column details.</p></div><div class="step"><div class="step-num">2</div><h3>Choose Query Type</h3><p>Select SELECT, INSERT, UPDATE, DELETE, or CREATE TABLE.</p></div><div class="step"><div class="step-num">3</div><h3>Copy Generated SQL</h3><p>Copy the formatted SQL query and use it in your database.</p></div></div>
+</section>
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What databases are supported?</div><div class="faq-a">The generated SQL is compatible with MySQL, PostgreSQL, SQLite, and SQL Server.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can it generate complex JOINs?</div><div class="faq-a">Yes, you can generate JOIN queries by specifying related tables.</div></div><div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is the generated SQL production-ready?</div><div class="faq-a">The SQL is correctly structured and ready to use with minor customization.</div></div>
+  </div>
+</section>
+<div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div>
+<script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script>
+
+<div style="max-width:420px;margin:24px auto;padding:0 20px;">
+  <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa">
+    <a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a>
+  </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:16px 20px;text-align:center;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4584285687998770" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="related-tools-section" style="max-width:900px;margin:0 auto 32px;padding:0 20px;">
+  <h3 class="related-title">🔧 Related Tools</h3>
+  <div class="related-tools-grid">
+    <a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a>
+    <a href="/tools/merge-pdf.html" class="related-tool-link">Merge PDF</a>
+    <a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a>
+    <a href="/tools/jpg-to-pdf.html" class="related-tool-link">JPG to PDF</a>
+  </div>
+</div>
+
+<div class="share-section" style="max-width:900px;margin:0 auto 40px;padding:0 20px;text-align:center;">
+  <p class="share-label">📤 Share this tool</p>
+  <div class="share-btns">
+    <button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button>
+    <button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button>
+    <button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button>
+  </div>
+</div>
+<script>
+function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
+function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}
+</script>
+
+<footer>
+  <div class="footer-popular">
+    <div class="footer-popular-title">🔥 Popular Tools</div>
+    <div class="footer-popular-links">
+      <a href="/tools/jpg-to-pdf.html">JPG to PDF</a>
+      <a href="/tools/compress-pdf.html">Compress PDF</a>
+      <a href="/tools/merge-pdf.html">Merge PDF</a>
+      <a href="/tools/background-remover.html">Background Remover</a>
+      <a href="/tools/pdf-to-word.html">PDF to Word</a>
+      <a href="/tools/image-compressor.html">Image Compressor</a>
+      <a href="/tools/word-to-pdf.html">Word to PDF</a>
+      <a href="/tools/split-pdf.html">Split PDF</a>
+      <a href="/tools/ocr-image-to-text.html">OCR / Image to Text</a>
+      <a href="/tools/resize-image.html">Resize Image</a>
+      <a href="/tools/pdf-to-jpg.html">PDF to JPG</a>
+      <a href="/tools/unlock-pdf-only.html">Unlock PDF</a>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="https://x.com/GptPayer1234" target="_blank" rel="noopener" class="social-icon-link" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h7.01l4.26 5.632 4.724-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://www.instagram.com/simplepdf_official" target="_blank" rel="noopener" class="social-icon-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.linkedin.com/in/simple-pdf-979a17405" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  </div>
+  <div class="footer-bottom">
+<div class="footer-legal-links">
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/privacy-policy.html">Privacy Policy</a>
+  <a href="/disclaimer.html">Disclaimer</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+</div>
+<span class="footer-copy">© 2026 GPTPayer.online · 180+ Free Online Tools · All rights reserved</span>
+</div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div>
+</div>
+
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script>
+(function(){
+  var DM_KEY='gptpayer_theme';
+  function applyTheme(t){document.documentElement.setAttribute('data-theme',t);var btn=document.getElementById('dmToggle');if(btn)btn.textContent=(t==='dark')?'☀️':'🌙';}
+  var savedTheme=null;try{savedTheme=localStorage.getItem(DM_KEY);}catch(e){}
+  var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+  var initTheme=savedTheme||(sysDark?'dark':'light');
+  if(initTheme==='dark')document.documentElement.setAttribute('data-theme','dark');
+  document.addEventListener('DOMContentLoaded',function(){
+    applyTheme(initTheme);
+    var dmBtn=document.getElementById('dmToggle');
+    if(dmBtn){dmBtn.addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')||'light';var next=cur==='dark'?'light':'dark';try{localStorage.setItem(DM_KEY,next);}catch(e){}applyTheme(next);});}
+    var navToggle=document.getElementById('navToggle');
+    if(navToggle){navToggle.addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});}
+    var cb=document.getElementById('cookieBanner');
+    if(cb){var cs=null;try{cs=localStorage.getItem('gptpayer_cookie');}catch(e){}if(cs)cb.style.display='none';}
+  });
+  if(window.matchMedia){window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){var manual=null;try{manual=localStorage.getItem(DM_KEY);}catch(er){}if(!manual)applyTheme(e.matches?'dark':'light');});}
+  function acceptCookies(){try{localStorage.setItem('gptpayer_cookie','1');}catch(e){}document.getElementById('cookieBanner').style.display='none';}
+  function declineCookies(){document.getElementById('cookieBanner').style.display='none';}
+  window.acceptCookies=acceptCookies;window.declineCookies=declineCookies;
+
+  var LANGS=[{c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},{c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},{c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},{c:'ar',n:'العربية',f:'🇸🇦'},{c:'hi',n:'हिन्दी',f:'🇮🇳'},{c:'it',n:'Italiano',f:'🇮🇹'},{c:'nl',n:'Nederlands',f:'🇳🇱'},{c:'tr',n:'Türkçe',f:'🇹🇷'},{c:'pl',n:'Polski',f:'🇵🇱'},{c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},{c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}];
+  var LS='gptpayer_lang';
+  function getCurLang(){try{return localStorage.getItem(LS)||'en';}catch(e){return 'en';}}
+  function applyLang(code,n){n=n||0;if(n>80)return;var combo=document.querySelector('.goog-te-combo');if(!combo){setTimeout(function(){applyLang(code,n+1);},150);return;}if(code==='en'){combo.value='';var ev2;try{ev2=new Event('change',{bubbles:true});}catch(e){ev2=document.createEvent('HTMLEvents');ev2.initEvent('change',true,true);}combo.dispatchEvent(ev2);setTimeout(function(){var url=window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');window.location.href=url;},100);return;}combo.value=code;var ev;try{ev=new Event('change',{bubbles:true});}catch(e){ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,true);}combo.dispatchEvent(ev);}
+  function setCookieLang(code){var d=[location.hostname,'.'+location.hostname];var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';d.forEach(function(x){document.cookie='googtrans=;'+clr+'domain='+x;});document.cookie='googtrans=;'+clr;if(code!=='en'){var v='/en/'+code;d.forEach(function(x){document.cookie='googtrans='+v+';'+exp+'domain='+x;});document.cookie='googtrans='+v+';'+exp;}}
+  function updateLabel(code){var lbl=document.getElementById('langLabel');if(!lbl)return;var found=LANGS.filter(function(l){return l.c===code;})[0];lbl.textContent=found?found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)):'🌐 EN';}
+  function setLang(code){if(code==='en'){try{localStorage.removeItem(LS);}catch(e){};}else{try{localStorage.setItem(LS,code);}catch(e){}}setCookieLang(code);updateLabel(code);var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.remove('open');document.querySelectorAll('.lang-option').forEach(function(el){el.classList.toggle('active-lang',el.getAttribute('data-lang')===code);});applyLang(code);}
+  document.addEventListener('DOMContentLoaded',function(){
+    var cur=getCurLang();
+    var dd=document.getElementById('langDropdown');
+    if(dd&&dd.children.length===0){LANGS.forEach(function(l){var el=document.createElement('div');el.className='lang-option'+(l.c===cur?' active-lang':'');el.setAttribute('data-lang',l.c);el.innerHTML=l.f+' '+l.n;el.onclick=function(){setLang(l.c);};dd.appendChild(el);});}
+    updateLabel(cur);
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){langBtn.removeAttribute('onclick');langBtn.addEventListener('click',function(e){e.stopPropagation();var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.toggle('open');});}
+    document.addEventListener('click',function(e){var wrap=document.getElementById('langWrap');if(wrap&&!wrap.contains(e.target))wrap.classList.remove('open');});
+    if(cur!=='en')applyLang(cur);
+  });
+})();
+</script>
+
+<script>
+// FAQ toggle (unified)
+function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
+// Also handle any inline onclick variants
+function faq(el){el.closest('.faq-item').classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    if(!q.getAttribute('onclick')){
+      q.addEventListener('click',function(){toggleFaq(this);});
+    }
+  });
+});
+</script>
+</body>
+</html>

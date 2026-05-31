@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><link rel="canonical" href="https://gptpayer.online/tools/website-screenshot-tool.html" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><meta name="theme-color" content="#d4470a" /><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Screenshot Tool – Free Multi-Device Preview | GPTPayer.online</title>
+<meta name="description" content="Capture free screenshots of any website in desktop, tablet, and mobile views. Instant preview, download PNG, and compare devices side-by-side.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#f0ede8;--surface:#fff;--ink:#1a1714;--muted:#6b6560;--accent:#d4470a;--accent2:#f0a500;--border:#d9d4cd;--radius:16px;--shadow:0 4px 32px rgba(0,0,0,0.08);--green:#16a34a;--red:#dc2626;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;}
+nav{background:var(--ink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;gap:16px;}
+.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent2);}
+nav ul{list-style:none;display:flex;gap:24px;}
+nav ul a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color .2s;}
+nav ul a:hover{color:#fff;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+.hero{text-align:center;padding:72px 24px 48px;max-width:720px;margin:0 auto;}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:20px;}
+h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.1;color:var(--ink);letter-spacing:-1.5px;margin-bottom:16px;}
+h1 em{color:var(--accent);font-style:normal;}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto;}
+
+.tool-wrap{max-width:1000px;margin:0 auto;padding:0 20px 80px;}
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+
+/* Input */
+.input-zone{padding:28px;}
+.url-row{display:flex;gap:12px;}
+.url-input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:1rem;background:var(--bg);color:var(--ink);outline:none;transition:border-color .2s;}
+.url-input:focus{border-color:var(--accent);}
+.btn-capture{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;padding:13px 28px;border:none;border-radius:10px;cursor:pointer;transition:background .2s;white-space:nowrap;}
+.btn-capture:hover{background:#b33d07;}
+.btn-capture:disabled{background:#c2b8b0;cursor:not-allowed;}
+
+/* Device options */
+.device-options{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.device-opt{position:relative;}
+.device-opt input[type=checkbox]{position:absolute;opacity:0;width:0;height:0;}
+.device-opt label{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 16px;cursor:pointer;font-family:'Sora',sans-serif;font-weight:600;font-size:.85rem;color:var(--muted);transition:all .2s;user-select:none;}
+.device-opt input:checked+label{background:var(--accent);border-color:var(--accent);color:#fff;}
+.device-opt label:hover{border-color:var(--ink);}
+
+.options-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;align-items:center;}
+.select-opt{border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:.875rem;background:var(--bg);color:var(--ink);outline:none;cursor:pointer;}
+
+/* Loading */
+.loading-wrap{display:none;padding:48px 28px;text-align:center;}
+.spinner{width:52px;height:52px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-wrap p{font-family:'Sora',sans-serif;font-weight:600;color:var(--muted);}
+.loading-wrap small{font-size:.82rem;color:var(--muted);display:block;margin-top:6px;}
+
+/* Results */
+.results-wrap{display:none;}
+.results-header{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:12px;}
+.results-header h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.btn-retest{background:transparent;border:1.5px solid var(--border);border-radius:8px;padding:7px 16px;font-family:'Sora',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;color:var(--muted);transition:all .2s;}
+.btn-retest:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Screenshot panels */
+.screenshots-grid{padding:20px 28px 28px;display:flex;flex-direction:column;gap:32px;}
+.screenshot-panel{}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+.device-label{display:flex;align-items:center;gap:10px;}
+.device-icon{font-size:1.4rem;}
+.device-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;}
+.device-dims{font-size:.8rem;color:var(--muted);}
+.panel-actions{display:flex;gap:8px;}
+.btn-download{background:var(--ink);color:#fff;font-family:'Sora',sans-serif;font-weight:600;font-size:.8rem;padding:7px 16px;border:none;border-radius:8px;cursor:pointer;transition:opacity .2s;}
+.btn-download:hover{opacity:.8;}
+.btn-copy{background:var(--bg);border:1.5px solid var(--border);color:var(--ink);font-family:'Sora',sans-serif;font-weight:600;font-size:.8rem;padding:7px 16px;border-radius:8px;cursor:pointer;transition:all .2s;}
+.btn-copy:hover{border-color:var(--accent);color:var(--accent);}
+.btn-open{background:transparent;border:1.5px solid var(--border);color:var(--muted);font-family:'Sora',sans-serif;font-weight:600;font-size:.8rem;padding:7px 14px;border-radius:8px;cursor:pointer;}
+.btn-open:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Device frames */
+.frame-wrap{position:relative;display:inline-block;width:100%;}
+.frame-desktop .screen-frame{background:#1a1714;border-radius:12px 12px 6px 6px;padding:28px 16px 10px;width:100%;}
+.frame-desktop .screen-bar{position:absolute;top:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;}
+.frame-desktop .screen-dot{width:8px;height:8px;border-radius:50%;}
+.frame-desktop .url-bar{background:#2d2d2d;border-radius:4px;height:16px;width:60%;margin:0 auto 12px;position:absolute;top:20px;left:50%;transform:translateX(-50%);}
+.frame-tablet .screen-frame{background:#1a1714;border-radius:16px;padding:16px 10px;width:75%;margin:0 auto;position:relative;}
+.frame-tablet .home-btn{width:24px;height:24px;border-radius:50%;border:2px solid #555;position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);}
+.frame-mobile .screen-frame{background:#1a1714;border-radius:24px;padding:16px 8px;width:38%;margin:0 auto;position:relative;}
+.frame-mobile .notch{width:80px;height:14px;background:#1a1714;border-radius:0 0 10px 10px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2;}
+.frame-mobile .home-bar{width:60px;height:4px;background:#555;border-radius:2px;margin:8px auto 0;}
+
+.screenshot-img{width:100%;border-radius:6px;display:block;min-height:200px;background:var(--bg);border:1px solid var(--border);}
+.screenshot-img.loading{animation:imgPulse 1.5s ease infinite;}
+@keyframes imgPulse{0%,100%{opacity:.4;}50%{opacity:.8;}}
+.screenshot-error{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:24px;text-align:center;color:var(--muted);font-size:.875rem;}
+
+/* Compare mode */
+.compare-toggle{display:flex;align-items:center;gap:10px;margin-top:12px;}
+.compare-toggle label{font-size:.875rem;color:var(--muted);cursor:pointer;}
+.toggle-switch{position:relative;width:40px;height:22px;flex-shrink:0;}
+.toggle-switch input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:11px;cursor:pointer;transition:background .2s;}
+.toggle-slider::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s;}
+.toggle-switch input:checked+.toggle-slider{background:var(--accent);}
+.toggle-switch input:checked+.toggle-slider::before{transform:translateX(18px);}
+
+/* Side-by-side compare */
+.compare-wrap{display:none;padding:0 28px 28px;}
+.compare-wrap.active{display:block;}
+.compare-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.compare-col{text-align:center;}
+.compare-label{font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.compare-img{width:100%;border-radius:8px;border:1px solid var(--border);}
+
+/* URL info bar */
+.url-info-bar{padding:12px 28px;background:var(--bg);border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.url-pill{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:monospace;font-size:.8rem;color:var(--ink);max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.url-status{font-size:.8rem;font-weight:600;}
+
+/* features/steps/faq/footer */
+.features{background:var(--ink);padding:64px 24px;text-align:center;}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;}
+.features>p{color:rgba(255,255,255,.55);margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto;}
+.feature-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px 20px;text-align:left;}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block;}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px;}
+.feature-card p{color:rgba(255,255,255,.5);font-size:.875rem;line-height:1.5;}
+.how-it-works{padding:64px 24px;max-width:860px;margin:0 auto;}
+.section-label{font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.how-it-works h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.5px;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;}
+.step{display:flex;flex-direction:column;gap:10px;}
+.step-num{width:40px;height:40px;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:800;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;}
+.step p{font-size:.875rem;color:var(--muted);}
+.faq-section{background:var(--surface);padding:64px 24px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.5px;margin-bottom:36px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-q{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);transition:transform .2s;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{font-size:.9rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .2s;}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px;}
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:40px 24px;text-align:center;}
+footer p{font-size:.8rem;}footer a{color:rgba(255,255,255,.5);text-decoration:none;}footer a:hover{color:#fff;}
+
+@media(max-width:700px){
+  .compare-row{grid-template-columns:1fr;}
+  nav{padding:0 16px;}.nav-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,.1);z-index:99;}
+  nav ul.open{display:flex;}
+  .hero{padding:48px 20px 32px;}
+  .url-row{flex-direction:column;}
+  .btn-capture{width:100%;}
+  .frame-tablet .screen-frame{width:100%;}
+  .frame-mobile .screen-frame{width:60%;}
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f !important;
+  --surface: #1a1a1a !important;
+  --ink: #f0ede8 !important;
+  --muted: #a09890 !important;
+  --border: #2e2e2e !important;
+  filter: none;
+}
+[data-theme="dark"] body { background: #0f0f0f !important; color: #f0ede8 !important; }
+[data-theme="dark"] nav { background: #111 !important; border-bottom: 1px solid #222; }
+[data-theme="dark"] .tool-card,[data-theme="dark"] .post-card,[data-theme="dark"] .card,
+[data-theme="dark"] .faq-item,[data-theme="dark"] .contact-card,[data-theme="dark"] .form-card,
+[data-theme="dark"] .tip-box,[data-theme="dark"] .faq-section,[data-theme="dark"] .rec-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] .tool-card:hover { background: #222 !important; }
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select { background: #222 !important; color: #f0ede8 !important; border-color: #3e3e3e !important; }
+[data-theme="dark"] .drop-zone { border-color: #3e3e3e !important; background: #1a1a1a !important; }
+[data-theme="dark"] .drop-zone:hover { background: #2a1a0e !important; border-color: #d4470a !important; }
+[data-theme="dark"] .related-tools-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] footer { background: #080808 !important; }
+[data-theme="dark"] .cookie-banner { background: #111 !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0f0f0f; --surface: #1a1a1a; --ink: #f0ede8; --muted: #a09890; --border: #2e2e2e; }
+}
+.nav-center { display:flex; align-items:center; justify-content:center; flex:1; }
+.dm-toggle { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; transition:border-color 0.2s,color 0.2s,background 0.2s; flex-shrink:0; margin-left:4px; }
+.dm-toggle:hover { border-color:#f0a500; color:#f0a500; background:rgba(240,165,0,0.1); }
+.lang-select-wrap { position:relative; flex-shrink:0; }
+.lang-btn { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); padding:5px 10px; cursor:pointer; font-size:0.8rem; font-family:'DM Sans',sans-serif; display:flex; align-items:center; gap:4px; transition:border-color 0.2s,color 0.2s; white-space:nowrap; }
+.lang-btn:hover { border-color:#f0a500; color:#f0a500; }
+.lang-dropdown { position:absolute; right:0; top:calc(100% + 6px); background:#1e1e1e; border:1px solid #333; border-radius:10px; min-width:160px; max-height:300px; overflow-y:auto; z-index:1000; display:none; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+.lang-select-wrap.open .lang-dropdown { display:block; }
+.lang-option { padding:8px 14px; color:#ccc; font-size:0.82rem; cursor:pointer; transition:background 0.15s; }
+.lang-option:hover { background:#2a2a2a; color:#fff; }
+.lang-option.active-lang { color:#f0a500; font-weight:600; }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:4px; }
+.nav-toggle span { display:block; width:22px; height:2px; background:#fff; margin:5px 0; border-radius:2px; }
+@media(max-width:768px){ .nav-toggle{display:block;} nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;gap:0;padding:12px 0;} nav ul.open{display:flex;} nav ul a{padding:10px 24px;} }
+ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0 !important;overflow:hidden !important;}.adsbygoogle-wrapper:empty{display:none !important;}
+
+/* ===== COMMON GPTPayer CSS ===== */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+.nav-center{display:flex;align-items:center;justify-content:center;flex:1;}
+.dm-toggle{background:none;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;color:rgba(255,255,255,0.75);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:border-color 0.2s,color 0.2s,background 0.2s;flex-shrink:0;margin-left:4px;}
+.dm-toggle:hover{border-color:#f0a500;color:#f0a500;background:rgba(240,165,0,0.1);}
+.lang-select-wrap{position:relative;display:flex;align-items:center;margin-left:4px;}
+.lang-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:#fff;border-radius:7px;padding:5px 12px;cursor:pointer;font-size:0.8rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background 0.2s;}
+.lang-btn:hover{background:rgba(255,255,255,0.22);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1714;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.55);max-height:320px;overflow-y:auto;scrollbar-width:thin;}
+.lang-select-wrap.open .lang-dropdown{display:block;}
+.lang-option{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:0.82rem;color:rgba(255,255,255,0.75);transition:background 0.15s;user-select:none;}
+.lang-option:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.lang-option.active-lang{background:#d4470a;color:#fff;}
+.goog-te-banner-frame,.goog-te-balloon-frame{display:none!important;}
+body{top:0!important;position:static!important;}
+iframe.skiptranslate{display:none!important;}
+.skiptranslate>*{display:none!important;}
+@media(max-width:640px){.lang-btn .lang-name{display:none;}.lang-dropdown{min-width:160px;}}
+
+/* Features Section */
+.features{background:var(--ink);padding:64px 24px;text-align:center;}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;}
+.features>p{color:rgba(255,255,255,0.55);margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto;}
+.feature-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 20px;text-align:left;}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block;}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px;}
+.feature-card p{color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.5;}
+
+/* How It Works */
+.how-it-works{padding:64px 24px;max-width:860px;margin:0 auto;}
+.section-label{font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.how-it-works h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;}
+.step{display:flex;flex-direction:column;gap:10px;}
+.step-num{width:40px;height:40px;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:800;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;}
+.step p{font-size:0.875rem;color:var(--muted);}
+
+/* FAQ Section */
+.faq-section{background:var(--surface);padding:64px 24px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:36px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-q{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);}
+.faq-item.open .faq-q::after{content:'×';}
+.faq-a{font-size:0.9rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.2s;}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px;}
+
+/* Extra Content / Tips */
+.extra-content{max-width:860px;margin:0 auto;padding:40px 24px;}
+.extra-content h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--ink);}
+.extra-content p{color:var(--muted);line-height:1.75;margin-bottom:20px;font-size:0.95rem;}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0;}
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.tip-card h4{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.tip-card p{font-size:0.83rem;color:var(--muted);line-height:1.55;margin:0;}
+@media(max-width:600px){.tips-grid{grid-template-columns:1fr;}}
+
+/* Share Section */
+.share-section{text-align:center;padding:24px 20px 8px;margin-top:8px;}
+.share-label{font-size:0.9rem;color:var(--muted);margin-bottom:12px;}
+.share-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
+.share-btn{padding:8px 18px;border:none;border-radius:999px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;}
+.share-tw{background:#000;color:#fff;}
+.share-wa{background:#25d366;color:#fff;}
+.share-cp{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.share-btn:hover{opacity:0.85;}
+
+/* Related Tools */
+.related-tools-section{padding:24px 20px;margin-top:8px;}
+.related-title{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--ink);font-family:'Sora',sans-serif;}
+.related-tools-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.related-tool-link{padding:8px 16px;background:var(--bg);border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);font-size:0.85rem;font-weight:500;transition:background 0.2s,color 0.2s;}
+.related-tool-link:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* Footer */
+footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:32px 24px 24px;text-align:center;}
+.footer-popular{padding:0 0 8px;}
+.footer-popular-title{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;margin-bottom:12px;}
+.footer-popular-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin-bottom:20px;}
+.footer-popular-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-popular-links a:hover{color:#fff;}
+.footer-social{display:flex;justify-content:center;align-items:center;gap:12px;padding:16px 0 8px;}
+.social-icon-link{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;color:rgba(255,255,255,0.75);text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.social-icon-link:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;margin-top:8px;}
+.footer-copy{font-size:0.78rem;}
+
+/* Cookie Banner */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:rgba(255,255,255,0.85);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;z-index:9999;font-size:0.875rem;box-shadow:0 -4px 24px rgba(0,0,0,0.2);}
+.cookie-banner p{margin:0;flex:1;min-width:200px;}
+.cookie-banner a{color:var(--accent2);text-decoration:underline;}
+.cookie-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.875rem;cursor:pointer;}
+.cookie-btn-decline{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:10px 18px;font-size:0.875rem;cursor:pointer;}
+
+/* Dark Mode */
+[data-theme="dark"]{--bg:#0f0f0f!important;--surface:#1a1a1a!important;--ink:#f0ede8!important;--muted:#a09890!important;--border:#2e2e2e!important;}
+[data-theme="dark"] body{background:#0f0f0f!important;color:#f0ede8!important;}
+[data-theme="dark"] nav{background:#111!important;border-bottom:1px solid #222;}
+[data-theme="dark"] .card,[data-theme="dark"] .faq-item,[data-theme="dark"] .faq-section,[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select{background:#222!important;color:#f0ede8!important;border-color:#3e3e3e!important;}
+[data-theme="dark"] .drop-zone{border-color:#3e3e3e!important;background:#1a1a1a!important;}
+[data-theme="dark"] .drop-zone:hover{background:#2a1a0e!important;border-color:#d4470a!important;}
+[data-theme="dark"] .related-tools-section{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] footer{background:#080808!important;}
+[data-theme="dark"] .cookie-banner{background:#111!important;}
+[data-theme="dark"] .related-tool-link{background:#222!important;border-color:#3e3e3e!important;color:#f0ede8!important;}
+[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f0f;--surface:#1a1a1a;--ink:#f0ede8;--muted:#a09890;--border:#2e2e2e;}}
+
+/* Responsive Nav */
+@media(max-width:600px){
+  nav{padding:0 16px;}
+  .nav-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,0.1);z-index:99;}
+  nav ul.open{display:flex;}
+  .hero{padding:48px 20px 32px;}
+}
+
+/* AdSense collapse */
+ins.adsbygoogle{min-height:0!important;}
+ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0!important;overflow:hidden!important;}
+
+.btn-convert{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;padding:12px 36px;border:none;border-radius:10px;cursor:pointer;transition:background 0.2s,transform 0.1s;}.btn-convert:hover{background:#b33d07;}.btn-convert:active{transform:scale(0.98);}.btn-convert:disabled{background:#c2b8b0;cursor:not-allowed;}
+.footer-legal-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:12px;}
+.footer-legal-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-legal-links a:hover{color:#fff;}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VERDFQS25D"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VERDFQS25D');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4584285687998770" crossorigin="anonymous"></script><script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script><link rel="stylesheet" href="/shared.css"></head>
+<body>
+<nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav>
+
+<div class="hero">
+  <div class="badge">Free · Instant · Multi-Device</div>
+  <h1>Capture <em>Website Screenshots</em><br>on Any Device</h1>
+  <p>Instantly preview any website in desktop, tablet, and mobile views. Download PNG, compare devices, and share previews.</p>
+</div>
+
+<div class="tool-wrap">
+  <div class="card">
+    <div class="input-zone">
+      <div class="url-row">
+        <input type="url" class="url-input" id="urlInput" placeholder="https://example.com" onkeydown="if(event.key==='Enter')captureAll()">
+        <button class="btn-capture" id="btnCapture" onclick="captureAll()">📸 Capture Screenshot</button>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Select Devices</div>
+        <div class="device-options">
+          <div class="device-opt">
+            <input type="checkbox" id="devDesktop" checked>
+            <label for="devDesktop">🖥️ Desktop <span style="font-size:.75rem;opacity:.7">1280px</span></label>
+          </div>
+          <div class="device-opt">
+            <input type="checkbox" id="devTablet" checked>
+            <label for="devTablet">📱 Tablet <span style="font-size:.75rem;opacity:.7">768px</span></label>
+          </div>
+          <div class="device-opt">
+            <input type="checkbox" id="devMobile" checked>
+            <label for="devMobile">📲 Mobile <span style="font-size:.75rem;opacity:.7">375px</span></label>
+          </div>
+          <div class="device-opt">
+            <input type="checkbox" id="devWide">
+            <label for="devWide">🖥️ Wide <span style="font-size:.75rem;opacity:.7">1920px</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="options-row">
+        <select class="select-opt" id="captureHeight">
+          <option value="800">Standard height (800px)</option>
+          <option value="1200" selected>Full content (1200px)</option>
+          <option value="full">Full page</option>
+        </select>
+        <select class="select-opt" id="captureQuality">
+          <option value="1">Normal quality</option>
+          <option value="2" selected>High quality (2x)</option>
+        </select>
+        <div class="compare-toggle">
+          <label class="toggle-switch">
+            <input type="checkbox" id="compareMode" onchange="toggleCompare()">
+            <div class="toggle-slider"></div>
+          </label>
+          <label for="compareMode" style="cursor:pointer;">Side-by-side compare</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="loading-wrap" id="loadingWrap">
+      <div class="spinner"></div>
+      <p id="loadingText">Capturing screenshots…</p>
+      <small>This may take 10–20 seconds for all devices</small>
+    </div>
+
+    <div class="results-wrap" id="resultsWrap">
+      <div class="url-info-bar">
+        <div class="url-pill" id="capturedUrl"></div>
+        <div class="url-status" id="captureStatus"></div>
+        <button class="btn-retest" onclick="captureAll()" style="margin-left:auto;">↻ Recapture</button>
+      </div>
+
+      <!-- Screenshots -->
+      <div class="screenshots-grid" id="screenshotsGrid"></div>
+
+      <!-- Side-by-side compare -->
+      <div class="compare-wrap" id="compareWrap">
+        <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">📊 Side-by-Side Comparison</div>
+        <div class="compare-row" id="compareRow"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <h2>Professional Website Previews</h2>
+  <p>See exactly how your site looks across all devices</p>
+  <div class="features-grid">
+    <div class="feature-card"><span class="feature-icon">📱</span><h3>4 Device Sizes</h3><p>Preview in Desktop (1280px), Tablet (768px), Mobile (375px), and Wide (1920px) viewports.</p></div>
+    <div class="feature-card"><span class="feature-icon">⬇️</span><h3>Download PNG</h3><p>Download any screenshot as a high-quality PNG file to share with clients or your team.</p></div>
+    <div class="feature-card"><span class="feature-icon">📊</span><h3>Side-by-Side Compare</h3><p>Toggle comparison mode to see all device sizes next to each other in one view.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔗</span><h3>Copy Image URL</h3><p>Copy the screenshot URL to embed previews directly into reports, Slack, or Notion docs.</p></div>
+  </div>
+</div>
+
+<div class="how-it-works">
+  <div class="section-label">How It Works</div>
+  <h2>Screenshots in Seconds</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Enter a URL</h3><p>Type or paste any public website URL. Select which device sizes you want to capture.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Instant Capture</h3><p>Our service renders the live website and captures a pixel-perfect screenshot at each resolution.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Download & Share</h3><p>Download individual screenshots as PNG, copy the image URL, or use side-by-side compare mode.</p></div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="faq-inner">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I screenshot any website?</div><div class="faq-a">You can screenshot any publicly accessible website. Sites that require login, have bot-detection, or block iframe embedding may not render correctly. For the best results, use the full URL including https://.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why use multi-device screenshots?</div><div class="faq-a">With 60%+ of web traffic on mobile, your site must look great on all screen sizes. Screenshots help you spot layout issues, text overflow, broken elements, and responsive design problems before your users do. They're also essential for client presentations and design reviews.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I download the screenshot?</div><div class="faq-a">Click the "Download PNG" button below any screenshot. Your browser will save the image file directly. For best results, right-click the screenshot and "Save image as…" to choose your save location.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are screenshots cached?</div><div class="faq-a">Screenshots are freshly captured each time you click Capture. Some rendering services may cache images for up to 30 minutes for the same URL. Click "Recapture" to force a fresh render if you've made recent changes to your site.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I use these screenshots commercially?</div><div class="faq-a">Screenshots of your own website can be used freely for any purpose. For screenshots of third-party sites, use them only for reference, analysis, or legitimate reporting purposes. Always respect copyright and terms of service of the site being captured.</div></div>
+  </div>
+</div>
+
+
+
+<script>
+const DEVICES = {
+  desktop:  { id:'devDesktop',  icon:'🖥️',  label:'Desktop',  width:1280, crop:900,  frameClass:'frame-desktop' },
+  tablet:   { id:'devTablet',   icon:'📱',  label:'Tablet',   width:768,  crop:1024, frameClass:'frame-tablet'  },
+  mobile:   { id:'devMobile',   icon:'📲',  label:'Mobile',   width:375,  crop:812,  frameClass:'frame-mobile'  },
+  wide:     { id:'devWide',     icon:'🖥️',  label:'Wide 1920',width:1920, crop:1080, frameClass:'frame-desktop' },
+};
+
+let capturedImages = {};
+
+function getSelectedDevices() {
+  return Object.entries(DEVICES).filter(([k,v]) => document.getElementById(v.id)?.checked).map(([k]) => k);
+}
+
+function buildScreenshotUrl(url, width, crop) {
+  const height = document.getElementById('captureHeight').value;
+  const actualCrop = height === 'full' ? 99999 : (height === '1200' ? 1200 : 800);
+  // Use thum.io as primary, with fallback approach
+  return `https://image.thum.io/get/width/${width}/crop/${actualCrop}/noanimate/${encodeURIComponent(url)}`;
+}
+
+function buildFallbackUrl(url, width, crop) {
+  return `https://s0.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${crop}`;
+}
+
+function buildDeviceFrame(device, key) {
+  if (key === 'mobile') {
+    return `
+      <div class="frame-wrap frame-mobile">
+        <div class="screen-frame">
+          <div class="notch"></div>
+          <img class="screenshot-img loading" id="img-${key}" src="" alt="${device.label} screenshot" onload="onImgLoad('${key}')" onerror="onImgError('${key}')">
+          <div class="home-bar"></div>
+        </div>
+      </div>`;
+  } else if (key === 'tablet') {
+    return `
+      <div class="frame-wrap frame-tablet">
+        <div class="screen-frame">
+          <img class="screenshot-img loading" id="img-${key}" src="" alt="${device.label} screenshot" onload="onImgLoad('${key}')" onerror="onImgError('${key}')">
+          <div class="home-btn"></div>
+        </div>
+      </div>`;
+  } else {
+    return `
+      <div class="frame-wrap frame-desktop">
+        <div class="screen-frame">
+          <div style="display:flex;gap:5px;margin-bottom:10px;padding:0 4px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#ff5f56;"></div>
+            <div style="width:8px;height:8px;border-radius:50%;background:#ffbd2e;"></div>
+            <div style="width:8px;height:8px;border-radius:50%;background:#27c93f;"></div>
+            <div style="flex:1;background:#2d2d2d;border-radius:4px;height:8px;"></div>
+          </div>
+          <img class="screenshot-img loading" id="img-${key}" src="" alt="${device.label} screenshot" onload="onImgLoad('${key}')" onerror="onImgError('${key}')">
+        </div>
+      </div>`;
+  }
+}
+
+function onImgLoad(key) {
+  const img = document.getElementById('img-'+key);
+  if (img) {
+    img.classList.remove('loading');
+    capturedImages[key] = img.src;
+    updateCompare();
+  }
+}
+
+function onImgError(key) {
+  const img = document.getElementById('img-'+key);
+  const device = DEVICES[key];
+  if (img) {
+    // Try fallback
+    if (!img.dataset.triedFallback) {
+      img.dataset.triedFallback = '1';
+      const url = img.dataset.url;
+      img.src = buildFallbackUrl(url, device.width, device.crop);
+    } else {
+      img.style.display = 'none';
+      const wrap = img.parentElement;
+      const err = document.createElement('div');
+      err.className = 'screenshot-error';
+      err.innerHTML = `⚠️ Could not load ${device.label} screenshot.<br><small>The site may block external captures, or try a different URL.</small>`;
+      wrap.appendChild(err);
+    }
+  }
+}
+
+async function captureAll() {
+  const raw = document.getElementById('urlInput').value.trim();
+  if (!raw) { document.getElementById('urlInput').focus(); return; }
+  let url = raw;
+  if (!url.startsWith('http')) url = 'https://' + url;
+
+  const selected = getSelectedDevices();
+  if (!selected.length) { alert('Please select at least one device.'); return; }
+
+  capturedImages = {};
+  document.getElementById('btnCapture').disabled = true;
+  document.getElementById('loadingWrap').style.display = 'block';
+  document.getElementById('resultsWrap').style.display = 'none';
+
+  document.getElementById('loadingText').textContent = `Capturing ${selected.length} screenshot${selected.length>1?'s':''}…`;
+
+  // Simulate brief loading
+  await new Promise(r => setTimeout(r, 1200));
+
+  // Build panels
+  const grid = document.getElementById('screenshotsGrid');
+  grid.innerHTML = selected.map(key => {
+    const d = DEVICES[key];
+    const screenshotUrl = buildScreenshotUrl(url, d.width, d.crop);
+    return `
+      <div class="screenshot-panel" id="panel-${key}">
+        <div class="panel-header">
+          <div class="device-label">
+            <span class="device-icon">${d.icon}</span>
+            <div>
+              <div class="device-name">${d.label}</div>
+              <div class="device-dims">${d.width}px viewport width</div>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <button class="btn-copy" onclick="copyImgUrl('${key}')" title="Copy image URL">🔗 Copy URL</button>
+            <button class="btn-open" onclick="window.open('${screenshotUrl}','_blank')" title="Open full size">↗ Full Size</button>
+            <button class="btn-download" onclick="downloadImg('${key}','${d.label}')" title="Download PNG">⬇ Download</button>
+          </div>
+        </div>
+        ${buildDeviceFrame(d, key)}
+        <div style="margin-top:10px;display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);">
+          <span id="status-${key}">⏳ Loading…</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Set image sources
+  selected.forEach(key => {
+    const img = document.getElementById('img-'+key);
+    const d = DEVICES[key];
+    const screenshotUrl = buildScreenshotUrl(url, d.width, d.crop);
+    if (img) {
+      img.dataset.url = url;
+      img.src = screenshotUrl;
+    }
+  });
+
+  document.getElementById('capturedUrl').textContent = url;
+  document.getElementById('captureStatus').innerHTML = `<span style="color:var(--green)">✅ ${selected.length} device${selected.length>1?'s':''} captured</span>`;
+  document.getElementById('resultsWrap').style.display = 'block';
+  document.getElementById('loadingWrap').style.display = 'none';
+  document.getElementById('btnCapture').disabled = false;
+
+  // Update status labels as images load
+  selected.forEach(key => {
+    const img = document.getElementById('img-'+key);
+    const statusEl = document.getElementById('status-'+key);
+    const d = DEVICES[key];
+    if (img) {
+      img.addEventListener('load', () => {
+        if(statusEl) statusEl.innerHTML = `<span style="color:var(--green)">✅ ${d.width}×${d.crop}px — loaded</span>`;
+      });
+      img.addEventListener('error', () => {
+        if(statusEl) statusEl.innerHTML = `<span style="color:var(--amber)">⚠️ Retrying with fallback…</span>`;
+      });
+    }
+  });
+
+  document.getElementById('resultsWrap').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Build compare
+  buildCompare(url, selected);
+}
+
+function buildCompare(url, selected) {
+  const row = document.getElementById('compareRow');
+  row.innerHTML = selected.map(key => {
+    const d = DEVICES[key];
+    return `
+      <div class="compare-col">
+        <div class="compare-label">${d.icon} ${d.label} (${d.width}px)</div>
+        <img class="compare-img" src="${buildScreenshotUrl(url, d.width, d.crop)}" alt="${d.label}" onerror="this.src='${buildFallbackUrl(url, d.width, d.crop)}'">
+      </div>`;
+  }).join('');
+}
+
+function toggleCompare() {
+  const active = document.getElementById('compareMode').checked;
+  document.getElementById('compareWrap').classList.toggle('active', active);
+}
+
+function updateCompare() {
+  // Already handled by buildCompare
+}
+
+function copyImgUrl(key) {
+  const img = document.getElementById('img-'+key);
+  if (img?.src) {
+    navigator.clipboard.writeText(img.src).then(() => {
+      const btn = event.target;
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+}
+
+function downloadImg(key, label) {
+  const img = document.getElementById('img-'+key);
+  if (!img?.src || img.src === window.location.href) { alert('Screenshot still loading. Please wait.'); return; }
+  // For cross-origin images, open in new tab (CORS restriction)
+  const a = document.createElement('a');
+  a.href = img.src;
+  a.download = `screenshot-${label.toLowerCase().replace(/\s+/g,'-')}.png`;
+  a.target = '_blank';
+  // Try direct download first, then fallback to open
+  fetch(img.src, {mode:'cors'}).then(r => r.blob()).then(blob => {
+    const url = URL.createObjectURL(blob);
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }).catch(() => {
+    // CORS blocked — open in new tab for manual save
+    window.open(img.src, '_blank');
+    alert('💡 Tip: In the new tab, right-click the image and select "Save image as…" to download.');
+  });
+}
+</script>
+
+<div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div>
+<script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script>
+
+<div style="max-width:420px;margin:24px auto;padding:0 20px;">
+  <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa">
+    <a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a>
+  </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:16px 20px;text-align:center;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4584285687998770" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="related-tools-section" style="max-width:900px;margin:0 auto 32px;padding:0 20px;">
+  <h3 class="related-title">🔧 Related Tools</h3>
+  <div class="related-tools-grid">
+    <a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a>
+    <a href="/tools/merge-pdf.html" class="related-tool-link">Merge PDF</a>
+    <a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a>
+    <a href="/tools/jpg-to-pdf.html" class="related-tool-link">JPG to PDF</a>
+  </div>
+</div>
+
+<div class="share-section" style="max-width:900px;margin:0 auto 40px;padding:0 20px;text-align:center;">
+  <p class="share-label">📤 Share this tool</p>
+  <div class="share-btns">
+    <button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button>
+    <button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button>
+    <button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button>
+  </div>
+</div>
+<script>
+function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
+function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}
+</script>
+
+<footer>
+  <div class="footer-popular">
+    <div class="footer-popular-title">🔥 Popular Tools</div>
+    <div class="footer-popular-links">
+      <a href="/tools/jpg-to-pdf.html">JPG to PDF</a>
+      <a href="/tools/compress-pdf.html">Compress PDF</a>
+      <a href="/tools/merge-pdf.html">Merge PDF</a>
+      <a href="/tools/background-remover.html">Background Remover</a>
+      <a href="/tools/pdf-to-word.html">PDF to Word</a>
+      <a href="/tools/image-compressor.html">Image Compressor</a>
+      <a href="/tools/word-to-pdf.html">Word to PDF</a>
+      <a href="/tools/split-pdf.html">Split PDF</a>
+      <a href="/tools/ocr-image-to-text.html">OCR / Image to Text</a>
+      <a href="/tools/resize-image.html">Resize Image</a>
+      <a href="/tools/pdf-to-jpg.html">PDF to JPG</a>
+      <a href="/tools/unlock-pdf-only.html">Unlock PDF</a>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="https://x.com/GptPayer1234" target="_blank" rel="noopener" class="social-icon-link" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h7.01l4.26 5.632 4.724-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://www.instagram.com/simplepdf_official" target="_blank" rel="noopener" class="social-icon-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.linkedin.com/in/simple-pdf-979a17405" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  </div>
+  <div class="footer-bottom">
+<div class="footer-legal-links">
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/privacy-policy.html">Privacy Policy</a>
+  <a href="/disclaimer.html">Disclaimer</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+</div>
+<span class="footer-copy">© 2026 GPTPayer.online · 180+ Free Online Tools · All rights reserved</span>
+</div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div>
+</div>
+
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script>
+(function(){
+  var DM_KEY='gptpayer_theme';
+  function applyTheme(t){document.documentElement.setAttribute('data-theme',t);var btn=document.getElementById('dmToggle');if(btn)btn.textContent=(t==='dark')?'☀️':'🌙';}
+  var savedTheme=null;try{savedTheme=localStorage.getItem(DM_KEY);}catch(e){}
+  var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+  var initTheme=savedTheme||(sysDark?'dark':'light');
+  if(initTheme==='dark')document.documentElement.setAttribute('data-theme','dark');
+  document.addEventListener('DOMContentLoaded',function(){
+    applyTheme(initTheme);
+    var dmBtn=document.getElementById('dmToggle');
+    if(dmBtn){dmBtn.addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')||'light';var next=cur==='dark'?'light':'dark';try{localStorage.setItem(DM_KEY,next);}catch(e){}applyTheme(next);});}
+    var navToggle=document.getElementById('navToggle');
+    if(navToggle){navToggle.addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});}
+    var cb=document.getElementById('cookieBanner');
+    if(cb){var cs=null;try{cs=localStorage.getItem('gptpayer_cookie');}catch(e){}if(cs)cb.style.display='none';}
+  });
+  if(window.matchMedia){window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){var manual=null;try{manual=localStorage.getItem(DM_KEY);}catch(er){}if(!manual)applyTheme(e.matches?'dark':'light');});}
+  function acceptCookies(){try{localStorage.setItem('gptpayer_cookie','1');}catch(e){}document.getElementById('cookieBanner').style.display='none';}
+  function declineCookies(){document.getElementById('cookieBanner').style.display='none';}
+  window.acceptCookies=acceptCookies;window.declineCookies=declineCookies;
+
+  var LANGS=[{c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},{c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},{c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},{c:'ar',n:'العربية',f:'🇸🇦'},{c:'hi',n:'हिन्दी',f:'🇮🇳'},{c:'it',n:'Italiano',f:'🇮🇹'},{c:'nl',n:'Nederlands',f:'🇳🇱'},{c:'tr',n:'Türkçe',f:'🇹🇷'},{c:'pl',n:'Polski',f:'🇵🇱'},{c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},{c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}];
+  var LS='gptpayer_lang';
+  function getCurLang(){try{return localStorage.getItem(LS)||'en';}catch(e){return 'en';}}
+  function applyLang(code,n){n=n||0;if(n>80)return;var combo=document.querySelector('.goog-te-combo');if(!combo){setTimeout(function(){applyLang(code,n+1);},150);return;}if(code==='en'){combo.value='';var ev2;try{ev2=new Event('change',{bubbles:true});}catch(e){ev2=document.createEvent('HTMLEvents');ev2.initEvent('change',true,true);}combo.dispatchEvent(ev2);setTimeout(function(){var url=window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');window.location.href=url;},100);return;}combo.value=code;var ev;try{ev=new Event('change',{bubbles:true});}catch(e){ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,true);}combo.dispatchEvent(ev);}
+  function setCookieLang(code){var d=[location.hostname,'.'+location.hostname];var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';d.forEach(function(x){document.cookie='googtrans=;'+clr+'domain='+x;});document.cookie='googtrans=;'+clr;if(code!=='en'){var v='/en/'+code;d.forEach(function(x){document.cookie='googtrans='+v+';'+exp+'domain='+x;});document.cookie='googtrans='+v+';'+exp;}}
+  function updateLabel(code){var lbl=document.getElementById('langLabel');if(!lbl)return;var found=LANGS.filter(function(l){return l.c===code;})[0];lbl.textContent=found?found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)):'🌐 EN';}
+  function setLang(code){if(code==='en'){try{localStorage.removeItem(LS);}catch(e){};}else{try{localStorage.setItem(LS,code);}catch(e){}}setCookieLang(code);updateLabel(code);var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.remove('open');document.querySelectorAll('.lang-option').forEach(function(el){el.classList.toggle('active-lang',el.getAttribute('data-lang')===code);});applyLang(code);}
+  document.addEventListener('DOMContentLoaded',function(){
+    var cur=getCurLang();
+    var dd=document.getElementById('langDropdown');
+    if(dd&&dd.children.length===0){LANGS.forEach(function(l){var el=document.createElement('div');el.className='lang-option'+(l.c===cur?' active-lang':'');el.setAttribute('data-lang',l.c);el.innerHTML=l.f+' '+l.n;el.onclick=function(){setLang(l.c);};dd.appendChild(el);});}
+    updateLabel(cur);
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){langBtn.removeAttribute('onclick');langBtn.addEventListener('click',function(e){e.stopPropagation();var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.toggle('open');});}
+    document.addEventListener('click',function(e){var wrap=document.getElementById('langWrap');if(wrap&&!wrap.contains(e.target))wrap.classList.remove('open');});
+    if(cur!=='en')applyLang(cur);
+  });
+})();
+</script>
+
+<script>
+// FAQ toggle (unified)
+function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
+// Also handle any inline onclick variants
+function faq(el){el.closest('.faq-item').classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    if(!q.getAttribute('onclick')){
+      q.addEventListener('click',function(){toggleFaq(this);});
+    }
+  });
+});
+</script>
+</body>
+</html>
