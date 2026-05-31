@@ -22,53 +22,289 @@
 /* === End Footer CSS === */
 ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0 !important;overflow:hidden !important;}.adsbygoogle-wrapper:empty{display:none !important;}</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-VERDFQS25D"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VERDFQS25D');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4584285687998770" crossorigin="anonymous"></script><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="SVG to PDF Converter – Free & Fast | GPTPayer.online" /><meta name="twitter:description" content="Convert SVG vector graphics to high-quality PDF in seconds. 100% free, renders at any DPI." /><script type="application/ld+json"> { "@context": "https://schema.org", "@type": "WebApplication", "name": "SVG to PDF Converter", "url": "https://gptpayer.online/svg-to-pdf.html", "description": "Convert SVG vector files to PDF instantly in your browser. Renders SVG at any resolution. Free, private, no signup, no watermark.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@type": "Organization", "name": "GPTPayer.online", "url": "https://gptpayer.online" } } </script><link rel="stylesheet" href="/shared.css"><script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script><style>
 /* ===== DARK MODE ===== */
+
+/* Smooth transition when toggling */
+html { transition: background-color 0.25s ease, color 0.25s ease; }
+*, *::before, *::after { transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease, box-shadow 0.2s ease; }
+/* Exclude things that shouldn't animate */
+.rec-track, .rec-track *, nav ul, .lang-dropdown, [class*="arrow"] { transition: none !important; }
+
 [data-theme="dark"] {
-  --bg: #0f0f0f !important;
-  --surface: #1a1a1a !important;
-  --ink: #f0ede8 !important;
-  --muted: #a09890 !important;
-  --border: #2e2e2e !important;
+  --bg: #111318 !important;
+  --surface: #1c1f26 !important;
+  --ink: #eceae6 !important;
+  --muted: #9b9490 !important;
+  --border: #2c2f38 !important;
+  --shadow: 0 4px 24px rgba(0,0,0,0.35) !important;
+  color-scheme: dark;
   filter: none;
 }
-[data-theme="dark"] body { background: #0f0f0f !important; color: #f0ede8 !important; }
-[data-theme="dark"] nav { background: #111 !important; border-bottom: 1px solid #222; }
-[data-theme="dark"] .tool-card,
+
+/* Body & base */
+[data-theme="dark"] body {
+  background: #111318 !important;
+  color: #eceae6 !important;
+}
+
+/* Navigation */
+[data-theme="dark"] nav {
+  background: #0d0f14 !important;
+  border-bottom: 1px solid #252830 !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4) !important;
+}
+
+/* Hero gradient */
+[data-theme="dark"] .hero {
+  background: linear-gradient(160deg, #080a0d 0%, #160d06 50%, #080a0d 100%) !important;
+}
+
+/* Stats bar */
+[data-theme="dark"] .stats-bar {
+  background: rgba(255,255,255,0.03) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Search box */
+[data-theme="dark"] .search-wrap input {
+  background: #1c1f26 !important;
+  color: #eceae6 !important;
+  border: 1px solid #2c2f38 !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4) !important;
+}
+[data-theme="dark"] .search-wrap input::placeholder { color: #666 !important; }
+[data-theme="dark"] .search-wrap input:focus { box-shadow: 0 4px 30px rgba(212,71,10,0.35) !important; border-color: #d4470a !important; }
+
+/* Recommended pills */
+[data-theme="dark"] .rec-section {
+  background: #1c1f26 !important;
+  border-bottom: 1px solid #2c2f38 !important;
+}
+[data-theme="dark"] .rec-pill {
+  background: #252830 !important;
+  border-color: #353840 !important;
+  color: #c0b8b0 !important;
+}
+[data-theme="dark"] .rec-pill:hover {
+  border-color: #d4470a !important;
+  color: #d4470a !important;
+  background: #2a1a0e !important;
+}
+
+/* Category tabs */
+[data-theme="dark"] .cat-tab {
+  background: #1c1f26 !important;
+  border-color: #353840 !important;
+  color: #888 !important;
+}
+[data-theme="dark"] .cat-tab:hover { border-color: #d4470a !important; color: #d4470a !important; }
+[data-theme="dark"] .cat-tab.active {
+  background: #d4470a !important;
+  color: #fff !important;
+  border-color: #d4470a !important;
+}
+
+/* Section headers & badges */
+[data-theme="dark"] .section-label { color: #eceae6 !important; }
+[data-theme="dark"] .section-count {
+  background: #252830 !important;
+  border-color: #353840 !important;
+  color: #888 !important;
+}
+
+/* Tool cards */
+[data-theme="dark"] .tool-card {
+  background: #1c1f26 !important;
+  border-color: #2c2f38 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+}
+[data-theme="dark"] .tool-card:hover {
+  background: #252830 !important;
+  border-color: #d4470a !important;
+  box-shadow: 0 6px 24px rgba(212,71,10,0.18) !important;
+}
+[data-theme="dark"] .tool-name { color: #eceae6 !important; }
+[data-theme="dark"] .tool-desc { color: #9b9490 !important; }
+
+/* Other cards */
 [data-theme="dark"] .post-card,
 [data-theme="dark"] .card,
-[data-theme="dark"] .faq-item,
 [data-theme="dark"] .contact-card,
 [data-theme="dark"] .form-card,
-[data-theme="dark"] .tip-box,
-[data-theme="dark"] .faq-section,
-[data-theme="dark"] .rec-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
-[data-theme="dark"] .tool-card:hover { background: #222 !important; }
+[data-theme="dark"] .tip-box {
+  background: #1c1f26 !important;
+  border-color: #2c2f38 !important;
+}
+
+/* FAQ */
+[data-theme="dark"] .faq-section { background: #1c1f26 !important; }
+[data-theme="dark"] .faq-item { border-bottom-color: #2c2f38 !important; }
+
+/* Form inputs */
 [data-theme="dark"] input,
 [data-theme="dark"] textarea,
-[data-theme="dark"] select { background: #222 !important; color: #f0ede8 !important; border-color: #3e3e3e !important; }
-[data-theme="dark"] .drop-zone { border-color: #3e3e3e !important; background: #1a1a1a !important; }
-[data-theme="dark"] .drop-zone:hover { background: #2a1a0e !important; border-color: #d4470a !important; }
-[data-theme="dark"] .article-wrap { background: transparent; }
+[data-theme="dark"] select {
+  background: #252830 !important;
+  color: #eceae6 !important;
+  border-color: #353840 !important;
+}
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: #d4470a !important;
+  box-shadow: 0 0 0 3px rgba(212,71,10,0.15) !important;
+}
+
+/* Drop zone */
+[data-theme="dark"] .drop-zone {
+  border-color: #353840 !important;
+  background: #1c1f26 !important;
+}
+[data-theme="dark"] .drop-zone:hover {
+  background: #2a1a0e !important;
+  border-color: #d4470a !important;
+}
+
+/* Related tools */
+[data-theme="dark"] .related-tools-section {
+  background: #1c1f26 !important;
+  border-color: #2c2f38 !important;
+}
+[data-theme="dark"] .related-tool-link {
+  background: #252830 !important;
+  border-color: #353840 !important;
+  color: #c0b8b0 !important;
+}
+[data-theme="dark"] .related-tool-link:hover {
+  background: #d4470a !important;
+  color: #fff !important;
+  border-color: #d4470a !important;
+}
+
+/* Share buttons */
+[data-theme="dark"] .share-cp {
+  background: #252830 !important;
+  color: #eceae6 !important;
+  border-color: #353840 !important;
+}
+
+/* Article body */
+[data-theme="dark"] .article-wrap { background: transparent !important; }
 [data-theme="dark"] .article-body p,
 [data-theme="dark"] .article-body li { color: #c0b8b0 !important; }
 [data-theme="dark"] .article-body h2,
-[data-theme="dark"] .article-body h3 { color: #f0ede8 !important; }
-[data-theme="dark"] .related-tools-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
-[data-theme="dark"] footer { background: #080808 !important; }
-[data-theme="dark"] .cookie-banner { background: #111 !important; }
-[data-theme="dark"] .rec-pill { background: #1a1a1a !important; border-color: #3e3e3e !important; color: #c0b8b0 !important; }
-[data-theme="dark"] .rec-pill:hover { border-color: #d4470a !important; color: #d4470a !important; }
-[data-theme="dark"] .cat-tab { background: #1a1a1a !important; border-color: #3e3e3e !important; color: #888 !important; }
-[data-theme="dark"] .cat-tab.active { background: #d4470a !important; color: #fff !important; }
-[data-theme="dark"] .hero { background: linear-gradient(160deg,#0a0a0a 0%,#1a0d05 50%,#0a0a0a 100%) !important; }
+[data-theme="dark"] .article-body h3 { color: #eceae6 !important; }
+
+/* Cookie banner */
+[data-theme="dark"] #cookieBanner,
+[data-theme="dark"] .cookie-banner {
+  background: #0d0f14 !important;
+  border-top-color: #d4470a !important;
+}
+
+/* Footer */
+[data-theme="dark"] footer { background: #080a0d !important; }
+
+/* Scrollbar (webkit) */
+[data-theme="dark"] ::-webkit-scrollbar { width: 8px; background: #111318; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #353840; border-radius: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #4a4f5e; }
+
+/* Nav mobile dropdown - always dark */
+[data-theme="dark"] nav ul {
+  background: #0d0f14 !important;
+  border-top-color: rgba(255,255,255,0.08) !important;
+}
+[data-theme="dark"] nav ul a { color: rgba(255,255,255,0.75) !important; }
+[data-theme="dark"] nav ul a:hover { color: #fff !important; }
+
+/* ===== FIX: classes using background:var(--ink) as dark-section backgrounds ===== */
+/* In dark mode --ink becomes light (text color), so these sections need explicit dark bg */
+[data-theme="dark"] .features,
+[data-theme="dark"] .article-hero,
+[data-theme="dark"] .post-card-top,
+[data-theme="dark"] .stats-row,
+[data-theme="dark"] .cta-box,
+[data-theme="dark"] .tool-cta,
+[data-theme="dark"] .hash-header,
+[data-theme="dark"] .ip-header,
+[data-theme="dark"] .fun-facts,
+[data-theme="dark"] .live-counter,
+[data-theme="dark"] .editor-toolbar,
+[data-theme="dark"] .viewer-toolbar,
+[data-theme="dark"] .find-bar,
+[data-theme="dark"] .theme-panel,
+[data-theme="dark"] .time-badge,
+[data-theme="dark"] .calc-display,
+[data-theme="dark"] .expr-display,
+[data-theme="dark"] .pw-display,
+[data-theme="dark"] .bill-summary,
+[data-theme="dark"] .slide-num,
+[data-theme="dark"] .color-popup,
+[data-theme="dark"] .hash-card { background: #0d0f14 !important; }
+
+/* Buttons that use var(--ink) bg — keep them visible as dark buttons */
+[data-theme="dark"] .btn-dark,
+[data-theme="dark"] .btn-copy,
+[data-theme="dark"] .btn-copy-all,
+[data-theme="dark"] .btn-copy-code,
+[data-theme="dark"] .btn-copy-snippet,
+[data-theme="dark"] .btn-dl,
+[data-theme="dark"] .btn-dl-all,
+[data-theme="dark"] .btn-dl-md,
+[data-theme="dark"] .btn-dl-pdf,
+[data-theme="dark"] .btn-dl-zip,
+[data-theme="dark"] .btn-download,
+[data-theme="dark"] .btn-export,
+[data-theme="dark"] .btn-export-png,
+[data-theme="dark"] .btn-extract,
+[data-theme="dark"] .btn-multi,
+[data-theme="dark"] .btn-swap,
+[data-theme="dark"] .btn-save-key,
+[data-theme="dark"] .btn-render,
+[data-theme="dark"] .btn-preview,
+[data-theme="dark"] .btn-preview-action,
+[data-theme="dark"] .btn-play-region,
+[data-theme="dark"] .btn-secondary-action,
+[data-theme="dark"] .copy-corrected,
+[data-theme="dark"] .lookup-all-btn,
+[data-theme="dark"] .page-btn-all,
+[data-theme="dark"] .msg-avatar { background: #252830 !important; color: #eceae6 !important; }
+
+/* related-tool-link special case */
+[data-theme="dark"] .related-tool-link { background: #252830 !important; color: #c0b8b0 !important; border-color: #353840 !important; }
+[data-theme="dark"] .related-tool-link:hover { background: #d4470a !important; color: #fff !important; }
+
+/* msg-bubble */
+[data-theme="dark"] .msg-bubble { background: #1c1f26 !important; color: #eceae6 !important; }
+
+/* tip-result, toast */
+[data-theme="dark"] .tip-result,
+[data-theme="dark"] .toast { background: #0d0f14 !important; color: #eceae6 !important; }
+
+/* cd-unit (unit labels) */
+[data-theme="dark"] .cd-unit { background: #252830 !important; color: #c0b8b0 !important; }
+
+/* active/on states */
+[data-theme="dark"] .active,
+[data-theme="dark"] .on { background: #d4470a !important; }
+
+/* bmi-pointer */
+[data-theme="dark"] .bmi-pointer { background: #1a1714 !important; }
+
+/* end tag */
+[data-theme="dark"] .end { background: #252830 !important; color: #888 !important; }
+
+
 
 /* System dark mode fallback (CSS only, no JS) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f0f0f;
-    --surface: #1a1a1a;
-    --ink: #f0ede8;
-    --muted: #a09890;
-    --border: #2e2e2e;
+    --bg: #111318;
+    --surface: #1c1f26;
+    --ink: #eceae6;
+    --muted: #9b9490;
+    --border: #2c2f38;
+    color-scheme: dark;
   }
 }
 
@@ -82,22 +318,62 @@ ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='do
   flex: 1;
 }
 .dm-toggle {
-  background: none;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.75);
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* pill-shaped toggle switch */
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  width: 56px;
+  height: 28px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
   flex-shrink: 0;
   margin-left: 4px;
+  transition: background 0.3s, border-color 0.3s !important;
+  overflow: hidden;
 }
-.dm-toggle:hover { border-color: #f0a500; color: #f0a500; background: rgba(240,165,0,0.1); }
+.dm-toggle::before {
+  /* icons inside: moon on left, sun on right */
+  content: '🌙  ☀️';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  line-height: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  pointer-events: none;
+  letter-spacing: -1px;
+  opacity: 0.8;
+}
+.dm-toggle::after {
+  /* sliding knob */
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s !important;
+}
+.dm-toggle:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.18); }
+
+/* Dark mode: slide knob to right, tint orange */
+[data-theme="dark"] .dm-toggle {
+  background: rgba(212,71,10,0.3) !important;
+  border-color: rgba(212,71,10,0.6) !important;
+}
+[data-theme="dark"] .dm-toggle::after {
+  transform: translateX(28px);
+  background: #f0a500;
+}
+[data-theme="dark"] .dm-toggle:hover { background: rgba(212,71,10,0.45) !important; }
 
 /* Language pill - BOTTOM LEFT FLOATING */
 
