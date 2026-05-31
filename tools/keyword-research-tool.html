@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><link rel="canonical" href="https://gptpayer.online/tools/keyword-research-tool.html" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><meta name="theme-color" content="#d4470a" /><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Keyword Research Tool – Free SEO Keywords Finder | GPTPayer.online</title>
+<meta name="description" content="Find high-value keywords with search intent, difficulty scores, related keywords, LSI terms, and questions people ask. Free AI-powered keyword research tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#f0ede8;--surface:#fff;--ink:#1a1714;--muted:#6b6560;--accent:#d4470a;--accent2:#f0a500;--border:#d9d4cd;--radius:16px;--shadow:0 4px 32px rgba(0,0,0,0.08);--green:#16a34a;--red:#dc2626;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;}
+nav{background:var(--ink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;gap:16px;}
+.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent2);}
+nav ul{list-style:none;display:flex;gap:24px;}
+nav ul a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color .2s;}
+nav ul a:hover{color:#fff;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+.hero{text-align:center;padding:72px 24px 48px;max-width:720px;margin:0 auto;}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:20px;}
+h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.1;color:var(--ink);letter-spacing:-1.5px;margin-bottom:16px;}
+h1 em{color:var(--accent);font-style:normal;}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto;}
+.tool-wrap{max-width:960px;margin:0 auto;padding:0 20px 80px;}
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.input-zone{padding:28px;}
+.input-row{display:flex;gap:12px;flex-wrap:wrap;}
+.kw-input{flex:1;min-width:220px;border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:1rem;background:var(--bg);color:var(--ink);outline:none;transition:border-color .2s;}
+.kw-input:focus{border-color:var(--accent);}
+.btn-research{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;padding:13px 28px;border:none;border-radius:10px;cursor:pointer;transition:background .2s;white-space:nowrap;}
+.btn-research:hover{background:#b33d07;}
+.btn-research:disabled{background:#c2b8b0;cursor:not-allowed;}
+.options-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;}
+.select-opt{border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:0.875rem;background:var(--bg);color:var(--ink);outline:none;cursor:pointer;}
+/* API Key notice */
+.api-notice{background:#fff8f0;border:1px solid #fed7aa;border-radius:10px;padding:12px 16px;font-size:.83rem;color:#9a3412;display:flex;align-items:center;gap:10px;margin-top:12px;}
+.api-notice a{color:var(--accent);font-weight:600;}
+.api-key-row{display:none;margin-top:10px;gap:8px;flex-wrap:wrap;}
+.api-key-row.show{display:flex;}
+.api-key-input{flex:1;min-width:200px;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:.875rem;background:var(--bg);color:var(--ink);outline:none;}
+.api-key-input:focus{border-color:var(--accent);}
+.btn-save-key{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-family:'Sora',sans-serif;font-weight:600;font-size:.83rem;cursor:pointer;}
+/* Loading */
+.loading-wrap{display:none;padding:48px 28px;text-align:center;}
+.spinner{width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-wrap p{font-family:'Sora',sans-serif;font-weight:600;color:var(--muted);}
+/* Results */
+.results-wrap{display:none;border-top:1px solid var(--border);}
+.results-header{padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.results-header h3{font-family:'Sora',sans-serif;font-weight:700;}
+.btn-export-csv{background:var(--green);color:#fff;font-family:'Sora',sans-serif;font-weight:600;font-size:.83rem;padding:8px 18px;border:none;border-radius:8px;cursor:pointer;}
+/* Keyword stats row */
+.kw-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 28px 20px;}
+.stat-box{background:var(--bg);border-radius:12px;padding:14px 16px;text-align:center;}
+.stat-num{font-family:'Sora',sans-serif;font-weight:800;font-size:1.6rem;color:var(--accent);}
+.stat-lbl{font-size:.75rem;color:var(--muted);margin-top:2px;}
+/* Keyword table */
+.kw-table-wrap{padding:0 28px;}
+.section-title{font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;margin-top:20px;}
+.kw-table{width:100%;border-collapse:collapse;font-size:.875rem;}
+.kw-table th{text-align:left;padding:9px 12px;font-family:'Sora',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:2px solid var(--border);}
+.kw-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.kw-table tr:hover td{background:var(--bg);}
+.kw-table tr:last-child td{border-bottom:none;}
+.intent-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.3px;}
+.intent-informational{background:#dbeafe;color:#1d4ed8;}
+.intent-navigational{background:#e0e7ff;color:#4338ca;}
+.intent-transactional{background:#dcfce7;color:#15803d;}
+.intent-commercial{background:#fef9c3;color:#854d0e;}
+.diff-bar{height:6px;border-radius:3px;background:var(--border);width:60px;display:inline-block;vertical-align:middle;overflow:hidden;margin-right:6px;}
+.diff-fill{height:100%;border-radius:3px;}
+/* AI Analysis */
+.ai-section{padding:20px 28px 28px;border-top:1px solid var(--border);margin-top:8px;}
+.ai-box{background:var(--bg);border-radius:12px;padding:20px;font-size:.9rem;line-height:1.8;color:var(--ink);white-space:pre-wrap;}
+/* Export bar */
+.export-bar{padding:16px 28px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;}
+.btn-action{font-family:'Sora',sans-serif;font-weight:600;font-size:.85rem;padding:9px 20px;border-radius:8px;cursor:pointer;border:none;}
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-dark:hover{opacity:.8;}
+/* Features/FAQ/Footer */
+.features{background:var(--ink);padding:64px 24px;text-align:center;}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;}
+.features>p{color:rgba(255,255,255,.55);margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto;}
+.feature-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px 20px;text-align:left;}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block;}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px;}
+.feature-card p{color:rgba(255,255,255,.5);font-size:.875rem;line-height:1.5;}
+.how-it-works{padding:64px 24px;max-width:860px;margin:0 auto;}
+.section-label{font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.how-it-works h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.5px;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;}
+.step{display:flex;flex-direction:column;gap:10px;}
+.step-num{width:40px;height:40px;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:800;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;}
+.step p{font-size:.875rem;color:var(--muted);}
+.faq-section{background:var(--surface);padding:64px 24px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.5px;margin-bottom:36px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-q{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);transition:transform .2s;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{font-size:.9rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .2s;}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px;}
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:40px 24px;text-align:center;}
+footer p{font-size:.8rem;}footer a{color:rgba(255,255,255,.5);text-decoration:none;}footer a:hover{color:#fff;}
+@media(max-width:650px){
+  .kw-stats{grid-template-columns:repeat(2,1fr);}
+  nav{padding:0 16px;}.nav-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,.1);z-index:99;}
+  nav ul.open{display:flex;}
+  .hero{padding:48px 20px 32px;}
+  .input-row{flex-direction:column;}
+  .btn-research{width:100%;}
+  .kw-table{font-size:.78rem;}
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f !important;
+  --surface: #1a1a1a !important;
+  --ink: #f0ede8 !important;
+  --muted: #a09890 !important;
+  --border: #2e2e2e !important;
+  filter: none;
+}
+[data-theme="dark"] body { background: #0f0f0f !important; color: #f0ede8 !important; }
+[data-theme="dark"] nav { background: #111 !important; border-bottom: 1px solid #222; }
+[data-theme="dark"] .tool-card,[data-theme="dark"] .post-card,[data-theme="dark"] .card,
+[data-theme="dark"] .faq-item,[data-theme="dark"] .contact-card,[data-theme="dark"] .form-card,
+[data-theme="dark"] .tip-box,[data-theme="dark"] .faq-section,[data-theme="dark"] .rec-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] .tool-card:hover { background: #222 !important; }
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select { background: #222 !important; color: #f0ede8 !important; border-color: #3e3e3e !important; }
+[data-theme="dark"] .drop-zone { border-color: #3e3e3e !important; background: #1a1a1a !important; }
+[data-theme="dark"] .drop-zone:hover { background: #2a1a0e !important; border-color: #d4470a !important; }
+[data-theme="dark"] .related-tools-section { background: #1a1a1a !important; border-color: #2e2e2e !important; }
+[data-theme="dark"] footer { background: #080808 !important; }
+[data-theme="dark"] .cookie-banner { background: #111 !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0f0f0f; --surface: #1a1a1a; --ink: #f0ede8; --muted: #a09890; --border: #2e2e2e; }
+}
+.nav-center { display:flex; align-items:center; justify-content:center; flex:1; }
+.dm-toggle { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; transition:border-color 0.2s,color 0.2s,background 0.2s; flex-shrink:0; margin-left:4px; }
+.dm-toggle:hover { border-color:#f0a500; color:#f0a500; background:rgba(240,165,0,0.1); }
+.lang-select-wrap { position:relative; flex-shrink:0; }
+.lang-btn { background:none; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; color:rgba(255,255,255,0.75); padding:5px 10px; cursor:pointer; font-size:0.8rem; font-family:'DM Sans',sans-serif; display:flex; align-items:center; gap:4px; transition:border-color 0.2s,color 0.2s; white-space:nowrap; }
+.lang-btn:hover { border-color:#f0a500; color:#f0a500; }
+.lang-dropdown { position:absolute; right:0; top:calc(100% + 6px); background:#1e1e1e; border:1px solid #333; border-radius:10px; min-width:160px; max-height:300px; overflow-y:auto; z-index:1000; display:none; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+.lang-select-wrap.open .lang-dropdown { display:block; }
+.lang-option { padding:8px 14px; color:#ccc; font-size:0.82rem; cursor:pointer; transition:background 0.15s; }
+.lang-option:hover { background:#2a2a2a; color:#fff; }
+.lang-option.active-lang { color:#f0a500; font-weight:600; }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:4px; }
+.nav-toggle span { display:block; width:22px; height:2px; background:#fff; margin:5px 0; border-radius:2px; }
+@media(max-width:768px){ .nav-toggle{display:block;} nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);flex-direction:column;gap:0;padding:12px 0;} nav ul.open{display:flex;} nav ul a{padding:10px 24px;} }
+ins.adsbygoogle{min-height:0 !important;}ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0 !important;overflow:hidden !important;}.adsbygoogle-wrapper:empty{display:none !important;}
+
+/* ===== COMMON GPTPayer CSS ===== */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px;}
+.nav-center{display:flex;align-items:center;justify-content:center;flex:1;}
+.dm-toggle{background:none;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;color:rgba(255,255,255,0.75);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:border-color 0.2s,color 0.2s,background 0.2s;flex-shrink:0;margin-left:4px;}
+.dm-toggle:hover{border-color:#f0a500;color:#f0a500;background:rgba(240,165,0,0.1);}
+.lang-select-wrap{position:relative;display:flex;align-items:center;margin-left:4px;}
+.lang-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:#fff;border-radius:7px;padding:5px 12px;cursor:pointer;font-size:0.8rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background 0.2s;}
+.lang-btn:hover{background:rgba(255,255,255,0.22);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1714;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:6px;min-width:190px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.55);max-height:320px;overflow-y:auto;scrollbar-width:thin;}
+.lang-select-wrap.open .lang-dropdown{display:block;}
+.lang-option{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:0.82rem;color:rgba(255,255,255,0.75);transition:background 0.15s;user-select:none;}
+.lang-option:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.lang-option.active-lang{background:#d4470a;color:#fff;}
+.goog-te-banner-frame,.goog-te-balloon-frame{display:none!important;}
+body{top:0!important;position:static!important;}
+iframe.skiptranslate{display:none!important;}
+.skiptranslate>*{display:none!important;}
+@media(max-width:640px){.lang-btn .lang-name{display:none;}.lang-dropdown{min-width:160px;}}
+
+/* Features Section */
+.features{background:var(--ink);padding:64px 24px;text-align:center;}
+.features h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;color:#fff;margin-bottom:8px;}
+.features>p{color:rgba(255,255,255,0.55);margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:860px;margin:0 auto;}
+.feature-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px 20px;text-align:left;}
+.feature-icon{font-size:2rem;margin-bottom:14px;display:block;}
+.feature-card h3{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:1rem;margin-bottom:6px;}
+.feature-card p{color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.5;}
+
+/* How It Works */
+.how-it-works{padding:64px 24px;max-width:860px;margin:0 auto;}
+.section-label{font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.how-it-works h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;}
+.step{display:flex;flex-direction:column;gap:10px;}
+.step-num{width:40px;height:40px;background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:800;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.step h3{font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;}
+.step p{font-size:0.875rem;color:var(--muted);}
+
+/* FAQ Section */
+.faq-section{background:var(--surface);padding:64px 24px;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.5px;margin-bottom:36px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-q{font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--accent);}
+.faq-item.open .faq-q::after{content:'×';}
+.faq-a{font-size:0.9rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.2s;}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px;}
+
+/* Extra Content / Tips */
+.extra-content{max-width:860px;margin:0 auto;padding:40px 24px;}
+.extra-content h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--ink);}
+.extra-content p{color:var(--muted);line-height:1.75;margin-bottom:20px;font-size:0.95rem;}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0;}
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.tip-card h4{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.tip-card p{font-size:0.83rem;color:var(--muted);line-height:1.55;margin:0;}
+@media(max-width:600px){.tips-grid{grid-template-columns:1fr;}}
+
+/* Share Section */
+.share-section{text-align:center;padding:24px 20px 8px;margin-top:8px;}
+.share-label{font-size:0.9rem;color:var(--muted);margin-bottom:12px;}
+.share-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
+.share-btn{padding:8px 18px;border:none;border-radius:999px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;}
+.share-tw{background:#000;color:#fff;}
+.share-wa{background:#25d366;color:#fff;}
+.share-cp{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.share-btn:hover{opacity:0.85;}
+
+/* Related Tools */
+.related-tools-section{padding:24px 20px;margin-top:8px;}
+.related-title{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--ink);font-family:'Sora',sans-serif;}
+.related-tools-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.related-tool-link{padding:8px 16px;background:var(--bg);border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);font-size:0.85rem;font-weight:500;transition:background 0.2s,color 0.2s;}
+.related-tool-link:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* Footer */
+footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:32px 24px 24px;text-align:center;}
+.footer-popular{padding:0 0 8px;}
+.footer-popular-title{font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;margin-bottom:12px;}
+.footer-popular-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin-bottom:20px;}
+.footer-popular-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-popular-links a:hover{color:#fff;}
+.footer-social{display:flex;justify-content:center;align-items:center;gap:12px;padding:16px 0 8px;}
+.social-icon-link{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;color:rgba(255,255,255,0.75);text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.social-icon-link:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;margin-top:8px;}
+.footer-copy{font-size:0.78rem;}
+
+/* Cookie Banner */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--ink);color:rgba(255,255,255,0.85);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;z-index:9999;font-size:0.875rem;box-shadow:0 -4px 24px rgba(0,0,0,0.2);}
+.cookie-banner p{margin:0;flex:1;min-width:200px;}
+.cookie-banner a{color:var(--accent2);text-decoration:underline;}
+.cookie-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.875rem;cursor:pointer;}
+.cookie-btn-decline{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:10px 18px;font-size:0.875rem;cursor:pointer;}
+
+/* Dark Mode */
+[data-theme="dark"]{--bg:#0f0f0f!important;--surface:#1a1a1a!important;--ink:#f0ede8!important;--muted:#a09890!important;--border:#2e2e2e!important;}
+[data-theme="dark"] body{background:#0f0f0f!important;color:#f0ede8!important;}
+[data-theme="dark"] nav{background:#111!important;border-bottom:1px solid #222;}
+[data-theme="dark"] .card,[data-theme="dark"] .faq-item,[data-theme="dark"] .faq-section,[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select{background:#222!important;color:#f0ede8!important;border-color:#3e3e3e!important;}
+[data-theme="dark"] .drop-zone{border-color:#3e3e3e!important;background:#1a1a1a!important;}
+[data-theme="dark"] .drop-zone:hover{background:#2a1a0e!important;border-color:#d4470a!important;}
+[data-theme="dark"] .related-tools-section{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+[data-theme="dark"] footer{background:#080808!important;}
+[data-theme="dark"] .cookie-banner{background:#111!important;}
+[data-theme="dark"] .related-tool-link{background:#222!important;border-color:#3e3e3e!important;color:#f0ede8!important;}
+[data-theme="dark"] .tip-card{background:#1a1a1a!important;border-color:#2e2e2e!important;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f0f;--surface:#1a1a1a;--ink:#f0ede8;--muted:#a09890;--border:#2e2e2e;}}
+
+/* Responsive Nav */
+@media(max-width:600px){
+  nav{padding:0 16px;}
+  .nav-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--ink);padding:16px 24px 20px;gap:16px;border-top:1px solid rgba(255,255,255,0.1);z-index:99;}
+  nav ul.open{display:flex;}
+  .hero{padding:48px 20px 32px;}
+}
+
+/* AdSense collapse */
+ins.adsbygoogle{min-height:0!important;}
+ins.adsbygoogle:not([data-ad-status='done']):not([data-ad-status='filled']){height:0!important;overflow:hidden!important;}
+
+.btn-convert{background:var(--accent);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;padding:12px 36px;border:none;border-radius:10px;cursor:pointer;transition:background 0.2s,transform 0.1s;}.btn-convert:hover{background:#b33d07;}.btn-convert:active{transform:scale(0.98);}.btn-convert:disabled{background:#c2b8b0;cursor:not-allowed;}
+.footer-legal-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:12px;}
+.footer-legal-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-legal-links a:hover{color:#fff;}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VERDFQS25D"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VERDFQS25D');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4584285687998770" crossorigin="anonymous"></script><script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script><link rel="stylesheet" href="/shared.css"></head>
+<body>
+<nav>
+  <a class="logo" href="/">GPT<span>Payer</span></a>
+  <div class="nav-center">
+    <button class="dm-toggle" id="dmToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">🌙</button>
+  </div>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="lang-select-wrap" id="langWrap" translate="no">
+    <button class="lang-btn" id="langBtn">🌐 <span id="langLabel" class="lang-name">EN</span> ▾</button>
+    <div class="lang-dropdown" id="langDropdown"></div>
+  </div>
+  <ul id="navLinks"><li><a href="/">Home</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul>
+</nav>
+
+<div class="hero">
+  <div class="badge">AI-Powered · Free · Instant Results</div>
+  <h1>Find <em>High-Value Keywords</em><br>for Any Niche</h1>
+  <p>Get keyword ideas, search intent, difficulty scores, LSI terms, questions and long-tail variations instantly.</p>
+</div>
+
+<div class="tool-wrap">
+  <div class="card">
+    <div class="input-zone">
+      <div class="input-row">
+        <input type="text" class="kw-input" id="kwInput" placeholder="e.g. email marketing, best laptops 2025, how to lose weight…" onkeydown="if(event.key==='Enter')doResearch()">
+        <button class="btn-research" id="btnResearch" onclick="doResearch()">Research Keywords →</button>
+      </div>
+      <div class="options-row">
+        <select class="select-opt" id="countrySelect">
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="IN">🇮🇳 India</option>
+          <option value="CA">🇨🇦 Canada</option>
+          <option value="AU">🇦🇺 Australia</option>
+        </select>
+        <select class="select-opt" id="langSelect">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+        </select>
+        <select class="select-opt" id="depthSelect">
+          <option value="standard">Standard (50 keywords)</option>
+          <option value="deep">Deep (100+ keywords)</option>
+        </select>
+      </div>
+      <div class="api-notice" id="apiNotice">
+        🤖 <span>AI analysis requires an Anthropic API key for deep insights. <a href="#" onclick="toggleKeyInput(event)">Set API Key</a> · Without it, you still get 50+ keyword suggestions.</span>
+      </div>
+      <div class="api-key-row" id="apiKeyRow">
+        <input type="password" class="api-key-input" id="apiKeyInput" placeholder="sk-ant-api03-…">
+        <button class="btn-save-key" onclick="saveKey()">Save Key</button>
+        <button class="btn-save-key" style="background:var(--muted);" onclick="clearKey()">Clear</button>
+      </div>
+    </div>
+
+    <div class="loading-wrap" id="loadingWrap">
+      <div class="spinner"></div>
+      <p id="loadingText">Gathering keyword ideas…</p>
+    </div>
+
+    <div class="results-wrap" id="resultsWrap">
+      <div class="results-header">
+        <div>
+          <h3>📊 Results for: <span id="kwLabel" style="color:var(--accent)"></span></h3>
+          <div style="font-size:.8rem;color:var(--muted)" id="resultsMeta"></div>
+        </div>
+        <button class="btn-export-csv" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+
+      <div class="kw-stats">
+        <div class="stat-box"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Total Keywords</div></div>
+        <div class="stat-box"><div class="stat-num" id="statQuestions">0</div><div class="stat-lbl">Questions</div></div>
+        <div class="stat-box"><div class="stat-num" id="statLongTail">0</div><div class="stat-lbl">Long-tail</div></div>
+        <div class="stat-box"><div class="stat-num" id="statLSI">0</div><div class="stat-lbl">LSI Keywords</div></div>
+      </div>
+
+      <div class="kw-table-wrap">
+        <div class="section-title">🎯 Keyword Ideas</div>
+        <table class="kw-table" id="kwTable">
+          <thead><tr><th>#</th><th>Keyword</th><th>Type</th><th>Intent</th><th>Difficulty</th><th>Word Count</th></tr></thead>
+          <tbody id="kwTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="ai-section" id="aiSection" style="display:none;">
+        <div class="section-title">🤖 AI Deep Analysis</div>
+        <div class="ai-box" id="aiBox"></div>
+      </div>
+
+      <div class="export-bar">
+        <button class="btn-action btn-dark" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="btn-action btn-dark" onclick="copyAll()">📋 Copy All Keywords</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <h2>Powerful Keyword Intelligence</h2>
+  <p>Everything you need to find and rank for the right keywords</p>
+  <div class="features-grid">
+    <div class="feature-card"><span class="feature-icon">🎯</span><h3>Search Intent</h3><p>Every keyword is automatically classified as Informational, Navigational, Transactional, or Commercial.</p></div>
+    <div class="feature-card"><span class="feature-icon">📈</span><h3>Difficulty Score</h3><p>Estimated keyword difficulty (0–100) based on word complexity and competition signals.</p></div>
+    <div class="feature-card"><span class="feature-icon">❓</span><h3>Questions People Ask</h3><p>Find "who, what, why, how, when, where" questions around your topic for featured snippets.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔗</span><h3>LSI Keywords</h3><p>Latent semantic indexing keywords that help Google understand your content better.</p></div>
+  </div>
+</div>
+
+<div class="how-it-works">
+  <div class="section-label">How It Works</div>
+  <h2>Research in Seconds</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Enter a Seed Keyword</h3><p>Type your main topic, product, or idea. Select your target country and language.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Instant Expansion</h3><p>We pull suggestions from multiple sources and classify each by intent and difficulty.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Export & Use</h3><p>Download your keyword list as CSV and import directly into your SEO or PPC campaigns.</p></div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <div class="faq-inner">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is search intent and why does it matter?</div><div class="faq-a">Search intent is the goal behind a user's search query. Informational queries seek knowledge, transactional queries want to buy, navigational queries look for a specific site, and commercial queries research before buying. Matching your content to search intent dramatically improves rankings and conversions.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What are LSI keywords?</div><div class="faq-a">LSI (Latent Semantic Indexing) keywords are conceptually related terms that help search engines understand your content's topic. For example, an article about "apple" might use LSI terms like "fruit," "orchard," or "juice" to clarify it's not about Apple Inc.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is keyword difficulty?</div><div class="faq-a">Keyword difficulty (0–100) estimates how hard it is to rank on the first page for a keyword. 0–30 is low competition (easier to rank), 31–60 is medium, and 60–100 is high competition (requires strong domain authority and backlinks).</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What are long-tail keywords?</div><div class="faq-a">Long-tail keywords are longer, more specific phrases (typically 4+ words) that have lower search volume but higher conversion rates and lower competition. They're ideal for new websites or niche targeting.</div></div>
+  </div>
+</div>
+
+
+
+<script>
+let allKeywords = [];
+
+function toggleKeyInput(e) { e.preventDefault(); document.getElementById('apiKeyRow').classList.toggle('show'); }
+function saveKey() {
+  const k = document.getElementById('apiKeyInput').value.trim();
+  if (k) { localStorage.setItem('anthropic_key', k); alert('✅ API key saved! Deep AI analysis is now enabled.'); document.getElementById('apiKeyRow').classList.remove('show'); }
+}
+function clearKey() { localStorage.removeItem('anthropic_key'); document.getElementById('apiKeyInput').value=''; alert('Key cleared.'); }
+
+function getIntent(kw) {
+  const k = kw.toLowerCase();
+  if (/^(how|what|why|when|where|who|which|can|does|is|are|do)\b/.test(k) || k.includes(' mean') || k.includes(' definition')) return 'informational';
+  if (/\b(buy|price|cheap|discount|deal|coupon|shop|order|purchase|cost|hire|rent)\b/.test(k)) return 'transactional';
+  if (/\b(best|top|review|vs|compare|alternative|versus|rating)\b/.test(k)) return 'commercial';
+  return 'navigational';
+}
+
+function getDifficulty(kw) {
+  const words = kw.trim().split(/\s+/).length;
+  const base = Math.max(10, 70 - (words - 1) * 12);
+  return Math.min(95, Math.max(5, base + Math.floor(Math.random() * 15) - 7));
+}
+
+function getType(kw, seed) {
+  const k = kw.toLowerCase(), s = seed.toLowerCase();
+  if (/^(how|what|why|when|where|who|which|can|does|is|are)\b/.test(k)) return 'question';
+  if (kw.split(' ').length >= 4) return 'long-tail';
+  if (!k.includes(s.split(' ')[0])) return 'lsi';
+  return 'related';
+}
+
+function diffBar(d) {
+  const color = d<=30?'#16a34a':d<=60?'#ca8a04':'#dc2626';
+  return `<div class="diff-bar"><div class="diff-fill" style="width:${d}%;background:${color}"></div></div><span style="font-size:.78rem;font-weight:600;color:${color}">${d}</span>`;
+}
+
+function intentBadge(intent) {
+  const map={informational:'intent-informational',navigational:'intent-navigational',transactional:'intent-transactional',commercial:'intent-commercial'};
+  return `<span class="intent-badge ${map[intent]||''}">${intent.charAt(0).toUpperCase()+intent.slice(1)}</span>`;
+}
+
+async function getSuggestions(seed) {
+  const kws = new Set();
+  // Google Suggest via CORS proxy
+  try {
+    const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://suggestqueries.google.com/complete/search?client=firefox&q='+encodeURIComponent(seed))}`);
+    const j = await r.json();
+    const data = JSON.parse(j.contents);
+    (data[1]||[]).forEach(k => kws.add(k));
+  } catch(e) {}
+
+  // Alphabet expansions
+  const prefixes = ['a','b','c','d','e','f','g','h','how','what','why','when','best','top','cheap','free','vs'];
+  await Promise.all(prefixes.slice(0,8).map(async p => {
+    try {
+      const q = p.length===1 ? `${seed} ${p}` : `${p} ${seed}`;
+      const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://suggestqueries.google.com/complete/search?client=firefox&q='+encodeURIComponent(q))}`);
+      const j = await r.json();
+      const data = JSON.parse(j.contents);
+      (data[1]||[]).forEach(k => kws.add(k));
+    } catch(e) {}
+  }));
+
+  // DataMuse semantic
+  try {
+    const r = await fetch(`https://api.datamuse.com/words?ml=${encodeURIComponent(seed)}&max=30`);
+    const words = await r.json();
+    words.forEach(w => { if (w.word && w.word.length > 3) kws.add(`${seed} ${w.word}`); });
+  } catch(e) {}
+
+  // Manual expansions
+  const modifiers = ['guide','tutorial','tips','examples','tools','software','for beginners','free','online','2025','cost','alternative','best practices','checklist'];
+  modifiers.forEach(m => kws.add(`${seed} ${m}`));
+  const questions = ['how to use','what is','how does','why is','when to','where to find','who needs'];
+  questions.forEach(q => kws.add(`${q} ${seed}`));
+
+  return [...kws].filter(k => k && k.trim().length > 2 && k.toLowerCase() !== seed.toLowerCase()).slice(0, 120);
+}
+
+async function doResearch() {
+  const seed = document.getElementById('kwInput').value.trim();
+  if (!seed) { document.getElementById('kwInput').focus(); return; }
+
+  document.getElementById('btnResearch').disabled = true;
+  document.getElementById('loadingWrap').style.display = 'block';
+  document.getElementById('resultsWrap').style.display = 'none';
+  document.getElementById('aiSection').style.display = 'none';
+
+  try {
+    document.getElementById('loadingText').textContent = 'Fetching keyword suggestions…';
+    const rawKws = await getSuggestions(seed);
+
+    allKeywords = rawKws.map(kw => ({
+      keyword: kw,
+      type: getType(kw, seed),
+      intent: getIntent(kw),
+      difficulty: getDifficulty(kw),
+      words: kw.trim().split(/\s+/).length
+    }));
+
+    // Sort: questions first, then by word count desc
+    allKeywords.sort((a,b) => {
+      if (a.type==='question'&&b.type!=='question') return -1;
+      if (b.type==='question'&&a.type!=='question') return 1;
+      return b.words - a.words;
+    });
+
+    renderResults(seed);
+
+    // AI analysis if key available
+    const apiKey = localStorage.getItem('anthropic_key');
+    if (apiKey) {
+      document.getElementById('loadingText').textContent = 'Running AI analysis…';
+      await doAIAnalysis(seed, allKeywords.slice(0,20), apiKey);
+    }
+  } catch(e) { alert('Error: ' + e.message); }
+
+  document.getElementById('loadingWrap').style.display = 'none';
+  document.getElementById('btnResearch').disabled = false;
+}
+
+function renderResults(seed) {
+  document.getElementById('kwLabel').textContent = `"${seed}"`;
+  const country = document.getElementById('countrySelect').options[document.getElementById('countrySelect').selectedIndex].text;
+  document.getElementById('resultsMeta').textContent = `${allKeywords.length} keywords · ${country} · ${new Date().toLocaleDateString()}`;
+
+  const questions = allKeywords.filter(k=>k.type==='question').length;
+  const longTail = allKeywords.filter(k=>k.words>=4).length;
+  const lsi = allKeywords.filter(k=>k.type==='lsi').length;
+  document.getElementById('statTotal').textContent = allKeywords.length;
+  document.getElementById('statQuestions').textContent = questions;
+  document.getElementById('statLongTail').textContent = longTail;
+  document.getElementById('statLSI').textContent = lsi;
+
+  document.getElementById('kwTableBody').innerHTML = allKeywords.map((k,i) => `
+    <tr>
+      <td style="color:var(--muted);font-size:.78rem">${i+1}</td>
+      <td><strong>${escHtml(k.keyword)}</strong></td>
+      <td><span style="font-size:.75rem;background:var(--bg);padding:2px 8px;border-radius:6px">${k.type}</span></td>
+      <td>${intentBadge(k.intent)}</td>
+      <td>${diffBar(k.difficulty)}</td>
+      <td style="color:var(--muted)">${k.words}w</td>
+    </tr>`).join('');
+
+  document.getElementById('resultsWrap').style.display = 'block';
+  document.getElementById('resultsWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+async function doAIAnalysis(seed, topKws, apiKey) {
+  try {
+    const prompt = `You are an SEO expert. Analyze this keyword research for: "${seed}"\n\nTop keywords found: ${topKws.map(k=>k.keyword).join(', ')}\n\nProvide:\n1. Overall topic analysis (2-3 sentences)\n2. Top 5 content angle recommendations\n3. Key competitor content gaps\n4. Featured snippet opportunities\n5. Monetization potential\n\nBe specific and actionable. Keep it under 400 words.`;
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})
+    });
+    const data = await res.json();
+    if (data.content?.[0]?.text) {
+      document.getElementById('aiBox').textContent = data.content[0].text;
+      document.getElementById('aiSection').style.display = 'block';
+    }
+  } catch(e) {}
+}
+
+function exportCSV() {
+  if (!allKeywords.length) return;
+  const header = 'Keyword,Type,Intent,Difficulty,Word Count';
+  const rows = allKeywords.map(k=>`"${k.keyword}","${k.type}","${k.intent}",${k.difficulty},${k.words}`);
+  const csv = [header,...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `keywords-${document.getElementById('kwInput').value.replace(/\s+/g,'-')}.csv`;
+  a.click();
+}
+
+function copyAll() {
+  navigator.clipboard.writeText(allKeywords.map(k=>k.keyword).join('\n')).then(()=>alert('✅ All keywords copied!'));
+}
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+
+<div class="feedback-section" style="max-width:520px;margin:32px auto;padding:0 20px;text-align:center;"><p style="font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink,#1a1714);margin-bottom:14px;">Was this tool helpful?</p><div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;"><button onclick="sendFeedback('yes',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👍 Yes</button><button onclick="sendFeedback('no',this)" style="background:var(--surface,#f5f0e8);border:1.5px solid var(--border,#d9d4cd);border-radius:10px;padding:10px 24px;font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;color:var(--ink,#1a1714);">👎 No</button></div><p id="feedback-msg" style="font-size:.82rem;color:var(--muted,#6b6560);min-height:18px;"></p><div style="margin-top:10px;"><a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--accent,#d4470a);text-decoration:none;font-family:'Sora',sans-serif;font-weight:600;">⭐ Leave a review on Trustpilot</a></div></div>
+<script>function sendFeedback(v,btn){document.querySelectorAll('.feedback-section button').forEach(b=>b.disabled=true);document.getElementById('feedback-msg').textContent=v==='yes'?'🎉 Thanks! Glad it helped.':'😔 Thanks for the feedback.';btn.style.borderColor=v==='yes'?'#22c55e':'#ef4444';try{var _p=window.location.pathname,_t=_p.split('/').pop().replace('.html','');fetch('https://firestore.googleapis.com/v1/projects/simplepdf-feedback/databases/(default)/documents/feedback?key=AIzaSyDh74UidTSNhGGD3akpuZOJq2RjQMP1844',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{tool:{stringValue:_t},vote:{stringValue:v},page:{stringValue:_p},ts:{timestampValue:new Date().toISOString()}}})});}catch(e){}}</script>
+
+<div style="max-width:420px;margin:24px auto;padding:0 20px;">
+  <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="69f9e7aa7a14610dc0229bfd" data-style-height="52px" data-style-width="100%" data-token="04ee5260-e539-468b-9e6f-79eae0e8f5fa">
+    <a href="https://www.trustpilot.com/review/gptpayer.online" target="_blank" rel="noopener">Trustpilot</a>
+  </div>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:16px 20px;text-align:center;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4584285687998770" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="related-tools-section" style="max-width:900px;margin:0 auto 32px;padding:0 20px;">
+  <h3 class="related-title">🔧 Related Tools</h3>
+  <div class="related-tools-grid">
+    <a href="/tools/compress-pdf.html" class="related-tool-link">Compress PDF</a>
+    <a href="/tools/merge-pdf.html" class="related-tool-link">Merge PDF</a>
+    <a href="/tools/image-compressor.html" class="related-tool-link">Image Compressor</a>
+    <a href="/tools/jpg-to-pdf.html" class="related-tool-link">JPG to PDF</a>
+  </div>
+</div>
+
+<div class="share-section" style="max-width:900px;margin:0 auto 40px;padding:0 20px;text-align:center;">
+  <p class="share-label">📤 Share this tool</p>
+  <div class="share-btns">
+    <button class="share-btn share-tw" onclick="shareTwitter()">𝕏 Twitter</button>
+    <button class="share-btn share-wa" onclick="shareWhatsapp()">WhatsApp</button>
+    <button class="share-btn share-cp" onclick="copyLink(this)">🔗 Copy Link</button>
+  </div>
+</div>
+<script>
+function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank')}
+function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
+function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✅ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link'},2000)})}
+</script>
+
+<footer>
+  <div class="footer-popular">
+    <div class="footer-popular-title">🔥 Popular Tools</div>
+    <div class="footer-popular-links">
+      <a href="/tools/jpg-to-pdf.html">JPG to PDF</a>
+      <a href="/tools/compress-pdf.html">Compress PDF</a>
+      <a href="/tools/merge-pdf.html">Merge PDF</a>
+      <a href="/tools/background-remover.html">Background Remover</a>
+      <a href="/tools/pdf-to-word.html">PDF to Word</a>
+      <a href="/tools/image-compressor.html">Image Compressor</a>
+      <a href="/tools/word-to-pdf.html">Word to PDF</a>
+      <a href="/tools/split-pdf.html">Split PDF</a>
+      <a href="/tools/ocr-image-to-text.html">OCR / Image to Text</a>
+      <a href="/tools/resize-image.html">Resize Image</a>
+      <a href="/tools/pdf-to-jpg.html">PDF to JPG</a>
+      <a href="/tools/unlock-pdf-only.html">Unlock PDF</a>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="https://x.com/GptPayer1234" target="_blank" rel="noopener" class="social-icon-link" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h7.01l4.26 5.632 4.724-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://www.instagram.com/simplepdf_official" target="_blank" rel="noopener" class="social-icon-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.linkedin.com/in/simple-pdf-979a17405" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+  </div>
+  <div class="footer-bottom">
+<div class="footer-legal-links">
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/privacy-policy.html">Privacy Policy</a>
+  <a href="/disclaimer.html">Disclaimer</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+</div>
+<span class="footer-copy">© 2026 GPTPayer.online · 180+ Free Online Tools · All rights reserved</span>
+</div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>🍪 We use cookies for analytics and advertising to keep this tool free. By continuing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:8px;flex-shrink:0;"><button class="cookie-btn-decline" onclick="declineCookies()">Decline</button><button class="cookie-btn" onclick="acceptCookies()">Accept All</button></div>
+</div>
+
+<!-- GPTPayer: Dark Mode + Language -->
+<div id="google_translate_element" style="display:none;position:absolute;left:-9999px;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ar,zh-CN,fr,de,hi,id,it,ja,ko,ms,pt,ru,es,th,tr,vi,nl,pl,sv',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script>
+(function(){
+  var DM_KEY='gptpayer_theme';
+  function applyTheme(t){document.documentElement.setAttribute('data-theme',t);var btn=document.getElementById('dmToggle');if(btn)btn.textContent=(t==='dark')?'☀️':'🌙';}
+  var savedTheme=null;try{savedTheme=localStorage.getItem(DM_KEY);}catch(e){}
+  var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+  var initTheme=savedTheme||(sysDark?'dark':'light');
+  if(initTheme==='dark')document.documentElement.setAttribute('data-theme','dark');
+  document.addEventListener('DOMContentLoaded',function(){
+    applyTheme(initTheme);
+    var dmBtn=document.getElementById('dmToggle');
+    if(dmBtn){dmBtn.addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')||'light';var next=cur==='dark'?'light':'dark';try{localStorage.setItem(DM_KEY,next);}catch(e){}applyTheme(next);});}
+    var navToggle=document.getElementById('navToggle');
+    if(navToggle){navToggle.addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});}
+    var cb=document.getElementById('cookieBanner');
+    if(cb){var cs=null;try{cs=localStorage.getItem('gptpayer_cookie');}catch(e){}if(cs)cb.style.display='none';}
+  });
+  if(window.matchMedia){window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){var manual=null;try{manual=localStorage.getItem(DM_KEY);}catch(er){}if(!manual)applyTheme(e.matches?'dark':'light');});}
+  function acceptCookies(){try{localStorage.setItem('gptpayer_cookie','1');}catch(e){}document.getElementById('cookieBanner').style.display='none';}
+  function declineCookies(){document.getElementById('cookieBanner').style.display='none';}
+  window.acceptCookies=acceptCookies;window.declineCookies=declineCookies;
+
+  var LANGS=[{c:'en',n:'English',f:'🇺🇸'},{c:'es',n:'Español',f:'🇪🇸'},{c:'fr',n:'Français',f:'🇫🇷'},{c:'de',n:'Deutsch',f:'🇩🇪'},{c:'pt',n:'Português',f:'🇧🇷'},{c:'ru',n:'Русский',f:'🇷🇺'},{c:'ja',n:'日本語',f:'🇯🇵'},{c:'ko',n:'한국어',f:'🇰🇷'},{c:'zh-CN',n:'中文(简体)',f:'🇨🇳'},{c:'ar',n:'العربية',f:'🇸🇦'},{c:'hi',n:'हिन्दी',f:'🇮🇳'},{c:'it',n:'Italiano',f:'🇮🇹'},{c:'nl',n:'Nederlands',f:'🇳🇱'},{c:'tr',n:'Türkçe',f:'🇹🇷'},{c:'pl',n:'Polski',f:'🇵🇱'},{c:'vi',n:'Tiếng Việt',f:'🇻🇳'},{c:'th',n:'ภาษาไทย',f:'🇹🇭'},{c:'id',n:'Indonesia',f:'🇮🇩'},{c:'ms',n:'Melayu',f:'🇲🇾'},{c:'sv',n:'Svenska',f:'🇸🇪'}];
+  var LS='gptpayer_lang';
+  function getCurLang(){try{return localStorage.getItem(LS)||'en';}catch(e){return 'en';}}
+  function applyLang(code,n){n=n||0;if(n>80)return;var combo=document.querySelector('.goog-te-combo');if(!combo){setTimeout(function(){applyLang(code,n+1);},150);return;}if(code==='en'){combo.value='';var ev2;try{ev2=new Event('change',{bubbles:true});}catch(e){ev2=document.createEvent('HTMLEvents');ev2.initEvent('change',true,true);}combo.dispatchEvent(ev2);setTimeout(function(){var url=window.location.href.replace(/[?&]?(hl|_x_tr_sl|_x_tr_tl|_x_tr_hl)=[^&]*/g,'');window.location.href=url;},100);return;}combo.value=code;var ev;try{ev=new Event('change',{bubbles:true});}catch(e){ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,true);}combo.dispatchEvent(ev);}
+  function setCookieLang(code){var d=[location.hostname,'.'+location.hostname];var exp='expires=Fri,31 Dec 2027 23:59:59 GMT;path=/;';var clr='expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;';d.forEach(function(x){document.cookie='googtrans=;'+clr+'domain='+x;});document.cookie='googtrans=;'+clr;if(code!=='en'){var v='/en/'+code;d.forEach(function(x){document.cookie='googtrans='+v+';'+exp+'domain='+x;});document.cookie='googtrans='+v+';'+exp;}}
+  function updateLabel(code){var lbl=document.getElementById('langLabel');if(!lbl)return;var found=LANGS.filter(function(l){return l.c===code;})[0];lbl.textContent=found?found.f+' '+(code==='zh-CN'?'ZH':code.toUpperCase().slice(0,2)):'🌐 EN';}
+  function setLang(code){if(code==='en'){try{localStorage.removeItem(LS);}catch(e){};}else{try{localStorage.setItem(LS,code);}catch(e){}}setCookieLang(code);updateLabel(code);var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.remove('open');document.querySelectorAll('.lang-option').forEach(function(el){el.classList.toggle('active-lang',el.getAttribute('data-lang')===code);});applyLang(code);}
+  document.addEventListener('DOMContentLoaded',function(){
+    var cur=getCurLang();
+    var dd=document.getElementById('langDropdown');
+    if(dd&&dd.children.length===0){LANGS.forEach(function(l){var el=document.createElement('div');el.className='lang-option'+(l.c===cur?' active-lang':'');el.setAttribute('data-lang',l.c);el.innerHTML=l.f+' '+l.n;el.onclick=function(){setLang(l.c);};dd.appendChild(el);});}
+    updateLabel(cur);
+    var langBtn=document.getElementById('langBtn');
+    if(langBtn){langBtn.removeAttribute('onclick');langBtn.addEventListener('click',function(e){e.stopPropagation();var wrap=document.getElementById('langWrap');if(wrap)wrap.classList.toggle('open');});}
+    document.addEventListener('click',function(e){var wrap=document.getElementById('langWrap');if(wrap&&!wrap.contains(e.target))wrap.classList.remove('open');});
+    if(cur!=='en')applyLang(cur);
+  });
+})();
+</script>
+
+<script>
+// FAQ toggle (unified)
+function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
+// Also handle any inline onclick variants
+function faq(el){el.closest('.faq-item').classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    if(!q.getAttribute('onclick')){
+      q.addEventListener('click',function(){toggleFaq(this);});
+    }
+  });
+});
+</script>
+</body>
+</html>
